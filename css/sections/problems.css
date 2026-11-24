@@ -1,0 +1,92 @@
+﻿.section-shell {
+  width: min(100% - var(--measure-2-rem), var(--content-width));
+  margin-inline: auto;
+  padding-block: clamp(var(--measure-4-rem), 9vw, var(--measure-7-5-rem));
+}
+
+.section-heading {
+  max-width: var(--measure-49-rem);
+  margin-bottom: var(--space-5);
+}
+
+.section-heading__label {
+  margin-bottom: var(--measure-0-75-rem);
+  color: var(--color-blue-light);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.025em;
+}
+
+.section-heading h2,
+.video-section h2,
+.contact h2 {
+  margin-bottom: var(--measure-1-rem);
+  font-size: clamp(var(--measure-2-rem), 5vw, var(--measure-3-5-rem));
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  line-height: 1.12;
+}
+
+.section-heading h2 strong {
+  font-weight: 700;
+}
+
+.section-heading__intro {
+  max-width: var(--measure-42-rem);
+  margin-bottom: 0;
+  color: var(--color-muted);
+  font-size: var(--text-lg);
+}
+
+.problems__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.12fr 0.96fr;
+  align-items: stretch;
+  gap: var(--space-2);
+}
+
+.problem-card {
+  position: relative;
+  min-height: var(--measure-17-rem);
+  padding: clamp(var(--measure-1-25-rem), 2.5vw, var(--measure-2-rem));
+  overflow: hidden;
+  border: var(--measure-1-px) solid var(--color-line);
+  border-radius: var(--radius-card);
+  background: linear-gradient(165deg, var(--color-card-problem-a), var(--color-card-problem-b) 55%, var(--color-card-problem-c));
+}
+
+.problem-card--featured {
+  transform: translateY(var(--measure-1-25-rem));
+  background: linear-gradient(165deg, var(--color-card-problem-feature-a), var(--color-card-problem-feature-b) 54%, var(--color-card-problem-feature-c));
+}
+
+.problem-card h3 {
+  max-width: 17ch;
+  margin-bottom: var(--measure-0-75-rem);
+  font-size: clamp(var(--measure-1-25-rem), 2vw, var(--measure-1-65-rem));
+  font-weight: 650;
+  line-height: 1.22;
+}
+
+.problem-card p {
+  max-width: 34ch;
+  margin-bottom: 0;
+  color: var(--color-text-on-blue);
+  font-size: var(--text-base);
+}
+
+@media (max-width: 48rem) {
+  .problems__grid {
+    grid-template-columns: 1fr;
+    gap: var(--measure-0-75-rem);
+  }
+
+  .problem-card,
+  .problem-card--featured {
+    min-height: auto;
+    transform: none;
+  }
+
+}
+
+

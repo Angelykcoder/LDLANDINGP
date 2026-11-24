@@ -1,0 +1,42 @@
+﻿.button {
+  display: inline-flex;
+  min-height: var(--measure-3-25-rem);
+  align-items: center;
+  justify-content: center;
+  gap: var(--measure-0-75-rem);
+  padding: var(--measure-0-75-rem) var(--measure-1-25-rem);
+  border: var(--measure-1-px) solid var(--color-card-border-button);
+  border-radius: var(--radius-control);
+  color: var(--color-white);
+  background: var(--color-blue);
+  box-shadow: 0 var(--measure-0-5-rem) var(--measure-1-5-rem) var(--color-glass-accent);
+  font: inherit;
+  font-size: var(--text-base);
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  touch-action: manipulation;
+  transition: background-color 160ms ease-out, transform 160ms ease-out;
+}
+
+.button:hover {
+  background: var(--color-blue-hover);
+}
+
+.button:active {
+  transform: translateY(var(--measure-1-px));
+}
+
+.button--small {
+  min-height: var(--measure-3-rem);
+  padding-inline: var(--measure-1-rem);
+  font-size: var(--text-sm);
+}
+
+.button__arrow {
+  font-size: 1.15em;
+  line-height: 1;
+}
+
+

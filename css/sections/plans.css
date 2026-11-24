@@ -1,0 +1,82 @@
+﻿.plans {
+  max-width: none;
+  padding-inline: max(var(--measure-1-rem), calc((100% - var(--content-width)) / 2));
+  background: linear-gradient(165deg, var(--color-surface-blue-dark), var(--color-surface-blue) 64%, var(--color-surface-blue-light));
+}
+
+.plans__grid {
+  display: grid;
+  max-width: var(--content-width);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: stretch;
+  gap: var(--measure-1-rem);
+  margin-inline: auto;
+}
+
+.plan-card {
+  position: relative;
+  display: flex;
+  min-height: var(--measure-22-rem);
+  flex-direction: column;
+  padding: clamp(var(--measure-1-25-rem), 3vw, var(--measure-2-rem));
+  border: var(--measure-1-px) solid var(--color-line-card);
+  border-radius: var(--radius-card);
+  background: linear-gradient(160deg, var(--color-plan-fill-a), var(--color-plan-fill-b) 58%, var(--color-plan-fill-c));
+}
+
+.plan-card--recommended {
+  border-color: var(--color-line-card-strong);
+  background: linear-gradient(160deg, var(--color-plan-feature-a), var(--color-plan-feature-b) 58%, var(--color-plan-feature-c));
+}
+
+.plan-card__badge {
+  align-self: flex-start;
+  margin: -var(--measure-0-25-rem) 0 var(--measure-1-rem);
+  color: var(--color-highlight-soft);
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+
+.plan-card h3 {
+  margin-bottom: var(--measure-1-5-rem);
+  font-size: clamp(var(--measure-1-45-rem), 2.5vw, var(--measure-1-8-rem));
+  font-weight: 650;
+  line-height: 1.2;
+}
+
+.plan-card__features {
+  display: grid;
+  gap: var(--measure-0-75-rem);
+  margin: 0 0 var(--measure-2-rem);
+  padding: 0;
+  list-style: none;
+}
+
+.plan-card__features li {
+  color: var(--color-text-on-blue-strong);
+  font-size: var(--text-base);
+}
+
+.plan-card__features li::before {
+  display: inline-block;
+  width: var(--measure-1-2-rem);
+  color: var(--color-blue-light);
+  content: "•";
+}
+
+.plan-card .button {
+  width: 100%;
+  margin-top: auto;
+}
+
+@media (max-width: 48rem) {
+  .plans__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .plan-card {
+    min-height: 0;
+  }
+}
+
+

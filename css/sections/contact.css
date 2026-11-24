@@ -1,0 +1,182 @@
+﻿.contact {
+  padding: clamp(var(--measure-3-5-rem), 8vw, var(--measure-6-5-rem)) max(var(--measure-1-rem), calc((100% - var(--content-width)) / 2)) var(--measure-2-rem);
+  background: linear-gradient(112deg, var(--color-surface-blue-dark) 0%, var(--color-surface-blue) 56%, var(--color-blue) 150%);
+}
+
+.contact__inner {
+  display: flex;
+  max-width: var(--content-width);
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--measure-2-rem);
+  margin-inline: auto;
+}
+
+.contact__inner > div {
+  max-width: var(--measure-42-rem);
+}
+
+.contact h2 {
+  margin-bottom: var(--measure-0-5-rem);
+  font-size: clamp(var(--measure-2-5-rem), 6vw, var(--measure-4-5-rem));
+}
+
+.contact__intro {
+  margin-bottom: 0;
+  color: var(--color-text-on-blue-soft);
+  font-size: var(--text-lg);
+}
+
+.contact__button {
+  flex: 0 0 auto;
+  min-width: var(--measure-13-rem);
+}
+
+.contact__channels {
+  display: grid;
+  max-width: var(--content-width);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--measure-0-75-rem);
+  margin: var(--measure-3-rem) auto 0;
+}
+
+.contact-channel {
+  display: flex;
+  min-width: 0;
+  min-height: 5.25rem;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem;
+  border: 1px solid rgb(206 231 255 / 28%);
+  border-radius: 0.65rem;
+  color: #ffffff;
+  background: rgb(255 255 255 / 6%);
+  text-decoration: none;
+  transition: background-color 160ms ease-out, border-color 160ms ease-out;
+}
+
+.contact-channel:hover {
+  border-color: rgb(206 231 255 / 60%);
+  background: rgb(255 255 255 / 12%);
+}
+
+.contact-channel:focus-visible {
+  outline: 3px solid #ffffff;
+  outline-offset: 3px;
+}
+
+.contact-channel[hidden] {
+  display: none;
+}
+
+.contact-channel__icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  flex: 0 0 auto;
+}
+
+.contact-channel__icon--facebook {
+  color: #76aaff;
+  fill: currentColor;
+}
+
+.contact-channel__icon--instagram {
+  color: #f29ac2;
+}
+
+.contact-channel__icon--tiktok {
+  color: #8ee8ec;
+  fill: currentColor;
+}
+
+.contact-channel__icon--whatsapp {
+  color: #61d79a;
+}
+
+.contact-channel__copy {
+  display: grid;
+  min-width: 0;
+  gap: 0.15rem;
+}
+
+.contact-channel__copy strong {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.25;
+}
+
+.contact-channel__copy small {
+  color: var(--color-text-on-blue-soft);
+  font-size: 0.875rem;
+  line-height: 1.35;
+}
+
+.contact-channel__arrow {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: var(--color-text-on-blue-muted);
+  font-size: 1rem;
+}
+
+.contact-channel--pending {
+  cursor: default;
+  background: rgb(255 255 255 / 3%);
+}
+
+.contact-channel--pending .contact-channel__copy small {
+  color: #ffffff;
+}
+
+.contact-channel__status {
+  flex: 0 0 auto;
+  margin-left: auto;
+  color: var(--color-text-on-blue-muted);
+  font-size: 0.75rem;
+}
+
+.contact-channel--whatsapp {
+  border-color: rgb(97 215 154 / 48%);
+}
+
+.site-footer {
+  display: flex;
+  width: min(100% - var(--measure-2-rem), var(--content-width));
+  min-height: var(--measure-5-rem);
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--measure-0-75-rem);
+  margin-inline: auto;
+  color: var(--color-muted);
+  font-size: var(--text-sm);
+}
+
+@media (max-width: 48rem) {
+  .contact__inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .contact__button {
+    width: 100%;
+  }
+
+  .contact__channels {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .site-footer {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
+    padding-block: var(--measure-1-rem);
+  }
+}
+
+@media (max-width: 36rem) {
+  .contact__channels {
+    grid-template-columns: 1fr;
+  }
+}
+
+

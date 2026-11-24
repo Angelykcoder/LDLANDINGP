@@ -1,0 +1,71 @@
+﻿.learn {
+  position: relative;
+  max-width: none;
+  padding-inline: max(var(--measure-1-rem), calc((100% - var(--content-width)) / 2));
+  background: linear-gradient(135deg, var(--color-surface-learn), var(--color-surface-blue-soft) 56%, var(--color-surface-blue-strong));
+}
+
+.section-heading--center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-heading--center .section-heading__intro {
+  margin-inline: auto;
+}
+
+.learn__grid {
+  display: grid;
+  max-width: var(--content-width);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--measure-0-875-rem);
+  margin-inline: auto;
+}
+
+.learn-card {
+  min-height: var(--measure-18-rem);
+  padding: var(--measure-1-5-rem);
+  border: var(--measure-1-px) solid var(--color-card-border-learn);
+  border-radius: var(--radius-card);
+  background: linear-gradient(150deg, var(--color-learn-card-a), var(--color-learn-card-b) 74%);
+}
+
+.learn-card--accent {
+  background: linear-gradient(150deg, var(--color-learn-card-accent-a), var(--color-learn-card-accent-b) 74%);
+}
+
+.learn-card h3 {
+  margin-bottom: var(--measure-0-75-rem);
+  font-size: var(--measure-1-35-rem);
+  font-weight: 650;
+  line-height: 1.25;
+}
+
+.learn-card p {
+  margin-bottom: 0;
+  color: var(--color-muted);
+  font-size: var(--text-base);
+}
+
+@media (max-width: 64rem) {
+  .learn__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 36rem) {
+  .learn {
+    padding-inline: var(--measure-1-rem);
+  }
+
+  .learn__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .learn-card {
+    min-height: auto;
+  }
+
+}
+
+
