@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+# El build añade Sitemap con la URL pública real cuando Netlify proporciona URL o se define SITE_URL.
