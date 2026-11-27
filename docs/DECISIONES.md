@@ -77,3 +77,11 @@
 - Netlify proporciona `URL` durante el build; con ella se generan canonical, `og:url`, imagen social, sitemap, robots y un grafo Schema.org sin inventar dominio.
 - HSTS se configura con `max-age=31536000`, sin `includeSubDomains` ni `preload`, para evitar comprometer subdominios todavía no definidos.
 - Lighthouse final: móvil 98/100/100/100 y escritorio 100/100/100/100. Los detalles y límites se registran en `docs/QA_PRIORIDAD_MEDIA.md`.
+
+## Decisiones comerciales para coherencia legal
+
+- El paquete Integral institucional incluye una conferencia semanal, no mensual.
+- El documento de finalización se denomina «certificado privado de capacitación» y se entrega cuando se cumplen los requisitos de aprobación. No se presenta como certificación oficial ni con reconocimiento público.
+- La duración del acceso es variable y se acuerda al contratar; no se promete un período fijo de 30 días en el sitio.
+- Los planes individuales se mantienen. Sus condiciones legales deberán adaptarse expresamente al comprador individual antes de publicarse, sin asumir que el contrato institucional aplica sin cambios.
+- El contrato de prestación de servicios no será público: se entregará de forma privada a cada colegio y quedará fuera de `content/legal/`, `dist/`, el sitemap y el footer.

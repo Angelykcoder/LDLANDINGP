@@ -42,7 +42,7 @@ Empieza inspeccionando la página y los archivos relevantes; implementa mejoras 
 - No presentar imágenes ilustrativas como clientes reales, testimonios o evidencia de resultados. Añadir alt descriptivo y documentar recursos visuales nuevos.
 - No inventar testimonios, clientes, estadísticas, certificaciones, cifras ni condiciones comerciales.
 - Mostrar los precios y características oficiales de ambas categorías tal como están centralizados en `js/config.js`; no alterarlos ni añadir beneficios sin aprobación.
-- El diploma solo puede describirse como «diploma de participación y aprobación emitido por Waled Innovations». No afirmar reconocimiento oficial.
+- El documento de finalización solo puede describirse como «certificado privado de capacitación emitido por Waled Innovations» para quienes cumplan los requisitos de aprobación. No afirmar reconocimiento oficial.
 - Conservar literalmente el mensaje principal «Docentes digitales» y «En 1 mes, tus docentes usan la tecnología que tu colegio ya paga.» por instrucción del usuario.
 - La marca visible está configurada como Waled Innovations; confirmar la razón social antes de publicar.
 

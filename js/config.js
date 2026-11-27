@@ -27,7 +27,7 @@
             features: [
               "Acceso a la plataforma virtual.",
               "Capacidad para 10 profesores.",
-              "Certificado digital.",
+              "Certificado privado de capacitación.",
               "Elección de 1 curso para todos los profesores."
             ]
           },
@@ -40,7 +40,7 @@
             features: [
               "Acceso a la plataforma virtual.",
               "Capacidad para 20 profesores.",
-              "Certificado digital.",
+              "Certificado privado de capacitación.",
               "Elección de 2 cursos.",
               "Cada profesor puede escoger los cursos que desea realizar."
             ]
@@ -52,7 +52,7 @@
             features: [
               "Acceso a la plataforma virtual.",
               "Capacidad para 35 profesores.",
-              "Certificado.",
+              "Certificado privado de capacitación.",
               "Elección de 3 cursos.",
               "Cada profesor puede escoger los cursos que desea realizar.",
               "Conferencia en vivo para resolver dudas.",
@@ -65,7 +65,7 @@
       individual: {
         label: "Individuales",
         audience: "Para docentes individuales",
-        description: "Elige una capacitación individual según la cantidad de cursos que deseas realizar durante 30 días.",
+        description: "Elige una capacitación individual según la cantidad de cursos y la duración acordada al contratar.",
         plans: [
           {
             name: "Plan Esencial",
@@ -74,8 +74,8 @@
             features: [
               "Acceso a 1 curso.",
               "Acceso a la plataforma virtual.",
-              "Duración de acceso: 30 días.",
-              "Certificado digital por curso aprobado.",
+              "Duración de acceso acordada al contratar.",
+              "Certificado privado de capacitación por curso aprobado.",
               "Material de aprendizaje.",
               "Evaluaciones del curso."
             ]
@@ -87,8 +87,8 @@
             features: [
               "Acceso a 2 cursos.",
               "Acceso a la plataforma virtual.",
-              "Duración de acceso: 30 días.",
-              "Certificado digital por cada curso aprobado.",
+              "Duración de acceso acordada al contratar.",
+              "Certificado privado de capacitación por cada curso aprobado.",
               "Elección libre de los cursos.",
               "Material de aprendizaje.",
               "Evaluaciones de los cursos."
@@ -103,8 +103,8 @@
             features: [
               "Acceso a 3 cursos.",
               "Acceso a la plataforma virtual.",
-              "Duración de acceso: 30 días.",
-              "Certificado digital por cada curso aprobado.",
+              "Duración de acceso acordada al contratar.",
+              "Certificado privado de capacitación por cada curso aprobado.",
               "Elección libre de los cursos.",
               "Material de aprendizaje.",
               "Evaluaciones de los cursos.",
