@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "lastReviewed": "2026-11-27",
+  "brand": {
+    "value": "Waled Innovations",
+    "status": "confirmed"
+  },
+  "contractualProvider": {
+    "legalName": {
+      "value": null,
+      "status": "pending_owner"
+    },
+    "businessStatus": {
+      "value": "Sociedad anónima en proceso de constitución. Mientras no esté formalizada, el prestador contractual será la persona individual que utiliza la marca comercial.",
+      "status": "confirmed"
+    },
+    "nit": {
+      "value": null,
+      "status": "pending_owner"
+    },
+    "registrationData": {
+      "value": null,
+      "status": "pending_owner"
+    },
+    "address": {
+      "value": "9a calle 3-40, zona 11, Colonia El Progreso, Guatemala",
+      "status": "confirmed"
+    }
+  },
+  "contact": {
+    "businessEmail": {
+      "value": null,
+      "status": "pending_owner"
+    },
+    "telephone": {
+      "value": null,
+      "status": "pending_owner"
+    },
+    "whatsapp": {
+      "value": null,
+      "status": "pending_owner"
+    }
+  },
+  "technology": {
+    "moodleUrl": {
+      "value": null,
+      "status": "pending_owner"
+    },
+    "publicDomain": {
+      "value": null,
+      "status": "pending_owner"
+    }
+  },
+  "taxAndBilling": {
+    "status": "pending_accounting_review",
+    "note": "La formalización ante SAT, el tratamiento tributario, el IVA y la emisión de facturas están pendientes de revisión contable. Un recibo o contrato no debe presentarse como sustituto de una factura legalmente exigible."
+  },
+  "banking": {
+    "value": null,
+    "status": "pending_owner_private_data",
+    "publication": "never_publish_on_public_site_without_explicit_authorization"
+  },
+  "confirmedServiceTerms": {
+    "delivery": "Virtual y asincrónica mediante Moodle",
+    "accessPeriod": "30 días desde la activación de la cuenta",
+    "institutionalPayment": "50% para comenzar y 50% antes de finalizar el curso",
+    "paymentMethods": ["Transferencia bancaria", "Depósito bancario"],
+    "refund": "75% en los supuestos acordados; solicitud con al menos una semana de anticipación o cuando el cliente no haya ingresado a Moodle; no corresponde después de que el colegio haya comenzado el curso, sin limitar derechos irrenunciables",
+    "refundProcessing": "5 a 10 días; pendiente confirmar si son días hábiles o calendario",
+    "passingGrade": "61/100",
+    "assessment": "Proyectos",
+    "recovery": "Una oportunidad adicional; después de los 30 días requiere autorización",
+    "certificate": "Certificado digital PDF privado de capacitación, con firmas del CEO y del director y código QR o identificador único de verificación; no implica reconocimiento oficial",
+    "support": "Consultas por WhatsApp o llamada; recepción de consultas las 24 horas y respuesta estimada entre 1 y 8 horas; incluye soporte técnico y académico",
+    "dataRetention": "Retención prevista durante tres meses después de finalizar el curso, sujeta a verificación de respaldos, registros y obligaciones de conservación"
+  }
+}

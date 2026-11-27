@@ -1,104 +1,196 @@
 # Auditoría final pre-lanzamiento — Waled Innovations
 
-Fecha: 26 de noviembre de 2026  
-Alcance: revisión local del código y del artefacto de producción para Netlify. No se publicó el sitio ni se modificaron dominios, cuentas o credenciales.
+Fecha de ejecución: 27 de noviembre de 2026.
+Alcance: repositorio local, artefacto `dist/` y servidor HTTP local. Al finalizar, el propietario autorizó versionar y enviar los cambios a `origin/main`; no se inició un despliegue manual ni se cambió el dominio.
 
-## A. Estado general
+## 1. Decisión ejecutiva
 
-**NO APROBADO PARA PUBLICACIÓN.**
+**NO APROBADO PARA PUBLICACIÓN OFICIAL.**
 
-La implementación técnica ya produce un artefacto estable y acotado para Netlify, pero faltan elementos que deben existir antes de una publicación empresarial: identificación/contacto verificable, política de privacidad, términos y condiciones, condiciones completas de contratación y revisión jurídica. El acceso genérico a WhatsApp Web tampoco constituye todavía un canal comercial directo.
+La landing quedó técnicamente preparada para un despliegue de prueba: compila, sus pruebas automáticas pasan, no presenta overflow en las siete resoluciones solicitadas, obtiene 100 en accesibilidad/SEO/prácticas recomendadas de Lighthouse y separa los borradores legales de la información interna. El lanzamiento oficial continúa bloqueado por identidad y contactos pendientes, revisión jurídica y contable, falta de dominio/Moodle definitivos, ausencia de verificación del despliegue real y LCP móvil de laboratorio por encima del objetivo.
 
-## B. Tabla de auditoría
+La revisión técnica no sustituye la revisión jurídica de un abogado ni la revisión tributaria de un contador.
 
-| Área | Estado | Observaciones |
+## 2. Estado inicial del repositorio y Git
+
+| Requisito | Estado inicial | Acción ejecutada | Estado final |
+|---|---|---|---|
+| Rama | `main`, un commit detrás de `origin/main` | `git fetch origin` y fast-forward inspeccionado | `main` alineada con `origin/main` en `e4154bb` |
+| Cambios del propietario | `docs/DECISIONES.md` y `docs/PENDIENTES.md` modificados | Se conservaron y ampliaron; no se hizo reset ni checkout | Preservados |
+| Build | Correcto, pero la copia del favicon estaba en el commit remoto pendiente | Sincronización conservadora | Corregido |
+| Documentos legales | `content/legal/documentos.json` contenía `documents: []` | Se creó inventario y borradores | Siete documentos estructurados |
+| Footer legal | No existía | Se añadió «Información legal» | Funcional |
+| Dominio y Moodle | No configurados | Se mantuvieron sin inventar | Pendientes |
+
+No se detectaron conflictos. El commit y el push fueron autorizados posteriormente por el propietario. No se ejecutó una publicación manual; si Netlify está conectado a `main`, el push puede activar su flujo automático configurado externamente.
+
+## 3. Implementaciones y correcciones
+
+### Accesibilidad y navegación
+
+- Enlace para saltar al contenido conservado y verificado.
+- Menú móvil accesible con botón nativo, `aria-expanded`, `aria-controls`, apertura mediante Enter/Espacio, cierre con Escape y retorno del foco.
+- Selector de planes con tabs, flechas, Home/End, estados seleccionados y anuncios `aria-live` conservado y probado.
+- Escape cierra FAQ abierta y reproductor de YouTube; el foco vuelve al control correspondiente.
+- Moodle sin URL permanece fuera del orden de tabulación, sin destino falso.
+- Foco visible, modo de alto contraste, movimiento reducido, jerarquía de encabezados, etiquetas accesibles e imágenes con texto alternativo revisados.
+- Reflow corregido para 375 y 390 px sin ocultar overflow global.
+
+### Condiciones comerciales
+
+- Acceso actualizado a **30 días desde la activación de la cuenta** en todos los planes y FAQ.
+- Plan Integral actualizado a **una conferencia grupal mensual por institución mediante Google Meet**.
+- Precios existentes preservados.
+- Respuesta del certificado ampliada: nota mínima 61/100, proyectos, certificado digital privado, identificación de verificación y ausencia de reconocimiento oficial.
+
+### Privacidad y terceros
+
+- YouTube continúa sin iframe ni solicitud externa antes de una acción explícita.
+- El iframe usa `youtube-nocookie.com` y puede descargarse con Escape o «Cerrar video».
+- No se detectaron cookies propias, Google Analytics, píxeles, `localStorage` ni `sessionStorage`.
+- No se añadió un banner de cookies ficticio.
+- Se añadió aviso transparente junto a los canales externos de contacto.
+
+### SEO
+
+- Título, descripción, viewport, `robots`, Open Graph, Twitter Card, favicon y un único H1 verificados.
+- El build genera canonical absoluto, `og:url`, imagen social, sitemap y JSON-LD cuando Netlify proporciona `URL` o se define `SITE_URL` HTTPS.
+- Schema.org usa `Organization`, `WebSite` y `Service` sin dirección legal, teléfono, reseñas, acreditaciones o identificadores inventados.
+- Los borradores legales usan `noindex, follow`; por ello no se incluyen en el sitemap.
+
+### Seguridad y Netlify
+
+- `netlify.toml` publica exclusivamente `dist/`.
+- CSP restringe scripts, estilos, imágenes, fuentes, conexiones y frames; permite únicamente `youtube-nocookie.com` para video.
+- Configurados `Cross-Origin-Opener-Policy`, `X-Content-Type-Options`, `X-Frame-Options`, `Referrer-Policy`, `Permissions-Policy`, `X-DNS-Prefetch-Control` y `X-Permitted-Cross-Domain-Policies`.
+- HSTS fue retirado hasta verificar el dominio definitivo, HTTPS y subdominios; no se usa `includeSubDomains` ni `preload`.
+- Todos los enlaces con `target="_blank"` usan `noopener noreferrer`.
+- `npm audit --omit=dev`: 0 vulnerabilidades.
+
+### Rendimiento
+
+- Hero en AVIF, con dimensiones y prioridad alta.
+- Imágenes secundarias usan lazy loading y dimensiones reservadas.
+- Fuentes WOFF2 autoalojadas con `font-display: swap`.
+- CSS de producción combinado en una sola hoja.
+- YouTube no bloquea la carga inicial.
+- Lighthouse todavía identifica aproximadamente 417 KiB potenciales de ahorro en imágenes secundarias y 11 KiB de CSS no utilizado.
+
+## 4. Documentación legal preparada
+
+Todos los textos se identifican como **BORRADORES PENDIENTES DE REVISIÓN JURÍDICA**.
+
+| Documento | Ubicación | Estado |
 |---|---|---|
-| Legal y privacidad | FALLIDO | No existen política de privacidad, términos, identificación empresarial verificable ni condiciones completas de contratación. Requiere datos del propietario y revisión jurídica. |
-| Cookies | CON OBSERVACIONES | No se detectaron cookies propias, analítica, píxeles, `localStorage` o `sessionStorage`. Existe un iframe de YouTube con dominio de privacidad mejorada; debe declararse y comprobarse en producción. No se justifica actualmente un banner ficticio. |
-| Accesibilidad | CON OBSERVACIONES | Buena base semántica, foco visible, contraste AA calculado y movimiento reducido. Faltan pruebas manuales de teclado, lector de pantalla, zoom y reflow; no se declara conformidad WCAG completa. |
-| Seguridad | CON OBSERVACIONES | Se añadieron CSP y cabeceras defensivas, y no se encontraron secretos ni dependencias vulnerables. HTTPS/HSTS y las cabeceras efectivas deben verificarse en el dominio desplegado. |
-| SEO | CON OBSERVACIONES | Título, descripción, viewport, un H1, Open Graph, Twitter Card, favicon, robots y 404 están presentes. El build genera canonical, `og:url`, sitemap, imagen social y datos estructurados desde la URL pública; falta verificarlos en el despliegue definitivo. |
-| Rendimiento | CON OBSERVACIONES | Recursos locales, hero AVIF, dimensiones explícitas, carga diferida donde corresponde y CSS combinado en producción. Lighthouse fue medido en laboratorio; Core Web Vitals de campo siguen pendientes. |
-| Responsive | CON OBSERVACIONES | Se inspeccionaron capturas en 375, 390, 768, 1024, 1366, 1440 y 1920 px sin desbordamientos o solapamientos evidentes. El ajuste final del breakpoint de navegación requiere una última revisión visual en el despliegue. |
-| Funcionalidad | CON OBSERVACIONES | Planes y navegación interna pasan validaciones; Moodle sigue visible, sin URL y con TODO. WhatsApp es solo referencia genérica; las redes deben probarse manualmente en producción. |
-| Netlify | CON OBSERVACIONES | Build y artefacto local correctos; `netlify.toml` publica `dist/` y existe 404. Falta comprobar el comportamiento real tras desplegar, HTTPS, dominio y cabeceras servidas. |
+| Política de privacidad | `legal/#privacidad` | Borrador público, `noindex` |
+| Términos y condiciones | `legal/#terminos` | Borrador público, `noindex` |
+| Condiciones de contratación | `legal/#contratacion` | Borrador público, `noindex` |
+| Cancelaciones y reembolsos | `legal/#cancelaciones` | Borrador público, `noindex` |
+| Pagos y facturación | `legal/#pagos` | Borrador público; requiere también revisión contable |
+| Reglamento de capacitación y certificación | `legal/#certificacion` | Borrador público, `noindex` |
+| Contrato institucional | `docs/legal/CONTRATO_PRESTACION_SERVICIOS_INSTITUCIONES.md` | Borrador privado, excluido de `dist/` |
 
-## C. Errores y hallazgos
+El inventario se mantiene en `content/legal/documentos.json`. El futuro mecanismo de aceptación se especifica en `docs/ACEPTACION_CONTRACTUAL.md`; no se implementó una casilla ficticia porque actualmente no existe formulario, registro ni compra web.
 
-### Críticos
+## 5. Datos empresariales centralizados
 
-1. **Ausencia de documentación legal y privacidad.** Afecta al sitio completo y al footer. No se aplicó contenido inventado. Solución: aportar datos verificables y obtener textos revisados por un profesional jurídico en Guatemala.
-2. **Identificación y contacto empresarial incompletos.** La configuración conserva datos provisionales y WhatsApp no tiene número. Solución: proporcionar razón social, datos comerciales y número internacional autorizado.
-3. **PDF antiguo contradictorio retirado.** El PDF de referencia presentaba otra oferta y datos provisionales. Fue eliminado del repositorio por decisión explícita del propietario y no forma parte de la publicación.
+`content/business/datos-empresariales.json` contiene los datos confirmados y mantiene `null` para:
 
-### Altos
+- Nombre legal del prestador.
+- NIT y datos registrales.
+- Correo empresarial.
+- Teléfono y WhatsApp.
+- URL definitiva de Moodle.
+- Dominio definitivo.
+- Datos bancarios privados.
 
-1. **No existía configuración de producción Netlify ni separación del material interno.** Se añadieron `package.json`, `netlify.toml` y `scripts/build.mjs`; Netlify publica exclusivamente `dist/`.
-2. **No existían cabeceras de seguridad.** Se configuraron CSP, `X-Content-Type-Options`, `Referrer-Policy`, `X-Frame-Options`, `Permissions-Policy` y HSTS sin `includeSubDomains` ni `preload`. Su entrega efectiva debe verificarse en Netlify.
-3. **Condiciones comerciales incompletas.** Los precios y beneficios sí coinciden con la información oficial, pero faltan impuestos, vigencia, pagos, acceso, criterios de certificado, cancelaciones y alcance operativo. Requiere decisión del propietario y revisión jurídica.
+El tratamiento tributario, IVA y facturación figura como pendiente de revisión contable. La dirección proporcionada y la situación de sociedad anónima en proceso de constitución están identificadas sin presentar a la sociedad como constituida.
 
-### Medios
+## 6. Pruebas ejecutadas
 
-1. **Contenido crítico de planes dependía de JavaScript.** El build ahora prerenderiza las tarjetas desde `js/config.js`; `js/plans.js` evita duplicados.
-2. **SEO técnico dependiente del despliegue.** Se añadieron Twitter Card, `og:site_name`, robots y 404. Canonical, sitemap, `og:url`, imagen social y JSON-LD se generan desde `URL` o `SITE_URL`, sin fijar un dominio en el código.
-3. **Navegación de escritorio desaparecía en 768 y 1024 px sin menú alternativo.** Se redujo el breakpoint oculto a 672 px, sin rediseñar el componente.
-4. **Dimensiones incorrectas de una imagen.** `contenido-multimedia.jpg` declaraba 1200 × 800; se corrigió a su proporción real 1200 × 1500 para reducir riesgo de CLS.
-5. **Moodle se representaba como enlace sin destino.** Se mantuvo visible y sin URL inventada, añadiendo semántica de estado no disponible y preservando el TODO.
+| Prueba | Resultado |
+|---|---|
+| `npm.cmd run verify` | APROBADA |
+| Auditoría estática de contenido, recursos, planes, legal y Netlify | APROBADA |
+| Interacción de planes, teclado, FAQ, Moodle y YouTube | APROBADA |
+| Build SEO con URL HTTPS controlada | APROBADA |
+| `npm.cmd run test:browser` | APROBADA |
+| Resoluciones 375, 390, 768, 1024, 1366, 1440 y 1920 px | APROBADAS, sin overflow |
+| Menú móvil y Escape | APROBADA |
+| Página legal a 390 px | APROBADA |
+| Consola de Chrome | 0 errores |
+| YouTube antes del consentimiento | 0 iframes y 0 solicitudes externas |
+| Cookies/localStorage/sessionStorage | 0 elementos |
+| Recursos HTTP locales principales | 200 y tipos MIME esperados |
+| `node --check` en JavaScript | APROBADA |
+| Parseo de `netlify.toml` | APROBADA |
+| `git diff --check` | APROBADA; solo avisos de finales de línea |
+| `npm.cmd audit --omit=dev` | 0 vulnerabilidades |
 
-### Bajos
+## 7. Lighthouse y Core Web Vitals
 
-1. Optimizar o convertir `contenido-multimedia.jpg` y los PNG de Office/Google; el build ya combina las hojas CSS en producción.
-2. Añadir Apple touch icon e imagen social cuando existan activos aprobados.
-3. Anunciar consistentemente en lectores de pantalla los destinos externos; se mejoraron los accesos principales, pero conviene validación manual.
+Lighthouse 13.6.0, servidor local sobre el build de producción. Son métricas de laboratorio.
 
-## D. Pruebas ejecutadas
+| Perfil | Performance | Accessibility | Best Practices | SEO | FCP | LCP | CLS | TBT |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| Móvil | 93 | 100 | 100 | 100 | 1.1 s | 3.2 s | 0 | 20 ms |
+| Escritorio | 100 | 100 | 100 | 100 | 0.3 s | 0.7 s | 0 | 0 ms |
 
-- `npm.cmd run verify`: build de producción y 28 aserciones; **aprobado**.
-- `npm.cmd audit --omit=dev`: **0 vulnerabilidades**, proyecto sin dependencias instaladas.
-- `node --check js/config.js`, `js/plans.js`, `js/main.js`: **sin errores de sintaxis**.
-- Parseo de `netlify.toml` con `tomllib`: **válido**.
-- `git diff --check`: **sin errores de espacios**; únicamente avisos de normalización de finales de línea.
-- Servidor HTTP local sobre `dist/`: `/`, `/404.html`, `/robots.txt`, CSS, JS, favicon, logo e imagen hero respondieron **200** con tipos MIME esperados.
-- Inspección visual real mediante Chrome headless y capturas en 375, 390, 768, 1024, 1366, 1440 y 1920 px: no se observaron desbordamientos, cortes ni superposiciones evidentes antes del ajuste final de navegación.
-- Cálculo de contraste de las combinaciones principales: razones entre 5.44:1 y 6.53:1, superiores al mínimo AA para texto normal evaluado.
-- Búsqueda estática de formularios, cookies, almacenamiento, analítica, píxeles, `fetch`, secretos y archivos `.env`: no se encontraron formularios ni tecnologías de seguimiento o credenciales expuestas.
+- **LCP móvil:** FALLIDO respecto al objetivo de 2.5 s.
+- **LCP escritorio:** aprobado en laboratorio.
+- **CLS:** aprobado en ambos perfiles.
+- **INP:** Lighthouse no proporciona un dato de campo válido. TBT no debe presentarse como INP.
+- No existen datos reales de usuarios suficientes para informar Core Web Vitals de campo.
 
-Después de esta auditoría se ejecutó Lighthouse en laboratorio: móvil 98/100/100/100 y escritorio 100/100/100/100. Los resultados y límites están en `docs/QA_PRIORIDAD_MEDIA.md`. No se ejecutaron axe, pa11y, Netlify CLI ni pruebas con lector de pantalla; tampoco existen todavía métricas de campo.
+## 8. Matriz final
 
-## E. Pendientes del propietario
+| Área | Clasificación | Evidencia o bloqueo |
+|---|---|---|
+| Build y artefacto Netlify | COMPLETADO Y VERIFICADO | Build y recursos locales aprobados |
+| Accesibilidad automatizada | COMPLETADO Y VERIFICADO | Lighthouse 100, teclado e interacciones automáticas aprobadas |
+| Lectores de pantalla reales | IMPLEMENTADO, PENDIENTE DE VERIFICACIÓN | Faltan NVDA, VoiceOver y TalkBack en dispositivos reales |
+| Responsive y reflow | COMPLETADO Y VERIFICADO | Siete resoluciones sin overflow |
+| SEO técnico generado | COMPLETADO Y VERIFICADO | Prueba con URL HTTPS controlada aprobada |
+| SEO en dominio definitivo | PENDIENTE POR INFORMACIÓN | Falta dominio |
+| Privacidad previa a YouTube | COMPLETADO Y VERIFICADO | Sin tercero antes del consentimiento |
+| Footer legal | COMPLETADO Y VERIFICADO | Seis enlaces funcionales |
+| Borradores legales | IMPLEMENTADO, PENDIENTE DE VERIFICACIÓN | Requieren aprobación del propietario |
+| Validez jurídica | BLOQUEADO POR REVISIÓN EXTERNA | Requiere abogado |
+| Impuestos y facturación | BLOQUEADO POR REVISIÓN EXTERNA | Requiere contador y formalización SAT |
+| Identificación/contacto | PENDIENTE POR INFORMACIÓN | Campos centralizados en `null` |
+| Moodle y tratamiento real de datos | PENDIENTE POR INFORMACIÓN | Falta URL/acceso |
+| Seguridad configurada | COMPLETADO Y VERIFICADO | TOML y CSP comprobados localmente |
+| Cabeceras/HTTPS servidos | IMPLEMENTADO, PENDIENTE DE VERIFICACIÓN | Falta despliegue o dominio verificable |
+| Dependencias | COMPLETADO Y VERIFICADO | 0 vulnerabilidades |
+| Performance escritorio | COMPLETADO Y VERIFICADO | Lighthouse 100, LCP 0.7 s |
+| Performance móvil | IMPLEMENTADO, PENDIENTE DE VERIFICACIÓN | Score 93; LCP 3.2 s no cumple objetivo |
+| INP y datos de campo | IMPLEMENTADO, PENDIENTE DE VERIFICACIÓN | Solo puede medirse con usuarios reales |
 
-1. Dominio definitivo y estrategia de subdominios.
-2. Razón social/nombre legal, NIT cuando corresponda, dirección, correo y contacto empresarial.
-3. Número internacional de WhatsApp autorizado.
-4. URL definitiva de Moodle.
-5. Confirmación manual de las URL de Facebook, Instagram y TikTok.
-6. Condiciones comerciales completas: impuestos, factura, pagos, vigencia, acceso, certificado, cancelaciones, reembolsos, reprogramaciones y conferencias.
-7. Política de privacidad y términos revisados por abogado; validación específica de los Decretos 06-2003 y 47-2008.
-8. Confirmación/licencia del logo, fotografías y logos de terceros.
-9. Verificar canonical, sitemap, imagen social y datos estructurados generados por el build cuando exista la URL pública definitiva.
-10. Revisión manual de accesibilidad y prueba final en el despliegue de Netlify.
+## 9. Riesgos y limitaciones
 
-## F. Recomendación final
+- Los borradores legales no deben presentarse como documentos definitivos.
+- No se inspeccionó una instancia real de Moodle ni sus respaldos, roles, cookies o retención efectiva.
+- No se verificaron cabeceras de una respuesta real de Netlify porque no existe dominio o URL confirmada en el repositorio.
+- No se ejecutaron pruebas manuales con tecnologías de asistencia.
+- Las capturas son Chrome headless; no sustituyen pruebas físicas en iOS/Safari y Android/TalkBack.
+- El LCP móvil local no cumple el objetivo recomendado.
+- Licencias del hero y logos de Microsoft/Google siguen pendientes de confirmación.
 
-**No publicar todavía el sitio como lanzamiento oficial.** El proyecto ya puede compilarse y cargarse a un entorno de prueba de Netlify sin exponer los archivos internos, pero la publicación pública empresarial debe esperar a resolver los bloqueos legales, de identidad/contacto y condiciones comerciales. Después, ejecutar nuevamente `npm.cmd run verify`, comprobar cabeceras/HTTPS en el dominio, realizar Lighthouse y completar la pasada manual de accesibilidad y enlaces.
+## 10. Pendientes del propietario y externos
 
-## Registro de archivos modificados por esta auditoría
+1. Proporcionar identidad legal del prestador, NIT/datos registrales cuando correspondan y firmantes.
+2. Confirmar correo, teléfono y WhatsApp oficiales.
+3. Confirmar dominio y URL de Moodle.
+4. Obtener revisión jurídica de los siete documentos.
+5. Obtener revisión contable/tributaria de IVA, factura, SAT y comprobantes.
+6. Confirmar datos bancarios únicamente para documentos privados.
+7. Definir días hábiles o calendario para reembolsos y reglas de reprogramación.
+8. Confirmar licencias de imágenes y logos de terceros.
+9. Optimizar imágenes secundarias y repetir Lighthouse móvil hasta conseguir LCP ≤ 2.5 s de forma consistente.
+10. Ejecutar deploy preview autorizado, validar HTTPS/cabeceras y realizar pruebas manuales con lectores de pantalla.
 
-- `.gitignore`
-- `CODEX.md`
-- `index.html`
-- `js/main.js`
-- `js/plans.js`
-- `css/sections/product-refinements.css`
-- `docs/DECISIONES.md`
-- `docs/PENDIENTES.md`
-- `docs/AUDITORIA_PRELANZAMIENTO.md`
-- `package.json`
-- `package-lock.json`
-- `netlify.toml`
-- `robots.txt`
-- `404.html`
-- `scripts/build.mjs`
-- `scripts/audit.mjs`
+## 11. Recomendación de despliegue
 
-El repositorio ya contenía otros cambios no relacionados o previos; no fueron revertidos.
+El proyecto puede utilizarse en un **deploy preview privado o de revisión** cuando el propietario lo autorice. Antes del lanzamiento oficial deben completarse los bloqueos legales, contables y de identidad/contacto, mejorar o aceptar formalmente el riesgo de LCP móvil y repetir todas las comprobaciones sobre la URL real.
+
+**Decisión final: NO APROBADO PARA PUBLICACIÓN OFICIAL.**

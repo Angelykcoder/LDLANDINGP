@@ -166,6 +166,49 @@
     });
   }
 
+  function initMobileNavigation() {
+    var toggle = document.querySelector(".nav-toggle");
+    var navigation = document.querySelector("#site-nav");
+    if (!toggle || !navigation) return;
+
+    function closeNavigation(restoreFocus) {
+      toggle.setAttribute("aria-expanded", "false");
+      navigation.classList.remove("is-open");
+      if (restoreFocus) toggle.focus();
+    }
+
+    toggle.addEventListener("click", function () {
+      var willOpen = toggle.getAttribute("aria-expanded") !== "true";
+      toggle.setAttribute("aria-expanded", String(willOpen));
+      navigation.classList.toggle("is-open", willOpen);
+      if (willOpen) {
+        var firstLink = navigation.querySelector("a");
+        if (firstLink) firstLink.focus();
+      }
+    });
+
+    navigation.addEventListener("click", function (event) {
+      if (event.target.closest("a")) closeNavigation(false);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && toggle.getAttribute("aria-expanded") === "true") {
+        event.preventDefault();
+        closeNavigation(true);
+      }
+    });
+
+    document.addEventListener("click", function (event) {
+      if (
+        toggle.getAttribute("aria-expanded") === "true"
+        && !navigation.contains(event.target)
+        && !toggle.contains(event.target)
+      ) {
+        closeNavigation(false);
+      }
+    });
+  }
+
   window.LD.applyWhatsAppLinks = applyWhatsAppLinks;
 
   function init() {
@@ -174,6 +217,7 @@
     applyMoodleLink();
     initVideoEmbeds();
     initFaqKeyboard();
+    initMobileNavigation();
   }
 
   if (document.readyState === "loading") {

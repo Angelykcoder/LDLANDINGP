@@ -13,6 +13,9 @@ const sourceHtml = readFileSync(join(root, "index.html"), "utf8");
 const productionHtml = readFileSync(join(dist, "index.html"), "utf8");
 const configCode = readFileSync(join(root, "js/config.js"), "utf8");
 const baseCss = readFileSync(join(root, "css/base.css"), "utf8");
+const legalHtml = readFileSync(join(root, "legal/index.html"), "utf8");
+const legalManifest = JSON.parse(readFileSync(join(root, "content/legal/documentos.json"), "utf8"));
+const businessData = JSON.parse(readFileSync(join(root, "content/business/datos-empresariales.json"), "utf8"));
 const sandbox = { window: {} };
 vm.runInNewContext(configCode, sandbox);
 const config = sandbox.window.LD.config;
@@ -20,34 +23,33 @@ const config = sandbox.window.LD.config;
 const expectedCategories = {
   institutional: [
     ["Plan Esencial", "Q1,500", [
-      "Acceso a la plataforma virtual.",
+      "Acceso durante 30 días desde la activación de la cuenta.",
       "Capacidad para 10 profesores.",
       "Certificado privado de capacitación.",
       "Elección de 1 curso para todos los profesores."
     ]],
     ["Plan Institucional", "Q2,600", [
-      "Acceso a la plataforma virtual.",
+      "Acceso durante 30 días desde la activación de la cuenta.",
       "Capacidad para 20 profesores.",
       "Certificado privado de capacitación.",
       "Elección de 2 cursos.",
       "Cada profesor puede escoger los cursos que desea realizar."
     ]],
     ["Plan Integral", "Q3,900", [
-      "Acceso a la plataforma virtual.",
+      "Acceso durante 30 días desde la activación de la cuenta.",
       "Capacidad para 35 profesores.",
       "Certificado privado de capacitación.",
       "Elección de 3 cursos.",
       "Cada profesor puede escoger los cursos que desea realizar.",
       "Conferencia en vivo para resolver dudas.",
-      "Una conferencia semanal.",
+      "Una conferencia grupal mensual por Google Meet.",
       "Explicación y acompañamiento de los temas."
     ]]
   ],
   individual: [
     ["Plan Esencial", "Q175", [
       "Acceso a 1 curso.",
-      "Acceso a la plataforma virtual.",
-      "Duración de acceso acordada al contratar.",
+      "Acceso durante 30 días desde la activación de la cuenta.",
       "Certificado privado de capacitación por curso aprobado.",
       "Material de aprendizaje.",
       "Evaluaciones del curso.",
@@ -55,8 +57,7 @@ const expectedCategories = {
     ]],
     ["Plan Profesional", "Q275", [
       "Acceso a 2 cursos.",
-      "Acceso a la plataforma virtual.",
-      "Duración de acceso acordada al contratar.",
+      "Acceso durante 30 días desde la activación de la cuenta.",
       "Certificado privado de capacitación por cada curso aprobado.",
       "Elección libre de los cursos.",
       "Material de aprendizaje.",
@@ -65,8 +66,7 @@ const expectedCategories = {
     ]],
     ["Plan Integral", "Q375", [
       "Acceso a 3 cursos.",
-      "Acceso a la plataforma virtual.",
-      "Duración de acceso acordada al contratar.",
+      "Acceso durante 30 días desde la activación de la cuenta.",
       "Certificado privado de capacitación por cada curso aprobado.",
       "Elección libre de los cursos.",
       "Material de aprendizaje.",
@@ -84,6 +84,8 @@ assert(config.whatsappNumber === "", "No se inventó un número de WhatsApp.");
 assert(sourceHtml.includes("data-video-embed") && !sourceHtml.includes('<iframe src="https://www.youtube'), "YouTube no se solicita antes del consentimiento.");
 assert(sourceHtml.includes('data-moodle role="link" aria-disabled="true"') && sourceHtml.includes('tabindex="-1"'), "Moodle sin URL queda fuera del orden de tabulación.");
 assert(sourceHtml.includes('aria-live="polite"') && sourceHtml.includes("data-plan-status"), "Los cambios de categoría tienen anuncio accesible.");
+assert(sourceHtml.includes('class="nav-toggle"') && sourceHtml.includes('aria-controls="site-nav"'), "El menú móvil tiene un control accesible asociado.");
+assert(sourceHtml.includes('aria-labelledby="footer-legal-title"') && sourceHtml.includes('legal/#privacidad'), "El footer expone la sección de información legal.");
 assert(!/html\s*\{[^}]*min-width/s.test(baseCss), "El documento no impone un ancho mínimo que bloquee el reflow.");
 assert(sourceHtml.includes("SEO_ABSOLUTE_URLS") && sourceHtml.includes('twitter:card" content="summary_large_image"'), "El origen contiene el punto de inyección SEO y Twitter Card grande.");
 
@@ -118,7 +120,7 @@ assert(fragments.every((fragment) => ids.includes(fragment)), "Todos los enlaces
 const localResources = [...sourceHtml.matchAll(/(?:src|href)="([^"]+)"/g)]
   .map((match) => match[1])
   .filter((value) => !value.startsWith("#") && !value.startsWith("http") && value !== "/");
-assert(localResources.every((resource) => existsSync(join(root, resource))), "Todos los recursos locales referenciados existen.");
+assert(localResources.every((resource) => existsSync(join(root, resource.split("#")[0]))), "Todos los recursos locales referenciados existen.");
 
 const blankLinks = [...productionHtml.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)].map((match) => match[0]);
 assert(blankLinks.every((link) => /rel="[^"]*noopener[^"]*"/.test(link)), "Todo enlace con target=_blank usa noopener.");
@@ -131,13 +133,41 @@ assert(blankLinks.every((link) => /rel="[^"]*noopener[^"]*"/.test(link)), "Todo 
   assert(existsSync(join(dist, entry)) && statSync(join(dist, entry)).size > 0, `${entry} está incluido en producción.`);
 });
 
+assert(existsSync(join(dist, "legal", "index.html")), "La página accesible de información legal está incluida en producción.");
+assert(legalManifest.documents.length === 7, "El inventario contiene los siete documentos legales solicitados.");
+assert(
+  legalManifest.documents.filter((document) => document.publication === "public_draft").length === 6
+    && legalManifest.documents.some((document) => document.id === "contrato-institucional" && document.publication === "private_not_in_build"),
+  "Seis borradores son consultables y el contrato institucional permanece privado."
+);
+assert(
+  ["privacidad", "terminos", "contratacion", "cancelaciones", "pagos", "certificacion"].every((id) => legalHtml.includes(`id="${id}"`))
+    && legalHtml.includes("BORRADORES PENDIENTES DE REVISIÓN JURÍDICA"),
+  "La información legal pública contiene los seis documentos y declara su estado de borrador."
+);
+assert(
+  businessData.contractualProvider.legalName.value === null
+    && businessData.contact.businessEmail.value === null
+    && businessData.technology.moodleUrl.value === null,
+  "Los datos empresariales pendientes permanecen centralizados sin valores inventados."
+);
+assert(!existsSync(join(dist, "docs", "legal", "CONTRATO_PRESTACION_SERVICIOS_INSTITUCIONES.md")), "El contrato institucional privado no se publica.");
+
+assert(
+  productionHtml.includes('rel="icon" type="image/png" href="img/waled-logo-vertical-color.png"')
+    && existsSync(join(dist, "img", "waled-logo-vertical-color.png"))
+    && statSync(join(dist, "img", "waled-logo-vertical-color.png")).size > 0,
+  "El logo de Waled usado como favicon está enlazado y publicado."
+);
+
 assert(existsSync(join(dist, "css/site.css")) && statSync(join(dist, "css/site.css")).size > 0, "Producción combina los estilos en una sola hoja CSS.");
 assert((productionHtml.match(/<link rel="stylesheet"/g) || []).length === 1, "La página de producción solicita una sola hoja CSS.");
 
 const netlify = readFileSync(join(root, "netlify.toml"), "utf8");
-["Content-Security-Policy", "X-Content-Type-Options", "Referrer-Policy", "X-Frame-Options", "Permissions-Policy", "Strict-Transport-Security"].forEach((header) => {
+["Content-Security-Policy", "Cross-Origin-Opener-Policy", "X-Content-Type-Options", "Referrer-Policy", "X-Frame-Options", "Permissions-Policy"].forEach((header) => {
   assert(netlify.includes(header), `Netlify declara ${header}.`);
 });
+assert(!netlify.includes("Strict-Transport-Security"), "HSTS queda pospuesto hasta verificar dominio, HTTPS y subdominios.");
 
 if (failures.length) {
   failures.forEach((failure) => console.error(`FAIL: ${failure}`));

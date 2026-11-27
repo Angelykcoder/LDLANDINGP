@@ -33,7 +33,7 @@ const copy = (source, destination = source) => {
   cpSync(join(root, source), target, { recursive: true });
 };
 
-["404.html", "css", "js", "assets"].forEach((entry) => copy(entry));
+["404.html", "css", "js", "assets", "legal"].forEach((entry) => copy(entry));
 
 [
   "img/waled-logo-horizontal.svg",

@@ -53,7 +53,7 @@
 
 - Netlify publica exclusivamente `dist/`, generado con `npm run build`; documentos internos, PDF antiguo, capturas temporales y metadatos del repositorio quedan fuera del artefacto.
 - Los planes se prerenderizan en producción desde la misma configuración central de `js/config.js`; JavaScript evita duplicarlos si el HTML ya los contiene.
-- Se añadieron cabeceras defensivas compatibles con los recursos observados. HSTS se pospone hasta conocer el dominio definitivo y validar HTTPS/subdominios.
+- Se añadieron cabeceras defensivas compatibles con los recursos observados. HSTS no se declara hasta conocer el dominio definitivo y validar HTTPS/subdominios.
 - No se crea un banner de cookies: no se detectaron analítica, píxeles, almacenamiento local ni cookies propias. El reproductor de YouTube requiere volver a validarse en el sitio desplegado y explicarse en la futura política de privacidad.
 - La auditoría pre-lanzamiento completa y sus límites se registran en `docs/AUDITORIA_PRELANZAMIENTO.md`.
 
@@ -75,18 +75,32 @@
 - YouTube usa una fachada de consentimiento: el iframe `youtube-nocookie.com` solo se crea después de activar «Cargar presentación en video».
 - El build combina las hojas CSS para la página principal, manteniendo los archivos fuente modulares para desarrollo.
 - Netlify proporciona `URL` durante el build; con ella se generan canonical, `og:url`, imagen social, sitemap, robots y un grafo Schema.org sin inventar dominio.
-- HSTS se configura con `max-age=31536000`, sin `includeSubDomains` ni `preload`, para evitar comprometer subdominios todavía no definidos.
+- HSTS queda retirado de la configuración hasta verificar el dominio definitivo, HTTPS y la estrategia de subdominios; no se usa `preload`.
 - Lighthouse final: móvil 98/100/100/100 y escritorio 100/100/100/100. Los detalles y límites se registran en `docs/QA_PRIORIDAD_MEDIA.md`.
 
 ## Decisiones comerciales para coherencia legal
 
-- El paquete Integral institucional incluye una conferencia semanal, no mensual.
+- El paquete Integral institucional incluye una conferencia grupal mensual por institución mediante Google Meet, no semanal.
 - El documento de finalización se denomina «certificado privado de capacitación» y se entrega cuando se cumplen los requisitos de aprobación. No se presenta como certificación oficial ni con reconocimiento público.
-- La duración del acceso es variable y se acuerda al contratar; no se promete un período fijo de 30 días en el sitio.
+- La duración del acceso es de 30 días desde la activación de la cuenta, tanto para planes institucionales como individuales.
 - Los planes individuales se mantienen. Sus condiciones legales deberán adaptarse expresamente al comprador individual antes de publicarse, sin asumir que el contrato institucional aplica sin cambios.
 - Los planes individuales se pagan completos antes de habilitar Moodle, mediante transferencia o depósito bancario.
 - Para planes individuales se reembolsa el 75% de lo pagado si la persona todavía no ha ingresado a Moodle; después del primer ingreso no procede reembolso bajo la política comercial, sin limitar derechos irrenunciables.
-- La aprobación individual exige los proyectos requeridos y una nota mínima de 61/100. Existe una segunda oportunidad, pero su duración y costo todavía deben definirse.
+- La aprobación individual exige los proyectos requeridos y una nota mínima de 61/100. Si la persona no aprueba, dispone de una segunda oportunidad sin costo con un mes adicional de acceso.
 - Todos los planes individuales incluyen soporte por WhatsApp o llamada, de lunes a domingo, con respuesta estimada de 1 a 8 horas; no incluyen conferencias.
-- La duración variable se deja por escrito en la confirmación de compra individual.
+- La confirmación de compra individual debe registrar que el acceso dura 30 días desde la activación de la cuenta.
+- Los planes individuales conservan sus precios publicados y aplican las mismas condiciones de IVA, facturación y comprobantes que los planes institucionales. El tratamiento tributario concreto sigue sujeto a validación contable y no se afirmará que los precios incluyen o excluyen IVA mientras no se confirme.
+- Los planes individuales usan los mismos canales oficiales de contacto que los institucionales. No se crearán canales distintos; correo, teléfono y número de WhatsApp continúan pendientes de confirmación.
+- Los reembolsos individuales aprobados se procesan en un plazo de 5 a 10 días. Falta confirmar si el cómputo corresponde a días hábiles o calendario.
 - El contrato de prestación de servicios no será público: se entregará de forma privada a cada colegio y quedará fuera de `content/legal/`, `dist/`, el sitemap y el footer.
+
+## Implementación de auditoría integral — 27 de noviembre de 2026
+
+- Se incorpora un menú móvil nativo y accesible, con `aria-expanded`, asociación mediante `aria-controls`, cierre con Escape, cierre al elegir una opción y devolución del foco al control.
+- El footer incluye una sección visible «Información legal» con enlaces a seis documentos públicos. Todos muestran de forma prominente que son borradores pendientes de revisión jurídica.
+- El contrato institucional se conserva como borrador privado en `docs/legal/` y el build verifica que no llegue a `dist/`.
+- Los datos empresariales confirmados y pendientes se centralizan en `content/business/datos-empresariales.json`; los valores no confirmados permanecen en `null`.
+- La landing no añade un banner de cookies porque no se detectaron cookies, analítica, píxeles ni almacenamiento local. YouTube continúa bloqueado hasta la acción del visitante.
+- No se añadió una casilla de aceptación ficticia: la landing no tiene formulario, registro, inscripción o compra. El mecanismo futuro queda especificado en `docs/ACEPTACION_CONTRACTUAL.md`.
+- El build publica `legal/` pero continúa excluyendo `docs/`, `content/`, `.git` y material de auditoría interna.
+- La verificación visual se automatiza con Chrome mediante `npm run test:browser` para las resoluciones 375, 390, 768, 1024, 1366, 1440 y 1920 px, comprobando overflow, menú, consola, privacidad previa al consentimiento y página legal móvil.

@@ -25,7 +25,7 @@
             price: "Q1,500",
             contactLabel: "Plan Esencial Institucional de Q1,500",
             features: [
-              "Acceso a la plataforma virtual.",
+              "Acceso durante 30 días desde la activación de la cuenta.",
               "Capacidad para 10 profesores.",
               "Certificado privado de capacitación.",
               "Elección de 1 curso para todos los profesores."
@@ -38,7 +38,7 @@
             featured: true,
             badge: "Más popular",
             features: [
-              "Acceso a la plataforma virtual.",
+              "Acceso durante 30 días desde la activación de la cuenta.",
               "Capacidad para 20 profesores.",
               "Certificado privado de capacitación.",
               "Elección de 2 cursos.",
@@ -50,13 +50,13 @@
             price: "Q3,900",
             contactLabel: "Plan Integral Institucional de Q3,900",
             features: [
-              "Acceso a la plataforma virtual.",
+              "Acceso durante 30 días desde la activación de la cuenta.",
               "Capacidad para 35 profesores.",
               "Certificado privado de capacitación.",
               "Elección de 3 cursos.",
               "Cada profesor puede escoger los cursos que desea realizar.",
               "Conferencia en vivo para resolver dudas.",
-              "Una conferencia semanal.",
+              "Una conferencia grupal mensual por Google Meet.",
               "Explicación y acompañamiento de los temas."
             ]
           }
@@ -65,7 +65,7 @@
       individual: {
         label: "Individuales",
         audience: "Para docentes individuales",
-        description: "Elige una capacitación individual según la cantidad de cursos y la duración acordada al contratar.",
+        description: "Elige una capacitación individual según la cantidad de cursos. El acceso dura 30 días desde la activación de la cuenta.",
         plans: [
           {
             name: "Plan Esencial",
@@ -73,8 +73,7 @@
             contactLabel: "Plan Esencial Individual de Q175",
             features: [
               "Acceso a 1 curso.",
-              "Acceso a la plataforma virtual.",
-              "Duración de acceso acordada al contratar.",
+              "Acceso durante 30 días desde la activación de la cuenta.",
               "Certificado privado de capacitación por curso aprobado.",
               "Material de aprendizaje.",
               "Evaluaciones del curso.",
@@ -87,8 +86,7 @@
             contactLabel: "Plan Profesional Individual de Q275",
             features: [
               "Acceso a 2 cursos.",
-              "Acceso a la plataforma virtual.",
-              "Duración de acceso acordada al contratar.",
+              "Acceso durante 30 días desde la activación de la cuenta.",
               "Certificado privado de capacitación por cada curso aprobado.",
               "Elección libre de los cursos.",
               "Material de aprendizaje.",
@@ -104,8 +102,7 @@
             badge: "Más conveniente",
             features: [
               "Acceso a 3 cursos.",
-              "Acceso a la plataforma virtual.",
-              "Duración de acceso acordada al contratar.",
+              "Acceso durante 30 días desde la activación de la cuenta.",
               "Certificado privado de capacitación por cada curso aprobado.",
               "Elección libre de los cursos.",
               "Material de aprendizaje.",

@@ -4,6 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f5f7fa">
+    <meta name="color-scheme" content="light">
+    <meta name="robots" content="index, follow, max-image-preview:large">
     <meta name="description" content="Capacitación digital práctica para que los docentes aprovechen la tecnología que su colegio ya tiene.">
     <meta property="og:type" content="website">
     <meta property="og:title" content="Docentes digitales | Capacitación para colegios">
@@ -17,8 +19,8 @@
     <link rel="preload" href="assets/fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/ibm-plex-sans-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/ibm-plex-sans-700.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="icon" type="image/png" href="img/waled-logo-vertical-color.png">
-<link rel="apple-touch-icon" href="img/waled-logo-vertical-color.png">
+    <link rel="icon" type="image/png" href="img/waled-logo-vertical-color.png">
+    <link rel="apple-touch-icon" href="img/waled-logo-vertical-color.png">
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/components/button.css">
@@ -58,10 +60,15 @@
       <a class="site-brand" href="#inicio" aria-label="Waled Innovations, ir al inicio">
         <img class="site-brand__logo" src="img/waled-logo-horizontal.svg" alt="" width="463" height="140">
       </a>
-      <nav class="site-nav" aria-label="Navegación principal">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="nav-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span>
+        <span>Menú</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
         <a href="#soluciones">Soluciones</a>
         <a href="#planes">Planes</a>
         <a href="#preguntas">Preguntas</a>
+        <a href="#contacto">Contacto</a>
       </nav>
       <div class="site-header__actions">
         <a class="moodle-access" data-moodle role="link" aria-disabled="true" aria-label="Acceso a Moodle, disponible próximamente" title="Acceso disponible próximamente" tabindex="-1">
@@ -197,15 +204,15 @@
         <div class="faq__list">
           <details class="faq-item">
             <summary>¿Cuánto dura la capacitación?</summary>
-            <p>La duración se acuerda al contratar, según el plan y las necesidades de cada participante o institución.</p>
+            <p>El acceso a los cursos dura 30 días desde la activación de la cuenta en la plataforma.</p>
           </details>
           <details class="faq-item">
             <summary>¿Qué temas pueden aprender los docentes?</summary>
             <p>Office, Google Workspace, contenido y multimedia, e inteligencia artificial aplicada a tareas docentes.</p>
           </details>
           <details class="faq-item">
-            <summary>¿Qué recibe cada docente?</summary>
-            <p>Un certificado privado de capacitación emitido por <span data-brand></span> cuando cumple los requisitos de aprobación.</p>
+            <summary>¿Quién emite el certificado y qué acredita?</summary>
+            <p><span data-brand></span> emite un certificado digital privado de capacitación en formato PDF para quienes completen los proyectos y alcancen una nota mínima de 61/100. Incluye firmas e identificador de verificación; no se presenta como título ni reconocimiento oficial.</p>
           </details>
         </div>
       </section>
@@ -245,6 +252,7 @@
             <span class="sr-only">Abre en una pestaña nueva.</span>
           </a>
         </nav>
+        <p class="contact__privacy">Esta página no contiene un formulario ni almacena tus datos de contacto. Al elegir una red social o WhatsApp, continuarás en una plataforma externa sujeta a sus propias políticas. Consulta nuestro <a href="legal/#privacidad">borrador de política de privacidad</a>.</p>
       </section>
 
       <a class="whatsapp-fab" data-whatsapp data-whatsapp-fab href="https://web.whatsapp.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp Web en una pestaña nueva">
@@ -268,8 +276,24 @@
       </nav>
 
       <footer class="site-footer">
-        <div><strong data-brand></strong><span>Capacitación digital para colegios</span></div>
-        <a href="#inicio">Volver al inicio</a>
+        <div class="site-footer__inner">
+          <div class="site-footer__brand"><strong data-brand></strong><span>Capacitación digital para colegios</span></div>
+          <nav class="site-footer__legal" aria-labelledby="footer-legal-title">
+            <strong id="footer-legal-title">Información legal</strong>
+            <ul>
+              <li><a href="legal/#privacidad">Política de privacidad</a></li>
+              <li><a href="legal/#terminos">Términos y condiciones</a></li>
+              <li><a href="legal/#contratacion">Condiciones de contratación</a></li>
+              <li><a href="legal/#cancelaciones">Cancelaciones y reembolsos</a></li>
+              <li><a href="legal/#pagos">Pagos y facturación</a></li>
+              <li><a href="legal/#certificacion">Reglamento de capacitación y certificación</a></li>
+            </ul>
+          </nav>
+          <div class="site-footer__meta">
+            <p>Documentos en borrador, pendientes de revisión jurídica. El contrato institucional se entrega de forma privada.</p>
+            <a href="#inicio">Volver al inicio</a>
+          </div>
+        </div>
       </footer>
     </main>
   </body>
