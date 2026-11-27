@@ -8,9 +8,13 @@
     <meta property="og:type" content="website">
     <meta property="og:title" content="Docentes digitales | Capacitación para colegios">
     <meta property="og:description" content="Ayuda a tus docentes a usar la tecnología que tu colegio ya paga.">
+    <meta property="og:site_name" content="Waled Innovations">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Docentes digitales | Capacitación para colegios">
+    <meta name="twitter:description" content="Ayuda a tus docentes a usar la tecnología que tu colegio ya paga.">
+    <!-- SEO_ABSOLUTE_URLS: el build de Netlify inserta canonical, Open Graph, sitemap y JSON-LD con la URL real. -->
     <title>Docentes digitales | Capacitación para colegios</title>
     <link rel="preload" href="assets/fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/ibm-plex-sans-500.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/ibm-plex-sans-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/ibm-plex-sans-700.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
@@ -25,43 +29,84 @@
     <link rel="stylesheet" href="css/sections/faq.css">
     <link rel="stylesheet" href="css/sections/contact.css">
     <link rel="stylesheet" href="css/components/whatsapp-fab.css">
+    <link rel="stylesheet" href="css/components/contact-dock.css">
     <link rel="stylesheet" href="css/sections/product-refinements.css">
     <script defer src="js/config.js"></script>
     <script defer src="js/plans.js"></script>
     <script defer src="js/main.js"></script>
   </head>
   <body>
+    <svg class="social-icon-sprite" aria-hidden="true">
+      <symbol id="social-facebook" viewBox="0 0 24 24">
+        <path d="M24 12.1C24 5.4 18.6 0 12 0S0 5.4 0 12.1c0 6 4.4 11 10.1 11.9v-8.4h-3v-3.5h3V9.5c0-3 1.8-4.7 4.5-4.7 1.3 0 2.7.2 2.7.2v3h-1.5c-1.5 0-2 .9-2 1.9v2.2h3.3l-.5 3.5h-2.8V24c5.8-.9 10.2-5.9 10.2-11.9Z"/>
+      </symbol>
+      <symbol id="social-instagram" viewBox="0 0 24 24">
+        <path fill-rule="evenodd" clip-rule="evenodd" d="M7.2 2h9.6A5.2 5.2 0 0 1 22 7.2v9.6a5.2 5.2 0 0 1-5.2 5.2H7.2A5.2 5.2 0 0 1 2 16.8V7.2A5.2 5.2 0 0 1 7.2 2Zm0 2A3.2 3.2 0 0 0 4 7.2v9.6A3.2 3.2 0 0 0 7.2 20h9.6a3.2 3.2 0 0 0 3.2-3.2V7.2A3.2 3.2 0 0 0 16.8 4H7.2ZM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10Zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6Z"/>
+        <circle cx="17.4" cy="6.7" r="1.2"/>
+      </symbol>
+      <symbol id="social-tiktok" viewBox="0 0 24 24">
+        <path d="M19.7 8.1a7 7 0 0 1-4.1-1.4v8.1a5.8 5.8 0 1 1-5.8-5.8c.4 0 .8 0 1.2.1v3.2a2.7 2.7 0 1 0 1.5 2.5V2.5h3.2a6.8 6.8 0 0 0 4 4.5Z"/>
+      </symbol>
+      <symbol id="social-whatsapp" viewBox="0 0 24 24">
+        <path d="M20.5 11.7a8.4 8.4 0 0 1-12.4 7.4l-4.6 1.2 1.2-4.5a8.4 8.4 0 1 1 15.8-4.1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+        <path d="M9 8.2c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4 0 .6.5.8 1.2 1.5 2 1.9.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.3.4.5 0 .4-.2 1.1-.7 1.5-.5.5-1.2.7-2 .6-1.1-.1-2.4-.7-3.8-1.9-1.2-1.1-2.1-2.4-2.4-3.5-.2-.8-.1-1.5.4-2.1.2-.3.4-.5.5-.5Z"/>
+      </symbol>
+    </svg>
     <a class="skip-link" href="#contenido">Saltar al contenido</a>
     <header class="site-header">
       <a class="site-brand" href="#inicio" aria-label="Waled Innovations, ir al inicio">
-        <img class="site-brand__logo" src="img/waled-logo-horizontal.svg" alt="">
+        <img class="site-brand__logo" src="img/waled-logo-horizontal.svg" alt="" width="463" height="140">
       </a>
-      <a class="button button--small" href="#contacto">Agendar reunión</a>
+      <nav class="site-nav" aria-label="Navegación principal">
+        <a href="#soluciones">Soluciones</a>
+        <a href="#planes">Planes</a>
+        <a href="#preguntas">Preguntas</a>
+      </nav>
+      <div class="site-header__actions">
+        <a class="moodle-access" data-moodle role="link" aria-disabled="true" aria-label="Acceso a Moodle, disponible próximamente" title="Acceso disponible próximamente" tabindex="-1">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 7.1 12 3l9 4.1-9 4.1-9-4.1Zm3.2 2.7v5.5c0 1.5 2.6 3.2 5.8 3.2s5.8-1.7 5.8-3.2V9.8L12 12.5 6.2 9.8Z"/></svg>
+          <span>Acceso a Moodle</span>
+        </a>
+        <a class="button button--small" href="#contacto">Agendar reunión</a>
+      </div>
     </header>
 
     <main id="contenido">
       <section class="hero" id="inicio" aria-labelledby="hero-title">
+        <div class="hero-waves" aria-hidden="true">
+          <span></span><span></span><span></span><span></span><span></span>
+        </div>
         <div class="hero__content">
-          <p class="hero__eyebrow">Capacitación digital para colegios</p>
-          <h1 id="hero-title">En 1 mes, tus docentes usan la tecnología que tu colegio <strong>ya paga.</strong></h1>
-          <p class="hero__intro">Acompañamos a tu equipo para que use herramientas digitales en sus clases, con confianza y de forma práctica.</p>
-          <a class="button hero__action" href="#contacto">
-            Agendar reunión
-            <span class="button__arrow" aria-hidden="true">↗</span>
-          </a>
-          <p class="hero__note">Una conversación de 20 minutos, sin compromiso.</p>
+          <p class="hero__eyebrow"><span></span> Capacitación digital para colegios</p>
+          <h1 id="hero-title">Docentes digitales</h1>
+          <p class="hero__intro"><strong>En 1 mes, tus docentes usan la tecnología que tu colegio ya paga.</strong></p>
+          <div class="hero__actions">
+            <a class="button hero__action" href="#contacto">Agendar reunión</a>
+            <a class="button button--secondary hero__action" href="#soluciones">Conocer la propuesta</a>
+          </div>
+          <p class="hero__note">Una conversación de 20 minutos, sin compromiso. La duración final se confirma según las necesidades del colegio.</p>
         </div>
 
         <div class="hero-visual">
-          <img src="img/istockphoto-1366724990-612x612.jpg" alt="Docente usando una tableta frente a su equipo" fetchpriority="high" width="612" height="612">
+          <div class="hero-visual__frame">
+            <img src="img/joven-profesora-rubia-usando-laptop-pie-jardin-infantes_839833-9717.avif" alt="Docente trabajando con una computadora portátil en un entorno educativo" fetchpriority="high" width="740" height="493">
+          </div>
           <p class="hero-visual__caption"><span aria-hidden="true">✓</span> Aprendizaje práctico para el aula</p>
+          <p class="hero-visual__tag">Tecnología al servicio de la enseñanza</p>
         </div>
       </section>
 
-      <section class="problems section-shell" aria-labelledby="problems-title">
+      <section class="trust-strip" aria-label="Características de la propuesta">
+        <div><strong>Enfoque práctico</strong><span>Actividades aplicables al trabajo docente</span></div>
+        <div><strong>Acompañamiento cercano</strong><span>Aprendizaje paso a paso para distintos niveles</span></div>
+        <div><strong>Seguimiento del proceso</strong><span>Examen, informe y diploma contemplados</span></div>
+      </section>
+
+      <section class="problems section-shell" id="soluciones" aria-labelledby="problems-title">
         <div class="section-heading">
-          <p class="section-heading__label">Una capacitación pensada para tu colegio</p>
+          <p class="section-heading__label">Una solución pensada para tu institución</p>
           <h2 id="problems-title">Tu colegio ya tiene la tecnología. <strong>Tu equipo aprende a usarla.</strong></h2>
+          <p class="section-heading__intro">Partimos de las necesidades reales del equipo para que la capacitación se traduzca en acciones concretas dentro y fuera del aula.</p>
         </div>
         <div class="problems__grid">
           <article class="problem-card">
@@ -97,7 +142,7 @@
             <p>Clases en Classroom, formularios de evaluación y archivos compartidos en Drive.</p>
           </article>
           <article class="learn-card">
-            <img class="learn-card__photo" src="img/contenido-multimedia.jpg" alt="Computadora con un proyecto de edición de video abierto" loading="lazy" width="1200" height="800">
+            <img class="learn-card__photo" src="img/contenido-multimedia.jpg" alt="Computadora con un proyecto de edición de video abierto" loading="lazy" width="1200" height="1500">
             <h3>Contenido y multimedia</h3>
             <p>Material visual para clase, videos cortos y recursos para comunicar actividades.</p>
           </article>
@@ -116,21 +161,34 @@
           <p>Acompañamos a los docentes con actividades que pueden llevar a sus clases y tareas de cada día.</p>
         </div>
         <figure class="approach-visual">
-          <iframe src="https://www.youtube-nocookie.com/embed/Bn04VnK-qAE" title="Presentación de Waled Innovations" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <div class="video-consent" data-video-embed data-video-id="Bn04VnK-qAE">
+            <button class="video-consent__load" type="button" aria-describedby="video-privacy-note">
+              <span class="video-consent__play" aria-hidden="true">▶</span>
+              <span>Cargar presentación en video</span>
+            </button>
+            <p class="video-consent__privacy" id="video-privacy-note">El contenido de YouTube solo se carga cuando eliges reproducirlo.</p>
+          </div>
           <figcaption>Conoce la propuesta de capacitación</figcaption>
         </figure>
       </section>
 
-      <section class="plans section-shell" aria-labelledby="plans-title">
+      <section class="plans section-shell" id="planes" aria-labelledby="plans-title">
         <div class="section-heading section-heading--center">
-          <p class="section-heading__label">Una opción para cada colegio</p>
-          <h2 id="plans-title">Elige el plan para tu equipo</h2>
-          <p class="section-heading__intro">Conversemos para conocer lo que necesita tu colegio.</p>
+          <p class="section-heading__label">Opciones para instituciones y docentes</p>
+          <h2 id="plans-title">Planes de capacitación</h2>
+          <p class="section-heading__intro" data-plan-category-description>Compara la cantidad de profesores, cursos y modalidad de acompañamiento de cada paquete institucional.</p>
         </div>
-        <div class="plans__grid" data-render-plans></div>
+        <div class="plans__switcher" role="tablist" aria-label="Tipo de plan">
+          <button class="plans__switch-button is-active" id="plans-tab-institutional" type="button" role="tab" aria-selected="true" aria-controls="plans-panel" data-plan-category="institutional">Institucionales</button>
+          <button class="plans__switch-button" id="plans-tab-individual" type="button" role="tab" aria-selected="false" aria-controls="plans-panel" tabindex="-1" data-plan-category="individual">Individuales</button>
+        </div>
+        <p class="sr-only" aria-live="polite" aria-atomic="true" data-plan-status>Mostrando planes institucionales.</p>
+        <div class="plans__panel" id="plans-panel" role="tabpanel" aria-labelledby="plans-tab-institutional" tabindex="0">
+          <div class="plans__grid" data-render-plans data-active-category="institutional"></div>
+        </div>
       </section>
 
-      <section class="faq section-shell" aria-labelledby="faq-title">
+      <section class="faq section-shell" id="preguntas" aria-labelledby="faq-title">
         <div class="section-heading">
           <p class="section-heading__label">Respuestas claras</p>
           <h2 id="faq-title">Preguntas frecuentes</h2>
@@ -155,48 +213,62 @@
         <div class="contact__inner">
           <div>
             <p class="section-heading__label">Hablemos de tu colegio</p>
-            <h2 id="contact-title">Agenda tu reunión</h2>
-            <p class="contact__intro">20 minutos para conocer tu colegio, sin compromiso.</p>
+            <h2 id="contact-title">Conversemos sobre las necesidades de tu equipo docente</h2>
+            <p class="contact__intro">En 20 minutos podemos conocer tu contexto y orientarte sobre el siguiente paso.</p>
           </div>
-          <a class="button contact__button" href="#canales-contacto">Escríbenos por redes</a>
+          <a class="button contact__button" href="#canales-contacto">Elegir canal de contacto</a>
         </div>
         <nav class="contact__channels" id="canales-contacto" aria-label="Canales para contactar a Waled Innovations">
-          <a class="contact-channel" href="https://www.facebook.com/profile.php?id=61596493307760" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Waled Innovations. Abre nuestro perfil en una pestaña nueva.">
-            <svg class="contact-channel__icon contact-channel__icon--facebook" viewBox="0 0 24 24" aria-hidden="true"><path d="M13.5 21v-8h2.7l.4-3.1h-3.1V8c0-.9.3-1.6 1.6-1.6h1.7V3.6c-.8-.1-1.6-.2-2.5-.2-2.5 0-4.2 1.5-4.2 4.3v2.2H7.3V13h2.8v8z"/></svg>
+          <a class="contact-channel contact-channel--whatsapp" href="https://web.whatsapp.com/" target="_blank" rel="noopener noreferrer" data-whatsapp data-whatsapp-channel>
+            <svg class="contact-channel__icon contact-channel__icon--whatsapp" aria-hidden="true"><use href="#social-whatsapp"></use></svg>
+            <span class="contact-channel__copy"><strong>WhatsApp</strong><small>Abrir WhatsApp Web</small></span>
+            <span class="contact-channel__arrow" aria-hidden="true">↗</span>
+            <span class="sr-only">Abre en una pestaña nueva.</span>
+          </a>
+          <a class="contact-channel" href="https://www.facebook.com/profile.php?id=61596493307760" target="_blank" rel="noopener noreferrer">
+            <svg class="contact-channel__icon contact-channel__icon--facebook" aria-hidden="true"><use href="#social-facebook"></use></svg>
             <span class="contact-channel__copy"><strong>Facebook</strong><small>Visita el perfil y envía un mensaje</small></span>
             <span class="contact-channel__arrow" aria-hidden="true">↗</span>
+            <span class="sr-only">Abre en una pestaña nueva.</span>
           </a>
-          <a class="contact-channel" href="https://www.instagram.com/waled.oficial/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Waled Innovations. Abre nuestro perfil en una pestaña nueva.">
-            <svg class="contact-channel__icon contact-channel__icon--instagram" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3.25" y="3.25" width="17.5" height="17.5" rx="5" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2"/><circle cx="17.7" cy="6.7" r="1.15" fill="currentColor"/></svg>
+          <a class="contact-channel" href="https://www.instagram.com/waled.oficial/" target="_blank" rel="noopener noreferrer">
+            <svg class="contact-channel__icon contact-channel__icon--instagram" aria-hidden="true"><use href="#social-instagram"></use></svg>
             <span class="contact-channel__copy"><strong>Instagram</strong><small>Visita el perfil y envíanos un mensaje directo</small></span>
             <span class="contact-channel__arrow" aria-hidden="true">↗</span>
+            <span class="sr-only">Abre en una pestaña nueva.</span>
           </a>
-          <a class="contact-channel" href="https://www.tiktok.com/@waled_innovations?lang=es" target="_blank" rel="noopener noreferrer" aria-label="TikTok de Waled Innovations. Abre nuestro perfil en una pestaña nueva.">
-            <svg class="contact-channel__icon contact-channel__icon--tiktok" viewBox="0 0 24 24" aria-hidden="true"><path d="M19.7 8.1a7 7 0 0 1-4.1-1.4v8.1a5.8 5.8 0 1 1-5.8-5.8c.4 0 .8 0 1.2.1v3.2a2.7 2.7 0 1 0 1.5 2.5V2.5h3.2a6.8 6.8 0 0 0 4 4.5z"/></svg>
+          <a class="contact-channel" href="https://www.tiktok.com/@waled_innovations?lang=es" target="_blank" rel="noopener noreferrer">
+            <svg class="contact-channel__icon contact-channel__icon--tiktok" aria-hidden="true"><use href="#social-tiktok"></use></svg>
             <span class="contact-channel__copy"><strong>TikTok</strong><small>Visita nuestro perfil</small></span>
             <span class="contact-channel__arrow" aria-hidden="true">↗</span>
+            <span class="sr-only">Abre en una pestaña nueva.</span>
           </a>
-          <a class="contact-channel contact-channel--whatsapp" href="#canales-contacto" data-whatsapp data-whatsapp-channel hidden>
-            <svg class="contact-channel__icon contact-channel__icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.4 8.4 0 0 1-12.4 7.4l-4.6 1.2 1.2-4.5a8.4 8.4 0 1 1 15.8-4.1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8.2c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4 0 .6.5.8 1.2 1.5 2 1.9.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.3.4.5 0 .4-.2 1.1-.7 1.5-.5.5-1.2.7-2 .6-1.1-.1-2.4-.7-3.8-1.9-1.2-1.1-2.1-2.4-2.4-3.5-.2-.8-.1-1.5.4-2.1.2-.3.4-.5.5-.5Z" fill="currentColor"/></svg>
-            <span class="contact-channel__copy"><strong>WhatsApp</strong><small>Escríbenos directamente</small></span>
-            <span class="contact-channel__arrow" aria-hidden="true">↗</span>
-          </a>
-          <div class="contact-channel contact-channel--pending" data-whatsapp-pending>
-            <svg class="contact-channel__icon contact-channel__icon--whatsapp" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.4 8.4 0 0 1-12.4 7.4l-4.6 1.2 1.2-4.5a8.4 8.4 0 1 1 15.8-4.1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8.2c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4 0 .6.5.8 1.2 1.5 2 1.9.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.3.4.5 0 .4-.2 1.1-.7 1.5-.5.5-1.2.7-2 .6-1.1-.1-2.4-.7-3.8-1.9-1.2-1.1-2.1-2.4-2.4-3.5-.2-.8-.1-1.5.4-2.1.2-.3.4-.5.5-.5Z" fill="currentColor"/></svg>
-            <span class="contact-channel__copy"><strong>WhatsApp</strong><small>Próximamente</small></span>
-            <span class="contact-channel__status">En preparación</span>
-          </div>
         </nav>
       </section>
 
-      <a class="whatsapp-fab" data-whatsapp data-whatsapp-fab href="#canales-contacto" aria-label="Escríbenos por WhatsApp" hidden>
-        <svg class="whatsapp-fab__icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.5 11.7a8.4 8.4 0 0 1-12.4 7.4l-4.6 1.2 1.2-4.5a8.4 8.4 0 1 1 15.8-4.1Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8.2c.2-.4.4-.4.7-.4h.5c.2 0 .4.1.5.4l.8 1.8c.1.2.1.4-.1.6l-.6.7c-.2.2-.2.4 0 .6.5.8 1.2 1.5 2 1.9.2.1.4.1.6-.1l.8-.9c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.3.4.5 0 .4-.2 1.1-.7 1.5-.5.5-1.2.7-2 .6-1.1-.1-2.4-.7-3.8-1.9-1.2-1.1-2.1-2.4-2.4-3.5-.2-.8-.1-1.5.4-2.1.2-.3.4-.5.5-.5Z" fill="currentColor"/></svg>
+      <a class="whatsapp-fab" data-whatsapp data-whatsapp-fab href="https://web.whatsapp.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp Web en una pestaña nueva">
+        <svg class="whatsapp-fab__icon" aria-hidden="true"><use href="#social-whatsapp"></use></svg>
         <span class="whatsapp-fab__text">WhatsApp</span>
       </a>
 
+      <nav class="contact-dock" aria-label="Contacto rápido">
+        <a href="https://web.whatsapp.com/" target="_blank" rel="noopener noreferrer" data-whatsapp data-whatsapp-channel data-tooltip="WhatsApp" aria-label="Abrir WhatsApp Web en una pestaña nueva">
+          <svg aria-hidden="true"><use href="#social-whatsapp"></use></svg>
+        </a>
+        <a href="https://www.facebook.com/profile.php?id=61596493307760" target="_blank" rel="noopener noreferrer" aria-label="Facebook de Waled Innovations. Abre en una pestaña nueva." data-tooltip="Facebook">
+          <svg aria-hidden="true"><use href="#social-facebook"></use></svg>
+        </a>
+        <a href="https://www.instagram.com/waled.oficial/" target="_blank" rel="noopener noreferrer" aria-label="Instagram de Waled Innovations. Abre en una pestaña nueva." data-tooltip="Instagram">
+          <svg aria-hidden="true"><use href="#social-instagram"></use></svg>
+        </a>
+        <a href="https://www.tiktok.com/@waled_innovations?lang=es" target="_blank" rel="noopener noreferrer" aria-label="TikTok de Waled Innovations. Abre en una pestaña nueva." data-tooltip="TikTok">
+          <svg aria-hidden="true"><use href="#social-tiktok"></use></svg>
+        </a>
+      </nav>
+
       <footer class="site-footer">
-        <span data-brand></span>
-        <span>Capacitación digital para colegios</span>
+        <div><strong data-brand></strong><span>Capacitación digital para colegios</span></div>
+        <a href="#inicio">Volver al inicio</a>
       </footer>
     </main>
   </body>

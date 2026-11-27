@@ -37,7 +37,6 @@
 }
 
 html {
-  min-width: var(--measure-20-rem);
   scroll-behavior: smooth;
   background: var(--color-night);
 }
@@ -50,7 +49,6 @@ body {
   font-size: var(--text-base);
   line-height: 1.6;
   font-synthesis: none;
-  font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -61,14 +59,39 @@ svg {
   max-width: 100%;
 }
 
+.social-icon-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
 a {
   color: inherit;
 }
 
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+summary:focus-visible,
+[tabindex="0"]:focus-visible {
   outline: none;
   box-shadow: var(--focus-ring);
+}
+
+[id] {
+  scroll-margin-top: 6rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
 }
 
 h1,
@@ -173,6 +196,17 @@ p {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+}
+
+@media (forced-colors: active) {
+  a:focus-visible,
+  button:focus-visible,
+  summary:focus-visible,
+  [tabindex="0"]:focus-visible {
+    outline: 2px solid CanvasText;
+    outline-offset: 3px;
+    box-shadow: none;
   }
 }
 
