@@ -1,2 +1,4 @@
 ﻿_research/skills/
 tmp/
+dist/
+.netlify/
