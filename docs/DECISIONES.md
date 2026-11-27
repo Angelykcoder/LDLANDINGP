@@ -10,7 +10,7 @@
 - **Referencia visual:** conservar el azul de la identidad, con fondo claro, tipografía sans legible, bordes discretos y menos efectos para una lectura empresarial.
 - **Logos:** por instrucción del usuario, mostrar los logos de Office y Google Workspace proporcionados en el PDF, únicamente junto a sus respectivos temas.
 - **Presentación:** al no haber video disponible, explicar el enfoque de aprendizaje con una fotografía ilustrativa y un pie descriptivo, sin simular reproducción.
-- **Planes:** solo los nombres prescritos, Feature 1, Feature 2, Feature 3 y botones de consulta; sin precios ni cantidades.
+- **Planes (decisión superada):** la primera versión usó placeholders sin precios; fue reemplazada por los paquetes comerciales oficiales descritos más abajo.
 - **Accesibilidad/conversión:** mobile-first, contraste AA, texto base mínimo 18 px, botones de al menos 48 px, foco visible, teclado y CTA principal consistente.
 - **Marca y contactos:** datos provisionales únicamente desde `js/config.js`.
 - **Marca visible:** a petición del usuario, usar Waled Innovations. El logotipo horizontal actual es una reconstrucción SVG basada en la vista previa anterior; volver a poner el archivo original para recuperar su fidelidad exacta.
@@ -31,4 +31,49 @@
 - La tipografia vigente es IBM Plex Sans, autoalojada en `assets/fonts/` bajo la licencia incluida en el proyecto.
 - El espacio audiovisual de presentacion usa el video de YouTube indicado por el usuario y el reproductor `youtube-nocookie.com`.
 - Las tarjetas de Office y Workspace muestran los logos proporcionados a una escala uniforme; multimedia e IA usan fotografias de Unsplash documentadas en `docs/ASSETS.md`.
-- El contacto prioritario ofrece acceso directo a Facebook, Instagram y TikTok. WhatsApp conserva una tarjeta pendiente y un acceso movil oculto; ambos aparecen como enlaces activos al completar `whatsappNumber` en `js/config.js`.
+- El contacto prioritario muestra primero WhatsApp, seguido de Facebook, Instagram y TikTok. Mientras no exista un número confirmado, WhatsApp abre la web oficial como referencia; al completar `whatsappNumber`, los mismos accesos cambian a una conversación directa con mensaje prellenado.
+
+## Refinamiento comercial y visual
+
+- Se toma de Platzi la jerarquía comercial, el contraste entre bloques, la repetición moderada de CTA y la presentación clara de beneficios, sin copiar su composición ni identidad.
+- El Hero usa la nueva imagen AVIF proporcionada por el usuario, con proporción 3:2 y `object-fit: cover` para conservar su aspecto sin deformación.
+- La decisión previa de retirar «En 1 mes» quedó superada: el usuario pidió restaurar literalmente el mensaje original en el Hero.
+- Las ondas verticales se implementan con CSS y movimiento lento; se detienen con `prefers-reduced-motion`.
+- Se incorpora una barra flotante con los perfiles sociales existentes. WhatsApp abre temporalmente WhatsApp Web y cambia a una conversación directa cuando se configura el número real.
+- El acceso a Moodle se configura en un único campo de `js/config.js`; mientras la URL esté vacía, se muestra sin navegación.
+
+## Planes comerciales oficiales
+
+- Los planes Esencial, Institucional e Integral muestran los precios, capacidades, cursos y condiciones proporcionados por el usuario, editables desde `js/config.js`.
+- **Destaque anterior superado:** el Plan Integral fue destacado en la primera versión institucional; la estructura por categorías posterior trasladó el protagonismo al Plan Institucional de Q2,600.
+- Se restaura literalmente el mensaje principal «Docentes digitales» y «En 1 mes, tus docentes usan la tecnología que tu colegio ya paga.» por instrucción del usuario.
+- Los accesos de Facebook, Instagram y TikTok reutilizan símbolos SVG de marca consistentes en la sección de contacto y la barra flotante.
+
+## Preparación de producción
+
+- Netlify publica exclusivamente `dist/`, generado con `npm run build`; documentos internos, PDF antiguo, capturas temporales y metadatos del repositorio quedan fuera del artefacto.
+- Los planes se prerenderizan en producción desde la misma configuración central de `js/config.js`; JavaScript evita duplicarlos si el HTML ya los contiene.
+- Se añadieron cabeceras defensivas compatibles con los recursos observados. HSTS se pospone hasta conocer el dominio definitivo y validar HTTPS/subdominios.
+- No se crea un banner de cookies: no se detectaron analítica, píxeles, almacenamiento local ni cookies propias. El reproductor de YouTube requiere volver a validarse en el sitio desplegado y explicarse en la futura política de privacidad.
+- La auditoría pre-lanzamiento completa y sus límites se registran en `docs/AUDITORIA_PRELANZAMIENTO.md`.
+
+## Categorías de planes
+
+- La sección presenta primero `Institucionales` y después `Individuales` mediante un control segmentado con semántica de tabs, clic y navegación por flechas/Home/End.
+- Los datos de ambas categorías viven por separado en `planCategories` dentro de `js/config.js`; las tarjetas reutilizan un único renderizador.
+- El Plan Institucional de Q2,600 es el único destacado en la categoría institucional. El Plan Integral de Q3,900 deja de estar destacado.
+- El Plan Integral individual de Q375 utiliza la etiqueta discreta «Más conveniente».
+- El build prerenderiza la categoría institucional para que el contenido inicial no dependa de JavaScript; el script hidrata el selector y reemplaza las tarjetas al cambiar de categoría.
+- Los CTA conservan el flujo centralizado de WhatsApp y transmiten una etiqueta con categoría, nombre y precio cuando exista un número configurado.
+- En escritorio se usan tres columnas; en tablet, dos columnas y la tercera tarjeta centrada; en móvil, una sola columna para evitar compresión y desbordamiento.
+
+## Accesibilidad, privacidad y SEO técnico
+
+- Se elimina el ancho mínimo global y se añaden ajustes para viewports estrechos, permitiendo reflow equivalente a zoom elevado sin ocultar desbordamientos.
+- El control de planes anuncia su categoría mediante una región `aria-live`; Moodle sin URL queda fuera del orden de tabulación.
+- Escape cierra una pregunta frecuente abierta y descarga el iframe de YouTube cuando el foco está en sus controles; los botones nativos conservan Enter y Espacio.
+- YouTube usa una fachada de consentimiento: el iframe `youtube-nocookie.com` solo se crea después de activar «Cargar presentación en video».
+- El build combina las hojas CSS para la página principal, manteniendo los archivos fuente modulares para desarrollo.
+- Netlify proporciona `URL` durante el build; con ella se generan canonical, `og:url`, imagen social, sitemap, robots y un grafo Schema.org sin inventar dominio.
+- HSTS se configura con `max-age=31536000`, sin `includeSubDomains` ni `preload`, para evitar comprometer subdominios todavía no definidos.
+- Lighthouse final: móvil 98/100/100/100 y escritorio 100/100/100/100. Los detalles y límites se registran en `docs/QA_PRIORIDAD_MEDIA.md`.

@@ -6,18 +6,21 @@ Landing page en español para **Docentes digitales**, una propuesta de Waled Inn
 
 ## Estado actual
 
-La landing ya está construida en HTML, CSS y JavaScript vanilla, sin proceso de compilación. Se puede abrir directamente con `index.html`. Incluye:
+La landing está construida en HTML, CSS y JavaScript vanilla. Se puede abrir directamente con `index.html` para desarrollo y dispone de un build de producción con `npm run build`, que genera `dist/` mediante una lista explícita de archivos publicables. Incluye:
 
 - Hero con propuesta de valor, CTA y fotografía ilustrativa.
 - Secciones de problemas, temas de aprendizaje, presentación, planes, preguntas frecuentes y contacto.
-- Planes renderizados desde `js/config.js` mediante `js/plans.js`.
+- Planes comerciales institucionales e individuales renderizados desde `js/config.js` mediante `js/plans.js`, con selector segmentado accesible y precios/condiciones aprobados.
 - Enlaces de redes sociales y lógica preparada para WhatsApp: mensajes prellenados para reunión y consulta de cada plan.
 - Imágenes para docentes, Office, Google Workspace, contenido multimedia e IA aplicada.
 - Video incrustado con `youtube-nocookie.com`.
 - Tipografía IBM Plex Sans autoalojada, favicon, metadatos básicos y hojas CSS organizadas por sección.
 - Interfaz responsive y controles de accesibilidad como HTML semántico, enlace para saltar al contenido, foco visible y respeto por movimiento reducido.
+- Configuración de Netlify en `netlify.toml`, página 404, `robots.txt`, cabeceras defensivas y auditoría estática con `npm test`.
+- SEO absoluto generado durante el build a partir de `SITE_URL` o de la variable `URL` de Netlify; incluye canonical, sitemap, Open Graph, Twitter Card y Schema.org.
+- Fachada de privacidad para YouTube: no se crea el iframe ni se contacta al tercero hasta que el visitante activa el video.
 
-La configuración de WhatsApp está incompleta: `whatsappNumber` en `js/config.js` está vacío. Por eso el botón flotante y el canal de WhatsApp permanecen ocultos, y los CTA relacionados llevan a la sección de contacto. Al definir el número internacional, el código existente construye enlaces `wa.me` con texto prellenado. No inventar ni introducir un número sin que el usuario lo proporcione.
+La configuración de WhatsApp está incompleta: `whatsappNumber` en `js/config.js` está vacío. Mientras se confirma, el icono y los CTA abren `web.whatsapp.com` como referencia temporal. Al definir el número internacional, el código existente construye enlaces `wa.me` con texto prellenado. No inventar ni introducir un número sin que el usuario lo proporcione.
 
 ## Próximo trabajo solicitado
 
@@ -38,9 +41,9 @@ Empieza inspeccionando la página y los archivos relevantes; implementa mejoras 
 - Conservar la identidad azul y clara actual, la tipografía IBM Plex Sans y los componentes existentes. Evitar efectos que distraigan; respetar `prefers-reduced-motion`.
 - No presentar imágenes ilustrativas como clientes reales, testimonios o evidencia de resultados. Añadir alt descriptivo y documentar recursos visuales nuevos.
 - No inventar testimonios, clientes, estadísticas, certificaciones, cifras ni condiciones comerciales.
-- No mostrar precios. Los planes deben conservar sus nombres y placeholders hasta que el usuario defina sus características.
+- Mostrar los precios y características oficiales de ambas categorías tal como están centralizados en `js/config.js`; no alterarlos ni añadir beneficios sin aprobación.
 - El diploma solo puede describirse como «diploma de participación y aprobación emitido por Waled Innovations». No afirmar reconocimiento oficial.
-- La promesa «En 1 mes…» está pendiente de validación comercial.
+- Conservar literalmente el mensaje principal «Docentes digitales» y «En 1 mes, tus docentes usan la tecnología que tu colegio ya paga.» por instrucción del usuario.
 - La marca visible está configurada como Waled Innovations; confirmar la razón social antes de publicar.
 
 ## Arquitectura
@@ -48,9 +51,14 @@ Empieza inspeccionando la página y los archivos relevantes; implementa mejoras 
 - `index.html`: estructura de la landing y carga de estilos/scripts.
 - `css/tokens.css`, `css/base.css`: variables visuales y estilos base.
 - `css/components/` y `css/sections/`: estilos de botones, WhatsApp y secciones.
-- `js/config.js`: marca, número/mensajes de WhatsApp y contenido de planes.
-- `js/plans.js`: render de tarjetas de planes.
+- `js/config.js`: marca, número/mensajes de WhatsApp y categorías institucional/individual de planes.
+- `js/plans.js`: render de tarjetas, selector de categorías y navegación por teclado.
 - `js/main.js`: aplica marca y enlaces de WhatsApp.
+- `scripts/build.mjs`: genera `dist/`, prerenderiza los planes y excluye documentación/archivos internos.
+- `scripts/audit.mjs`: valida contenido crítico, navegación local, recursos y configuración de producción.
+- `scripts/seo-build-test.mjs`: prueba la generación SEO con una URL HTTPS controlada y restaura el build local.
+- `netlify.toml`: build, directorio de publicación, caché y cabeceras de seguridad.
+- `404.html`, `robots.txt`: recursos públicos básicos de producción.
 - `docs/PENDIENTES.md`: decisiones y QA pendiente.
 - `docs/DECISIONES.md`: decisiones de diseño y cambios recientes.
 - `docs/ASSETS.md`: fuentes de imágenes, tipografía y licencias.
@@ -59,11 +67,14 @@ Usar JavaScript clásico con `defer`, IIFEs y namespace `LD`, para conservar com
 
 ## Pendientes conocidos
 
-- Añadir el número de WhatsApp internacional cuando el usuario lo proporcione.
+- Añadir el número de WhatsApp internacional cuando el usuario lo proporcione para reemplazar el enlace temporal por una conversación directa.
 - Sustituir o recuperar el logo original; el SVG actual es una reconstrucción aproximada.
-- Definir las características reales de los tres planes.
 - Verificar el uso de logos de Microsoft y Google.
-- Validar la promesa «En 1 mes…» y los datos de las preguntas frecuentes.
-- Completar revisión responsive a 360, 768 y 1280 px, contraste y navegación por teclado.
+- Confirmar los datos y condiciones comerciales de las preguntas frecuentes.
+- Añadir política de privacidad, términos/condiciones, datos empresariales verificables y condiciones completas de contratación tras revisión jurídica.
+- Configurar el dominio definitivo para canonical, Open Graph, sitemap, HTTPS y la decisión final sobre HSTS.
+- Completar validación manual en NVDA, VoiceOver y TalkBack sobre dispositivos reales; Lighthouse/ARIA no sustituyen estas pruebas.
+- Verificar HTTPS y cabeceras efectivamente servidas cuando exista la URL pública de Netlify.
+- Recopilar Core Web Vitals reales, especialmente INP, después del lanzamiento.
 
 Consulta `docs/PENDIENTES.md`, `docs/DECISIONES.md` y `docs/ASSETS.md` antes de modificar el contenido. Actualiza esos documentos cuando una decisión o recurso nuevo lo amerite.
