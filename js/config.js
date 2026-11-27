@@ -77,7 +77,8 @@
               "Duración de acceso acordada al contratar.",
               "Certificado privado de capacitación por curso aprobado.",
               "Material de aprendizaje.",
-              "Evaluaciones del curso."
+              "Evaluaciones del curso.",
+              "Soporte por WhatsApp o llamada, de lunes a domingo, con respuesta estimada de 1 a 8 horas."
             ]
           },
           {
@@ -91,7 +92,8 @@
               "Certificado privado de capacitación por cada curso aprobado.",
               "Elección libre de los cursos.",
               "Material de aprendizaje.",
-              "Evaluaciones de los cursos."
+              "Evaluaciones de los cursos.",
+              "Soporte por WhatsApp o llamada, de lunes a domingo, con respuesta estimada de 1 a 8 horas."
             ]
           },
           {
@@ -108,7 +110,7 @@
               "Elección libre de los cursos.",
               "Material de aprendizaje.",
               "Evaluaciones de los cursos.",
-              "Acompañamiento para resolver dudas."
+              "Soporte por WhatsApp o llamada, de lunes a domingo, con respuesta estimada de 1 a 8 horas."
             ]
           }
         ]

@@ -50,7 +50,8 @@ const expectedCategories = {
       "Duración de acceso acordada al contratar.",
       "Certificado privado de capacitación por curso aprobado.",
       "Material de aprendizaje.",
-      "Evaluaciones del curso."
+      "Evaluaciones del curso.",
+      "Soporte por WhatsApp o llamada, de lunes a domingo, con respuesta estimada de 1 a 8 horas."
     ]],
     ["Plan Profesional", "Q275", [
       "Acceso a 2 cursos.",
@@ -59,7 +60,8 @@ const expectedCategories = {
       "Certificado privado de capacitación por cada curso aprobado.",
       "Elección libre de los cursos.",
       "Material de aprendizaje.",
-      "Evaluaciones de los cursos."
+      "Evaluaciones de los cursos.",
+      "Soporte por WhatsApp o llamada, de lunes a domingo, con respuesta estimada de 1 a 8 horas."
     ]],
     ["Plan Integral", "Q375", [
       "Acceso a 3 cursos.",
@@ -69,7 +71,7 @@ const expectedCategories = {
       "Elección libre de los cursos.",
       "Material de aprendizaje.",
       "Evaluaciones de los cursos.",
-      "Acompañamiento para resolver dudas."
+      "Soporte por WhatsApp o llamada, de lunes a domingo, con respuesta estimada de 1 a 8 horas."
     ]]
   ]
 };

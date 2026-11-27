@@ -84,4 +84,9 @@
 - El documento de finalización se denomina «certificado privado de capacitación» y se entrega cuando se cumplen los requisitos de aprobación. No se presenta como certificación oficial ni con reconocimiento público.
 - La duración del acceso es variable y se acuerda al contratar; no se promete un período fijo de 30 días en el sitio.
 - Los planes individuales se mantienen. Sus condiciones legales deberán adaptarse expresamente al comprador individual antes de publicarse, sin asumir que el contrato institucional aplica sin cambios.
+- Los planes individuales se pagan completos antes de habilitar Moodle, mediante transferencia o depósito bancario.
+- Para planes individuales se reembolsa el 75% de lo pagado si la persona todavía no ha ingresado a Moodle; después del primer ingreso no procede reembolso bajo la política comercial, sin limitar derechos irrenunciables.
+- La aprobación individual exige los proyectos requeridos y una nota mínima de 61/100. Existe una segunda oportunidad, pero su duración y costo todavía deben definirse.
+- Todos los planes individuales incluyen soporte por WhatsApp o llamada, de lunes a domingo, con respuesta estimada de 1 a 8 horas; no incluyen conferencias.
+- La duración variable se deja por escrito en la confirmación de compra individual.
 - El contrato de prestación de servicios no será público: se entregará de forma privada a cada colegio y quedará fuera de `content/legal/`, `dist/`, el sitemap y el footer.

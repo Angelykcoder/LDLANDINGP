@@ -13,7 +13,7 @@
 
 - Proporcionar razón social/nombre legal, NIT si corresponde, domicilio o dirección comercial, correo y canal de contacto verificables.
 - Encargar revisión jurídica aplicable en Guatemala y aprobar política de privacidad, términos y condiciones e información de tratamiento de datos.
-- Definir condiciones comerciales todavía pendientes: impuestos/facturación, vigencia de precios, medios de pago, forma de registrar la duración acordada, criterios detallados del certificado, cancelaciones/reembolsos, reprogramaciones y condiciones específicas de los planes individuales.
+- Definir condiciones comerciales todavía pendientes: impuestos/facturación, vigencia de precios, plazo de procesamiento del reembolso, duración y costo de la segunda oportunidad, reprogramaciones y datos de contacto. La duración variable de los planes individuales quedará registrada en la confirmación de compra.
 - Proporcionar el dominio definitivo para Search Console y validar canonical, sitemap, imagen social y Schema.org ya generados por el build.
 - Verificar en el despliegue real HTTPS y las cabeceras servidas. HSTS está configurado sin `includeSubDomains` ni `preload`; ampliar esas directivas solo después de confirmar la estrategia de subdominios.
 - Confirmar las URL definitivas de Facebook, Instagram y TikTok mediante una prueba manual en producción.
