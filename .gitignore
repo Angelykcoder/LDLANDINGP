@@ -2,3 +2,9 @@
 tmp/
 dist/
 .netlify/
+
+# Expediente legal fuente y material privado
+WALED_Expediente/
+_privado/
+*.docx
+~$*
