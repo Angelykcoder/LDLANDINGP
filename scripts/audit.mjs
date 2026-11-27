@@ -121,7 +121,7 @@ assert(localResources.every((resource) => existsSync(join(root, resource))), "To
 const blankLinks = [...productionHtml.matchAll(/<a\b[^>]*target="_blank"[^>]*>/g)].map((match) => match[0]);
 assert(blankLinks.every((link) => /rel="[^"]*noopener[^"]*"/.test(link)), "Todo enlace con target=_blank usa noopener.");
 
-["CODEX.md", "Docentes digitales.pdf", "docs", "tmp", ".git"].forEach((entry) => {
+["CODEX.md", "docs", "tmp", ".git"].forEach((entry) => {
   assert(!existsSync(join(dist, entry)), `${entry} no se publica.`);
 });
 

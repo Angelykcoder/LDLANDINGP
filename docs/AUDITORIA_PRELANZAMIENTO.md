@@ -29,7 +29,7 @@ La implementación técnica ya produce un artefacto estable y acotado para Netli
 
 1. **Ausencia de documentación legal y privacidad.** Afecta al sitio completo y al footer. No se aplicó contenido inventado. Solución: aportar datos verificables y obtener textos revisados por un profesional jurídico en Guatemala.
 2. **Identificación y contacto empresarial incompletos.** La configuración conserva datos provisionales y WhatsApp no tiene número. Solución: proporcionar razón social, datos comerciales y número internacional autorizado.
-3. **PDF antiguo contradictorio en la raíz.** `Docentes digitales.pdf` presenta otra oferta y datos provisionales. El build lo excluye de `dist/`; debe conservarse fuera de cualquier publicación o eliminarse mediante una decisión explícita del propietario.
+3. **PDF antiguo contradictorio retirado.** El PDF de referencia presentaba otra oferta y datos provisionales. Fue eliminado del repositorio por decisión explícita del propietario y no forma parte de la publicación.
 
 ### Altos
 
