@@ -37,6 +37,7 @@ const copy = (source, destination = source) => {
 
 [
   "img/waled-logo-horizontal.svg",
+  "img/waled-logo-vertical-color.png",
   "img/office365-que-es-para-que-sirve.png",
   "img/google-workspace-apps.png",
   "img/contenido-multimedia.jpg",
