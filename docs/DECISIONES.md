@@ -104,3 +104,14 @@
 - No se añadió una casilla de aceptación ficticia: la landing no tiene formulario, registro, inscripción o compra. El mecanismo futuro queda especificado en `docs/ACEPTACION_CONTRACTUAL.md`.
 - El build publica `legal/` pero continúa excluyendo `docs/`, `content/`, `.git` y material de auditoría interna.
 - La verificación visual se automatiza con Chrome mediante `npm run test:browser` para las resoluciones 375, 390, 768, 1024, 1366, 1440 y 1920 px, comprobando overflow, menú, consola, privacidad previa al consentimiento y página legal móvil.
+
+## Fase de identidad y preparación de producción — 27 de noviembre de 2026
+
+- El favicon deja de reutilizar el logo institucional. La nueva identidad de pestaña es un monograma WI blanco sobre azul marino, sin símbolos ni adornos, con SVG fuente y rasterizados de 16, 32, 48 y 180 px más ICO multirresolución.
+- Los favicons se generan de forma reproducible con Node.js puro mediante `npm run generate:favicons`; no se añade ninguna dependencia.
+- La pregunta frecuente identifica literalmente un «certificado privado de capacitación emitido por Waled Innovations al cumplir los requisitos de aprobación» y conserva la aclaración de que no es un título ni reconocimiento oficial.
+- La nota del Hero se limita a describir la conversación inicial de 20 minutos para evitar confundirla con los 30 días de acceso a la plataforma.
+- Ambas categorías de planes se prerenderizan en producción y se exponen como paneles de pestañas estándar. El panel individual permanece oculto hasta seleccionarlo, pero su contenido ya está en el HTML y es accesible mediante la misma interacción visible, sin cloaking.
+- Title, descripción y metadatos sociales identifican la capacitación docente en Guatemala y la marca Waled Innovations de forma natural.
+- Se precarga el AVIF del Hero y se elimina la precarga no esencial de la fuente 600. Lighthouse móvil midió 96/100/100/100 y LCP de 2.7 s; escritorio alcanzó 100/100/100/100. El objetivo estable de 2.5 s continúa pendiente.
+- Se descartó una minificación CSS experimental porque la prueba visual detectó una regresión en el tamaño de imágenes. El build final conserva el CSS combinado sin esa transformación.

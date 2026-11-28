@@ -47,7 +47,7 @@ const copy = (source, destination = source) => {
 
 const sandbox = { window: {} };
 vm.runInNewContext(readFileSync(join(root, "js/config.js"), "utf8"), sandbox);
-const category = sandbox.window.LD.config.planCategories.institutional;
+const categories = sandbox.window.LD.config.planCategories;
 
 const escapeText = (value) => String(value)
   .replaceAll("&", "&amp;")
@@ -55,7 +55,7 @@ const escapeText = (value) => String(value)
   .replaceAll(">", "&gt;")
   .replaceAll('"', "&quot;");
 
-const planMarkup = category.plans.map((plan) => {
+const renderPlanMarkup = (category) => category.plans.map((plan) => {
   const badge = plan.featured ? `<p class="plan-card__badge">${escapeText(plan.badge || "Plan destacado")}</p>` : "";
   const features = plan.features.map((feature) =>
     `<li><span class="plan-card__check" aria-hidden="true">✓</span>${escapeText(feature)}</li>`
@@ -68,12 +68,15 @@ const planMarkup = category.plans.map((plan) => {
 }).join("");
 
 const sourceHtml = readFileSync(join(root, "index.html"), "utf8");
-const marker = '<div class="plans__grid" data-render-plans data-active-category="institutional"></div>';
 const seoMarker = "<!-- SEO_ABSOLUTE_URLS: el build de Netlify inserta canonical, Open Graph, sitemap y JSON-LD con la URL real. -->";
-if (!sourceHtml.includes(marker)) throw new Error("No se encontró el contenedor de planes.");
 if (!sourceHtml.includes(seoMarker)) throw new Error("No se encontró el marcador SEO.");
 
-let productionHtml = sourceHtml.replace(marker, `<div class="plans__grid" data-render-plans data-active-category="institutional">${planMarkup}</div>`);
+let productionHtml = sourceHtml;
+Object.entries(categories).forEach(([key, category]) => {
+  const marker = `<div class="plans__grid" data-render-plans="${key}"></div>`;
+  if (!productionHtml.includes(marker)) throw new Error(`No se encontró el contenedor de planes ${key}.`);
+  productionHtml = productionHtml.replace(marker, `<div class="plans__grid" data-render-plans="${key}">${renderPlanMarkup(category)}</div>`);
+});
 let robots = readFileSync(join(root, "robots.txt"), "utf8").trimEnd() + "\n";
 const stylesheetLinks = [...sourceHtml.matchAll(/<link rel="stylesheet" href="(css\/[^"]+\.css)">/g)];
 

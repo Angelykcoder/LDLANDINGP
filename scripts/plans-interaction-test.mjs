@@ -190,12 +190,20 @@ individualTab.id = "plans-tab-individual";
 individualTab.setAttribute("data-plan-category", "individual");
 individualTab.setAttribute("aria-selected", "false");
 
-const panel = new Element("div");
-panel.className = "plans__panel";
-const grid = new Element("div");
-grid.setAttribute("data-render-plans", "");
-grid.setAttribute("data-active-category", "institutional");
-panel.appendChild(grid);
+const institutionalPanel = new Element("div");
+institutionalPanel.className = "plans__panel";
+institutionalPanel.setAttribute("data-plan-panel", "institutional");
+const institutionalGrid = new Element("div");
+institutionalGrid.setAttribute("data-render-plans", "institutional");
+institutionalPanel.appendChild(institutionalGrid);
+
+const individualPanel = new Element("div");
+individualPanel.className = "plans__panel";
+individualPanel.setAttribute("data-plan-panel", "individual");
+individualPanel.setAttribute("hidden", "");
+const individualGrid = new Element("div");
+individualGrid.setAttribute("data-render-plans", "individual");
+individualPanel.appendChild(individualGrid);
 
 const videoEmbed = new Element("div");
 videoEmbed.setAttribute("data-video-embed", "");
@@ -212,7 +220,7 @@ details.appendChild(summary);
 
 const moodle = new Element("a");
 moodle.setAttribute("data-moodle", "");
-document.roots.push(description, planStatus, institutionalTab, individualTab, panel, videoEmbed, details, moodle);
+document.roots.push(description, planStatus, institutionalTab, individualTab, institutionalPanel, individualPanel, videoEmbed, details, moodle);
 
 const window = { LD: {} };
 const context = vm.createContext({ window, document, console });
@@ -225,23 +233,23 @@ const assert = (condition, message) => {
   console.log("PASS: " + message);
 };
 
-assert(grid.children.length === 3, "La categoría institucional renderiza tres tarjetas al iniciar.");
-assert(grid.children[1].classList.contains("plan-card--featured"), "El Plan Institucional ocupa la tarjeta destacada central.");
+assert(institutionalGrid.children.length === 3, "La categoría institucional renderiza tres tarjetas al iniciar.");
+assert(individualGrid.children.length === 3, "La categoría individual también queda disponible en el HTML.");
+assert(institutionalGrid.children[1].classList.contains("plan-card--featured"), "El Plan Institucional ocupa la tarjeta destacada central.");
 assert(institutionalTab.getAttribute("aria-selected") === "true", "Institucionales inicia seleccionado.");
 assert(planStatus.textContent === "Mostrando planes institucionales.", "El estado accesible anuncia la categoría inicial.");
 
 individualTab.click();
-assert(grid.getAttribute("data-active-category") === "individual", "El clic cambia dinámicamente a Individuales.");
-assert(grid.children.length === 3, "La categoría individual renderiza tres tarjetas.");
-assert(grid.children.map((card) => card.querySelector(".plan-card__price").textContent).join(",") === "Q175,Q275,Q375", "Los precios individuales renderizados son correctos.");
-assert(grid.children[2].classList.contains("plan-card--featured"), "El Plan Integral individual tiene el destaque discreto.");
+assert(institutionalPanel.hasAttribute("hidden") && !individualPanel.hasAttribute("hidden"), "El clic muestra Individuales y oculta Institucionales.");
+assert(individualGrid.children.map((card) => card.querySelector(".plan-card__price").textContent).join(",") === "Q175,Q275,Q375", "Los precios individuales renderizados son correctos.");
+assert(individualGrid.children[2].classList.contains("plan-card--featured"), "El Plan Integral individual tiene el destaque discreto.");
 assert(planStatus.textContent === "Mostrando planes individuales.", "El estado accesible anuncia el cambio de categoría.");
-assert(grid.children[0].querySelector("[data-whatsapp-plan]").getAttribute("data-whatsapp-plan") === "Plan Esencial Individual de Q175", "El CTA individual identifica categoría, plan y precio.");
-assert(grid.children[0].querySelector("[data-whatsapp-plan]").getAttribute("href") === "https://web.whatsapp.com/", "El CTA reutiliza el fallback de WhatsApp configurado.");
-assert(grid.children[0].querySelector("[data-whatsapp-plan]").getAttribute("aria-label").includes("Plan Esencial Individual de Q175"), "El enlace accesible conserva el producto individual seleccionado.");
+assert(individualGrid.children[0].querySelector("[data-whatsapp-plan]").getAttribute("data-whatsapp-plan") === "Plan Esencial Individual de Q175", "El CTA individual identifica categoría, plan y precio.");
+assert(individualGrid.children[0].querySelector("[data-whatsapp-plan]").getAttribute("href") === "https://web.whatsapp.com/", "El CTA reutiliza el fallback de WhatsApp configurado.");
+assert(individualGrid.children[0].querySelector("[data-whatsapp-plan]").getAttribute("aria-label").includes("Plan Esencial Individual de Q175"), "El enlace accesible conserva el producto individual seleccionado.");
 
 individualTab.dispatchEvent({ type: "keydown", key: "ArrowLeft" });
-assert(grid.getAttribute("data-active-category") === "institutional", "El selector permite volver con teclado a Institucionales.");
+assert(!institutionalPanel.hasAttribute("hidden") && individualPanel.hasAttribute("hidden"), "El selector permite volver con teclado a Institucionales.");
 assert(document.activeElement === institutionalTab, "La navegación por flechas mueve el foco al tab activo.");
 
 videoLoad.click();

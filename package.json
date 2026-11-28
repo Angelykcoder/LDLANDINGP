@@ -4,6 +4,7 @@
   "private": true,
   "description": "Landing page institucional de Waled Innovations.",
   "scripts": {
+    "generate:favicons": "node scripts/generate-favicons.mjs",
     "build": "node scripts/build.mjs",
     "test": "node scripts/audit.mjs && node scripts/plans-interaction-test.mjs && node scripts/seo-build-test.mjs",
     "test:browser": "node scripts/browser-smoke-test.mjs",

@@ -10,6 +10,9 @@ const profile = mkdtempSync(join(tmpdir(), "waled-browser-qa-"));
 const chrome = spawn(chromePath, [
   "--headless=new",
   "--disable-gpu",
+  "--disable-dev-shm-usage",
+  "--no-sandbox",
+  "--remote-allow-origins=*",
   "--disable-crash-reporter",
   "--no-first-run",
   "--no-default-browser-check",
@@ -177,6 +180,43 @@ try {
     document.querySelector(".video-consent__close").dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
     return { privacyEnhanced, removedWithEscape: !document.querySelector("iframe") };
   })()`);
+  const siteChecks = await evaluate(client, `(async () => {
+    const faviconLinks = [...document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]')];
+    const faviconResponses = await Promise.all(faviconLinks.map(async (link) => ({
+      href: link.getAttribute("href"),
+      status: (await fetch(link.href)).status
+    })));
+    const individualTab = document.querySelector('[data-plan-category="individual"]');
+    individualTab.click();
+    const individualPanel = document.querySelector('[data-plan-panel="individual"]');
+    const institutionalPanel = document.querySelector('[data-plan-panel="institutional"]');
+    const planSwitcher = {
+      individualSelected: individualTab.getAttribute("aria-selected") === "true",
+      individualVisible: !individualPanel.hidden,
+      institutionalHidden: institutionalPanel.hidden,
+      individualCards: individualPanel.querySelectorAll(".plan-card").length,
+      prices: [...individualPanel.querySelectorAll(".plan-card__price")].map((element) => element.textContent.trim())
+    };
+    const localFragmentLinks = [...document.querySelectorAll('a[href^="#"]')];
+    return {
+      faviconResponses,
+      planSwitcher,
+      faqCorrected: document.body.textContent.includes("Un certificado privado de capacitación emitido por Waled Innovations al cumplir los requisitos de aprobación."),
+      whatsappLinksValid: [...document.querySelectorAll("[data-whatsapp]")].every((link) => link.href.startsWith("https://web.whatsapp.com/") && link.target === "_blank"),
+      socialLinks: [...document.querySelectorAll(".contact__channels a")].slice(1).map((link) => link.href),
+      fragmentsValid: localFragmentLinks.every((link) => document.getElementById(link.getAttribute("href").slice(1))),
+      descriptionMentionsGuatemala: document.querySelector('meta[name="description"]')?.content.includes("Guatemala") || false
+    };
+  })()`);
+
+  await client.send("Page.navigate", { url: `${baseUrl}/404.html` });
+  await delay(250);
+  const notFound = await evaluate(client, `({
+    title: document.title,
+    heading: document.querySelector("h1")?.textContent.trim(),
+    homeLink: document.querySelector('a[href="/"]')?.getAttribute("href"),
+    faviconCount: document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]').length
+  })`);
 
   const failures = results.filter((result) => result.scrollWidth > result.viewport || result.offenders.length || (result.menu && (!result.menu.opened || !result.menu.closed)));
   if (
@@ -190,15 +230,32 @@ try {
     || privacyBeforeConsent.cookies
     || !videoConsent.privacyEnhanced
     || !videoConsent.removedWithEscape
+    || siteChecks.faviconResponses.length !== 6
+    || siteChecks.faviconResponses.some((response) => response.status !== 200)
+    || !siteChecks.planSwitcher.individualSelected
+    || !siteChecks.planSwitcher.individualVisible
+    || !siteChecks.planSwitcher.institutionalHidden
+    || siteChecks.planSwitcher.individualCards !== 3
+    || siteChecks.planSwitcher.prices.join(",") !== "Q175,Q275,Q375"
+    || !siteChecks.faqCorrected
+    || !siteChecks.whatsappLinksValid
+    || siteChecks.socialLinks.length !== 3
+    || !siteChecks.fragmentsValid
+    || !siteChecks.descriptionMentionsGuatemala
+    || notFound.heading !== "Página no encontrada"
+    || notFound.homeLink !== "/"
+    || notFound.faviconCount !== 6
     || client.errors.length
   ) exitCode = 1;
   if (failures.length) exitCode = 1;
-  console.log(JSON.stringify({ results, legal, privacyBeforeConsent, videoConsent, consoleErrors: client.errors }, null, 2));
+  console.log(JSON.stringify({ results, legal, privacyBeforeConsent, videoConsent, siteChecks, notFound, consoleErrors: client.errors }, null, 2));
   client.socket.close();
 } finally {
   chrome.kill();
-  await delay(150);
-  if (profile.startsWith(tmpdir())) rmSync(profile, { recursive: true, force: true });
+  await delay(750);
+  if (profile.startsWith(tmpdir())) {
+    rmSync(profile, { recursive: true, force: true, maxRetries: 5, retryDelay: 200 });
+  }
 }
 
 process.exit(exitCode);

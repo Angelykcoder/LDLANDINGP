@@ -14,6 +14,7 @@ const productionHtml = readFileSync(join(dist, "index.html"), "utf8");
 const configCode = readFileSync(join(root, "js/config.js"), "utf8");
 const baseCss = readFileSync(join(root, "css/base.css"), "utf8");
 const legalHtml = readFileSync(join(root, "legal/index.html"), "utf8");
+const notFoundHtml = readFileSync(join(root, "404.html"), "utf8");
 const legalManifest = JSON.parse(readFileSync(join(root, "content/legal/documentos.json"), "utf8"));
 const businessData = JSON.parse(readFileSync(join(root, "content/business/datos-empresariales.json"), "utf8"));
 const sandbox = { window: {} };
@@ -106,9 +107,10 @@ const individualPlans = config.planCategories.individual.plans;
 assert(institutionalPlans[1].featured === true && !institutionalPlans[2].featured, "Plan Institucional de Q2,600 es el único destacado institucional.");
 assert(individualPlans[2].featured === true && individualPlans[2].badge === "Más conveniente", "Plan Integral individual usa el destaque discreto solicitado.");
 assert(sourceHtml.indexOf(">Institucionales</button>") < sourceHtml.indexOf(">Individuales</button>"), "El selector presenta Institucionales antes de Individuales.");
-assert(sourceHtml.includes('aria-selected="true"') && sourceHtml.includes('data-active-category="institutional"'), "Institucionales es la categoría inicial.");
-assert((productionHtml.match(/class="plan-card(?: plan-card--featured)?"/g) || []).length === 3, "Producción prerenderiza tres planes institucionales.");
+assert(sourceHtml.includes('aria-selected="true"') && sourceHtml.includes('data-plan-panel="institutional"') && sourceHtml.includes('data-plan-panel="individual" hidden'), "Institucionales es la categoría inicial y ambos paneles existen.");
+assert((productionHtml.match(/class="plan-card(?: plan-card--featured)?"/g) || []).length === 6, "Producción prerenderiza los seis planes de ambas categorías.");
 assert(productionHtml.includes("Q1,500") && productionHtml.includes("Q2,600") && productionHtml.includes("Q3,900"), "Producción prerenderiza los tres precios institucionales.");
+assert(productionHtml.includes("Q175") && productionHtml.includes("Q275") && productionHtml.includes("Q375"), "Producción prerenderiza los tres precios individuales.");
 assert(config.whatsappMessages.plan.includes("{plan}") && individualPlans.every((plan) => plan.contactLabel.includes("Individual")), "Los mensajes de contacto identifican los planes individuales.");
 
 const ids = [...sourceHtml.matchAll(/\sid="([^"]+)"/g)].map((match) => match[1]);
@@ -129,7 +131,7 @@ assert(blankLinks.every((link) => /rel="[^"]*noopener[^"]*"/.test(link)), "Todo 
   assert(!existsSync(join(dist, entry)), `${entry} no se publica.`);
 });
 
-["404.html", "robots.txt", "assets/icons/favicon.svg"].forEach((entry) => {
+["404.html", "robots.txt", "assets/icons/favicon.svg", "assets/icons/favicon.ico", "assets/icons/favicon-16x16.png", "assets/icons/favicon-32x32.png", "assets/icons/favicon-48x48.png", "assets/icons/apple-touch-icon.png"].forEach((entry) => {
   assert(existsSync(join(dist, entry)) && statSync(join(dist, entry)).size > 0, `${entry} está incluido en producción.`);
 });
 
@@ -153,11 +155,31 @@ assert(
 );
 assert(!existsSync(join(dist, "docs", "legal", "CONTRATO_PRESTACION_SERVICIOS_INSTITUCIONES.md")), "El contrato institucional privado no se publica.");
 
+const faviconFiles = [
+  ["favicon-16x16.png", 16],
+  ["favicon-32x32.png", 32],
+  ["favicon-48x48.png", 48],
+  ["apple-touch-icon.png", 180]
+];
+faviconFiles.forEach(([filename, expectedSize]) => {
+  const data = readFileSync(join(dist, "assets", "icons", filename));
+  assert(
+    data.subarray(1, 4).toString("ascii") === "PNG"
+      && data.readUInt32BE(16) === expectedSize
+      && data.readUInt32BE(20) === expectedSize,
+    `${filename} es un PNG de ${expectedSize} × ${expectedSize}.`
+  );
+});
+const ico = readFileSync(join(dist, "assets", "icons", "favicon.ico"));
+assert(ico.readUInt16LE(0) === 0 && ico.readUInt16LE(2) === 1 && ico.readUInt16LE(4) === 3, "favicon.ico contiene los tamaños 16, 32 y 48 px.");
+const faviconReferences = [sourceHtml, notFoundHtml, legalHtml].join("\n");
 assert(
-  productionHtml.includes('rel="icon" type="image/png" href="img/waled-logo-vertical-color.png"')
-    && existsSync(join(dist, "img", "waled-logo-vertical-color.png"))
-    && statSync(join(dist, "img", "waled-logo-vertical-color.png")).size > 0,
-  "El logo de Waled usado como favicon está enlazado y publicado."
+  faviconReferences.includes("assets/icons/favicon.ico")
+    && faviconReferences.includes("assets/icons/favicon.svg")
+    && faviconReferences.includes("assets/icons/apple-touch-icon.png")
+    && !faviconReferences.includes('rel="icon" type="image/png" href="img/waled-logo-vertical-color.png"')
+    && !faviconReferences.includes('rel="icon" type="image/png" href="../img/waled-logo-vertical-color.png"'),
+  "Todas las páginas enlazan la familia WI y ninguna conserva el logo anterior como favicon."
 );
 
 assert(existsSync(join(dist, "css/site.css")) && statSync(join(dist, "css/site.css")).size > 0, "Producción combina los estilos en una sola hoja CSS.");

@@ -47,34 +47,43 @@
   }
 
   function updateTabs(categoryKey) {
-    var panel = document.querySelector(".plans__panel");
     document.querySelectorAll("[data-plan-category]").forEach(function (tab) {
       var isActive = tab.getAttribute("data-plan-category") === categoryKey;
       tab.classList.toggle("is-active", isActive);
       tab.setAttribute("aria-selected", String(isActive));
       tab.tabIndex = isActive ? 0 : -1;
-      if (isActive && panel) panel.setAttribute("aria-labelledby", tab.id);
     });
+    document.querySelectorAll("[data-plan-panel]").forEach(function (panel) {
+      var isActive = panel.getAttribute("data-plan-panel") === categoryKey;
+      if (isActive) panel.removeAttribute("hidden");
+      else panel.setAttribute("hidden", "");
+    });
+  }
+
+  function ensureCategoryRendered(categoryKey) {
+    var config = window.LD.config;
+    var categories = config && config.planCategories;
+    var category = categories && categories[categoryKey];
+    var container = document.querySelector('[data-render-plans="' + categoryKey + '"]');
+    if (!category || !container) return null;
+
+    if (!container.children.length) {
+      category.plans.forEach(function (plan) {
+        container.appendChild(makePlanCard(plan, category));
+      });
+    }
+    return container;
   }
 
   function renderCategory(categoryKey, animate) {
     var config = window.LD.config;
     var categories = config && config.planCategories;
     var category = categories && categories[categoryKey];
-    var container = document.querySelector("[data-render-plans]");
+    var container = ensureCategoryRendered(categoryKey);
     var description = document.querySelector("[data-plan-category-description]");
     var status = document.querySelector("[data-plan-status]");
     if (!category || !container) return;
 
-    var currentCategory = container.getAttribute("data-active-category");
-    if (!container.children.length || currentCategory !== categoryKey) {
-      container.replaceChildren();
-      category.plans.forEach(function (plan) {
-        container.appendChild(makePlanCard(plan, category));
-      });
-    }
-
-    container.setAttribute("data-active-category", categoryKey);
     if (description) description.textContent = category.description;
     if (status) status.textContent = "Mostrando planes " + category.label.toLowerCase() + ".";
     updateTabs(categoryKey);
@@ -113,6 +122,8 @@
   function initPlans() {
     var tabs = document.querySelectorAll("[data-plan-category]");
     if (!tabs.length) return;
+
+    Object.keys(window.LD.config.planCategories).forEach(ensureCategoryRendered);
 
     tabs.forEach(function (tab) {
       tab.addEventListener("click", function () {

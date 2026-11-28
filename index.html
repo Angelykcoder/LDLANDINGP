@@ -6,21 +6,25 @@
     <meta name="theme-color" content="#f5f7fa">
     <meta name="color-scheme" content="light">
     <meta name="robots" content="index, follow, max-image-preview:large">
-    <meta name="description" content="Capacitación digital práctica para que los docentes aprovechen la tecnología que su colegio ya tiene.">
+    <meta name="description" content="Capacitación docente práctica en Guatemala para colegios y maestros que buscan aprovechar la tecnología educativa en el aula.">
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Docentes digitales | Capacitación para colegios">
-    <meta property="og:description" content="Ayuda a tus docentes a usar la tecnología que tu colegio ya paga.">
+    <meta property="og:title" content="Capacitación docente en Guatemala | Waled Innovations">
+    <meta property="og:description" content="Formación práctica para que tus docentes aprovechen la tecnología educativa que tu colegio ya paga.">
     <meta property="og:site_name" content="Waled Innovations">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Docentes digitales | Capacitación para colegios">
-    <meta name="twitter:description" content="Ayuda a tus docentes a usar la tecnología que tu colegio ya paga.">
+    <meta name="twitter:title" content="Capacitación docente en Guatemala | Waled Innovations">
+    <meta name="twitter:description" content="Formación práctica para que tus docentes aprovechen la tecnología educativa que tu colegio ya paga.">
     <!-- SEO_ABSOLUTE_URLS: el build de Netlify inserta canonical, Open Graph, sitemap y JSON-LD con la URL real. -->
-    <title>Docentes digitales | Capacitación para colegios</title>
+    <title>Capacitación docente en Guatemala | Waled Innovations</title>
+    <link rel="preload" href="img/joven-profesora-rubia-usando-laptop-pie-jardin-infantes_839833-9717.avif" as="image" type="image/avif" fetchpriority="high">
     <link rel="preload" href="assets/fonts/ibm-plex-sans-400.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="assets/fonts/ibm-plex-sans-600.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="assets/fonts/ibm-plex-sans-700.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="icon" type="image/png" href="img/waled-logo-vertical-color.png">
-    <link rel="apple-touch-icon" href="img/waled-logo-vertical-color.png">
+    <link rel="icon" href="assets/icons/favicon.ico">
+    <link rel="icon" type="image/svg+xml" href="assets/icons/favicon.svg">
+    <link rel="icon" type="image/png" sizes="48x48" href="assets/icons/favicon-48x48.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="assets/icons/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/icons/apple-touch-icon.png">
     <link rel="stylesheet" href="css/tokens.css">
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/components/button.css">
@@ -92,7 +96,7 @@
             <a class="button hero__action" href="#contacto">Agendar reunión</a>
             <a class="button button--secondary hero__action" href="#soluciones">Conocer la propuesta</a>
           </div>
-          <p class="hero__note">Una conversación de 20 minutos, sin compromiso. La duración final se confirma según las necesidades del colegio.</p>
+          <p class="hero__note">Una conversación inicial de 20 minutos, sin compromiso, para conocer las necesidades del colegio.</p>
         </div>
 
         <div class="hero-visual">
@@ -187,12 +191,15 @@
           <p class="section-heading__intro" data-plan-category-description>Compara la cantidad de profesores, cursos y modalidad de acompañamiento de cada paquete institucional.</p>
         </div>
         <div class="plans__switcher" role="tablist" aria-label="Tipo de plan">
-          <button class="plans__switch-button is-active" id="plans-tab-institutional" type="button" role="tab" aria-selected="true" aria-controls="plans-panel" data-plan-category="institutional">Institucionales</button>
-          <button class="plans__switch-button" id="plans-tab-individual" type="button" role="tab" aria-selected="false" aria-controls="plans-panel" tabindex="-1" data-plan-category="individual">Individuales</button>
+          <button class="plans__switch-button is-active" id="plans-tab-institutional" type="button" role="tab" aria-selected="true" aria-controls="plans-panel-institutional" data-plan-category="institutional">Institucionales</button>
+          <button class="plans__switch-button" id="plans-tab-individual" type="button" role="tab" aria-selected="false" aria-controls="plans-panel-individual" tabindex="-1" data-plan-category="individual">Individuales</button>
         </div>
         <p class="sr-only" aria-live="polite" aria-atomic="true" data-plan-status>Mostrando planes institucionales.</p>
-        <div class="plans__panel" id="plans-panel" role="tabpanel" aria-labelledby="plans-tab-institutional" tabindex="0">
-          <div class="plans__grid" data-render-plans data-active-category="institutional"></div>
+        <div class="plans__panel" id="plans-panel-institutional" role="tabpanel" aria-labelledby="plans-tab-institutional" tabindex="0" data-plan-panel="institutional">
+          <div class="plans__grid" data-render-plans="institutional"></div>
+        </div>
+        <div class="plans__panel" id="plans-panel-individual" role="tabpanel" aria-labelledby="plans-tab-individual" tabindex="0" data-plan-panel="individual" hidden>
+          <div class="plans__grid" data-render-plans="individual"></div>
         </div>
       </section>
 
@@ -212,7 +219,7 @@
           </details>
           <details class="faq-item">
             <summary>¿Quién emite el certificado y qué acredita?</summary>
-            <p><span data-brand></span> emite un certificado digital privado de capacitación en formato PDF para quienes completen los proyectos y alcancen una nota mínima de 61/100. Incluye firmas e identificador de verificación; no se presenta como título ni reconocimiento oficial.</p>
+            <p>Un certificado privado de capacitación emitido por Waled Innovations al cumplir los requisitos de aprobación. Se entrega en formato PDF a quienes completen los proyectos y alcancen una nota mínima de 61/100; incluye firmas e identificador de verificación y no se presenta como título ni reconocimiento oficial.</p>
           </details>
         </div>
       </section>
