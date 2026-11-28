@@ -53,8 +53,7 @@ body {
   margin-bottom: 2rem;
 }
 
-.legal-eyebrow,
-.legal-document__state {
+.legal-eyebrow {
   margin-bottom: 0.65rem;
   color: #155eaf;
   font-size: 0.925rem;
@@ -71,32 +70,19 @@ body {
 
 .legal-hero > p:not(.legal-eyebrow),
 .legal-document p,
-.legal-document li,
-.legal-pending li {
+.legal-document li {
   font-size: 1.0625rem;
 }
 
-.legal-status,
 .legal-index,
-.legal-document,
-.legal-pending {
+.legal-document {
   border: 1px solid #d9e4f0;
   border-radius: 0.85rem;
   background: #ffffff;
   box-shadow: 0 0.75rem 2rem rgb(15 35 60 / 7%);
 }
 
-.legal-status {
-  display: grid;
-  gap: 0.25rem;
-  margin-top: 1.5rem;
-  padding: 1rem 1.15rem;
-  border-color: #dba93f;
-  background: #fff9e8;
-}
-
-.legal-index,
-.legal-pending {
+.legal-index {
   margin-bottom: 2rem;
   padding: clamp(1.25rem, 4vw, 2rem);
 }
@@ -132,8 +118,7 @@ body {
   font-size: 1.25rem;
 }
 
-.legal-document li + li,
-.legal-pending li + li {
+.legal-document li + li {
   margin-top: 0.45rem;
 }
 
@@ -165,10 +150,8 @@ body {
 }
 
 @media (forced-colors: active) {
-  .legal-status,
   .legal-index,
-  .legal-document,
-  .legal-pending {
+  .legal-document {
     box-shadow: none;
   }
 }

@@ -175,7 +175,7 @@ try {
   const legal = await evaluate(client, `({
     title: document.title,
     documentCount: document.querySelectorAll(".legal-document").length,
-    statusVisible: document.body.innerText.includes("DOCUMENTOS DE REFERENCIA PENDIENTES DE REVISIÓN JURÍDICA Y CONTABLE") && document.body.innerText.includes("1 de enero de 2027"),
+    internalNotesHidden: !document.body.innerText.includes("Pendientes antes de aprobación definitiva") && !document.body.innerText.includes("Estas versiones sustituyen los textos públicos anteriores") && !document.body.innerText.includes("DOCUMENTOS DE REFERENCIA PENDIENTES DE REVISIÓN JURÍDICA Y CONTABLE"),
     scrollWidth: document.documentElement.scrollWidth,
     viewport: document.documentElement.clientWidth
   })`);
@@ -268,7 +268,7 @@ try {
   const failures = results.filter((result) => result.scrollWidth > result.viewport || result.offenders.length || (result.menu && (!result.menu.opened || !result.menu.closed || !result.menu.firstLinkFocused || !result.menu.articlesLinkPresent || result.menu.openLabel !== "Cerrar")));
   if (
     legal.documentCount !== 6
-    || !legal.statusVisible
+    || !legal.internalNotesHidden
     || legal.scrollWidth > legal.viewport
     || privacyBeforeConsent.youtubeFramePresent
     || privacyBeforeConsent.externalRequests.length

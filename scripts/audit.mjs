@@ -161,10 +161,16 @@ assert(
   "Seis documentos de referencia son consultables y el contrato institucional permanece privado."
 );
 assert(
-  ["privacidad", "terminos", "contratacion", "cancelaciones", "pagos", "certificacion"].every((id) => legalHtml.includes(`id="${id}"`))
-    && legalHtml.includes("DOCUMENTOS DE REFERENCIA PENDIENTES DE REVISIÓN JURÍDICA Y CONTABLE")
-    && legalHtml.includes("1 de enero de 2027"),
-  "La información legal pública contiene los seis documentos, declara su estado de referencia y la vigencia indicada."
+  ["privacidad", "terminos", "contratacion", "cancelaciones", "pagos", "certificacion"].every((id) => legalHtml.includes(`id="${id}"`)),
+  "La información legal pública contiene los seis documentos."
+);
+assert(
+  !legalHtml.includes("Pendientes antes de aprobación definitiva")
+    && !legalHtml.includes("Estas versiones sustituyen los textos públicos anteriores")
+    && !legalHtml.includes("DOCUMENTOS DE REFERENCIA PENDIENTES DE REVISIÓN JURÍDICA Y CONTABLE")
+    && !legalHtml.includes("Versión pública revisada")
+    && !legalHtml.includes("legal-document__state"),
+  "La página legal pública no expone notas internas de aprobación, revisión o versionado."
 );
 assert(
   businessData.contractualProvider.legalName.value === "WALED INNOVATION S.A."
