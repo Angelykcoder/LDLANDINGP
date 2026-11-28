@@ -153,6 +153,7 @@ La denominación pública indicada es `WALED INNOVATION S.A.`. Los demás valore
 9. Cuando exista contratación o registro web, implementar aceptaciones demostrables; no se simula actualmente una compra ni una casilla sin proceso contractual.
 10. En Netlify, confirmar que **Forms > Form detection** esté habilitado, volver a desplegar y comprobar que `consulta-contacto` aparezca como formulario activo antes de aceptar consultas reales.
 11. Definir quién revisará los envíos del formulario, configurar notificaciones, limitar accesos y establecer un calendario de exportación y eliminación de datos personales.
+12. Desactivar el HUD público de Netlify desde la configuración del sitio: su inyección genera avisos CSP en producción. No se debe debilitar `script-src` ni `style-src` con `unsafe-inline` para acomodarlo.
 
 ## Publicación
 

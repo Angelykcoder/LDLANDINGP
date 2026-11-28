@@ -18,6 +18,7 @@
 - Confirmar correo, teléfono y número de WhatsApp institucionales. Los planes individuales usarán esos mismos canales y no requieren datos de contacto distintos.
 - Proporcionar el dominio definitivo para Search Console y validar canonical, sitemap, imagen social y Schema.org ya generados por el build.
 - Revisar la política HSTS efectiva de Netlify: aunque `netlify.toml` no la declara, el sitio publicado responde con `max-age=31536000; includeSubDomains; preload`. Confirmar dominio y estrategia de subdominios antes de conservar o modificar esa política.
+- Desactivar el HUD público de Netlify desde la configuración del sitio. El script `/.netlify/scripts/hud?variant=public` se inyecta en producción y sus estilos y scripts inline son bloqueados por la CSP estricta; no se autoriza relajarla con `unsafe-inline`.
 - Confirmar las URL definitivas de Facebook, Instagram y TikTok mediante una prueba manual en producción.
 - Sustituir el acceso genérico a WhatsApp Web por el número empresarial internacional cuando esté disponible.
 - Recopilar Core Web Vitals de campo después del lanzamiento, en especial INP; las métricas actuales son únicamente de laboratorio.
