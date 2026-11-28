@@ -4,13 +4,13 @@ Sitio web institucional estático para presentar los programas de capacitación 
 
 ## Estado actual
 
-**Estado técnico:** build y pruebas aprobados; preparado para despliegue de revisión en Netlify.
+**Estado técnico:** build y pruebas aprobados; versión de revisión desplegada y verificada en Netlify.
 
 **Sitio público:** [https://waledinnovations.netlify.app/](https://waledinnovations.netlify.app/)
 
 **Decisión de lanzamiento oficial:** **NO APROBADO PARA PUBLICACIÓN OFICIAL** hasta completar los datos empresariales, la revisión jurídica y contable, y las validaciones sobre el dominio real.
 
-El despliegue público actual debe considerarse una versión técnica de revisión, no una aprobación jurídica, contable ni comercial definitiva.
+El despliegue público actual contiene la identidad WI, la corrección del FAQ, las mejoras SEO y el prerender de ambas categorías de planes. Debe considerarse una versión técnica de revisión, no una aprobación jurídica, contable ni comercial definitiva.
 
 La implementación actual incluye:
 
