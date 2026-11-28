@@ -8,8 +8,8 @@ La intervención conserva la arquitectura HTML/CSS/JavaScript y los precios y be
 
 ## Coherencia comercial revisada
 
-- «En 1 mes» y el acceso de 30 días desde la activación expresan el mismo periodo comercial y no se contradicen.
-- La modalidad base es virtual y asincrónica mediante Moodle. La conferencia mensual del Plan Integral institucional es un complemento en vivo; conviene mantener esta excepción explícita en cualquier futuro contrato o material de venta.
+- «En 1 mes» y el acceso institucional de 30 días desde el primer lunes siguiente a la contratación expresan el mismo periodo comercial y no se contradicen.
+- La modalidad base es virtual mediante Moodle. El expediente v0.3 sustituyó la conferencia mensual por una conferencia semanal para el Plan Integral institucional.
 - Los certificados son privados, se entregan al aprobar y no se presentan como títulos ni acreditaciones oficiales.
 - El Hero tenía una frase ambigua sobre «la duración final» que podía interpretarse como duración del curso; se sustituyó por una referencia inequívoca a la conversación inicial de 20 minutos.
 - Los planes institucionales e individuales conservan exactamente sus precios y beneficios. Ambas categorías están prerenderizadas en `dist/index.html` y el selector sigue siendo accesible por clic y teclado.
@@ -25,8 +25,8 @@ La intervención conserva la arquitectura HTML/CSS/JavaScript y los precios y be
 
 ## Pendientes legales y contables
 
-- Nombre legal del prestador, NIT y datos registrales cuando correspondan, correo, teléfono y WhatsApp oficiales.
-- Revisión y aprobación jurídica de los seis borradores públicos y del contrato institucional privado.
+- Verificación registral y de representación de `WALED INNOVATION S.A.`, sin publicar datos personales; NIT, correo, teléfono y WhatsApp oficiales pendientes.
+- Revisión y aprobación jurídica de los seis documentos públicos de referencia y del contrato institucional privado.
 - Tratamiento de IVA, facturación, emisor de comprobantes y vigencia de precios.
 - Definir si los reembolsos de 5 a 10 días se cuentan en días hábiles o calendario, además de las reglas de reprogramación.
 - El contrato institucional continúa en `docs/legal/`, excluido de `dist/`; `WALED_Expediente/`, `content/`, `docs/` y archivos internos tampoco se publican.

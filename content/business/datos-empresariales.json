@@ -7,12 +7,12 @@
   },
   "contractualProvider": {
     "legalName": {
-      "value": null,
-      "status": "pending_owner"
+      "value": "WALED INNOVATION S.A.",
+      "status": "owner_designated_public_name_pending_legal_verification"
     },
     "businessStatus": {
-      "value": "Sociedad anónima en proceso de constitución. Mientras no esté formalizada, el prestador contractual será la persona individual que utiliza la marca comercial.",
-      "status": "confirmed"
+      "value": "La denominación pública indicada por el propietario es WALED INNOVATION S.A.; la situación registral y las facultades de representación deben verificarse antes de contratar.",
+      "status": "pending_legal_verification"
     },
     "nit": {
       "value": null,
@@ -23,8 +23,8 @@
       "status": "pending_owner"
     },
     "address": {
-      "value": "9a calle 3-40, zona 11, Colonia El Progreso, Guatemala",
-      "status": "confirmed"
+      "value": null,
+      "status": "private_not_for_publication"
     }
   },
   "contact": {
@@ -62,16 +62,17 @@
   },
   "confirmedServiceTerms": {
     "delivery": "Virtual y asincrónica mediante Moodle",
-    "accessPeriod": "30 días desde la activación de la cuenta",
-    "institutionalPayment": "50% para comenzar y 50% antes de finalizar el curso",
+    "institutionalAccessPeriod": "30 días desde el primer lunes siguiente a la contratación",
+    "individualAccessPeriod": "30 días desde la activación de la cuenta; las condiciones individuales requieren documento propio",
+    "institutionalPayment": "50% para comenzar y 50% propuesto para el día 15 desde el lunes de inicio; fecha pendiente de aprobación y revisión",
     "paymentMethods": ["Transferencia bancaria", "Depósito bancario"],
     "refund": "75% en los supuestos acordados; solicitud con al menos una semana de anticipación o cuando el cliente no haya ingresado a Moodle; no corresponde después de que el colegio haya comenzado el curso, sin limitar derechos irrenunciables",
     "refundProcessing": "5 a 10 días; pendiente confirmar si son días hábiles o calendario",
     "passingGrade": "61/100",
-    "assessment": "Proyectos",
-    "recovery": "Una oportunidad adicional; después de los 30 días requiere autorización",
-    "certificate": "Certificado digital PDF privado de capacitación, con firmas del CEO y del director y código QR o identificador único de verificación; no implica reconocimiento oficial",
-    "support": "Consultas por WhatsApp o llamada; recepción de consultas las 24 horas y respuesta estimada entre 1 y 8 horas; incluye soporte técnico y académico",
+    "assessment": "Una tarea semanal y un proyecto integrador por curso; no hay examen",
+    "recovery": "Una segunda oportunidad sin costo, con autorización y duración aproximada de dos semanas; plazo exacto pendiente",
+    "certificate": "Certificado digital PDF privado de capacitación, con identificador de verificación; no implica reconocimiento oficial",
+    "support": "Soporte técnico y académico de lunes a domingo, con respuesta estimada entre 1 y 8 horas sujeta a disponibilidad; no es atención humana inmediata ni garantizada las 24 horas",
     "dataRetention": "Retención prevista durante tres meses después de finalizar el curso, sujeta a verificación de respaldos, registros y obligaciones de conservación"
   }
 }

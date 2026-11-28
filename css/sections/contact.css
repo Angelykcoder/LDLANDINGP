@@ -138,6 +138,118 @@
   border-color: rgb(97 215 154 / 48%);
 }
 
+.contact-form {
+  max-width: var(--content-width);
+  margin: var(--measure-2-rem) auto 0;
+  padding: clamp(1.25rem, 4vw, 2rem);
+  border: 1px solid rgb(206 231 255 / 34%);
+  border-radius: 0.85rem;
+  color: var(--color-ink);
+  background: #ffffff;
+  box-shadow: 0 1.25rem 3rem rgb(8 31 61 / 22%);
+}
+
+.contact-form__heading {
+  max-width: 44rem;
+  margin-bottom: 1.4rem;
+}
+
+.contact-form__eyebrow {
+  margin-bottom: 0.35rem;
+  color: var(--color-blue);
+  font-size: 0.825rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.contact-form h3 {
+  margin-bottom: 0.45rem;
+  color: var(--color-ink);
+  font-size: clamp(1.35rem, 4vw, 2rem);
+}
+
+.contact-form__heading > p:last-child {
+  margin-bottom: 0;
+  color: var(--color-muted);
+}
+
+.contact-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.contact-form__field {
+  display: grid;
+  gap: 0.45rem;
+  color: var(--color-ink);
+  font-weight: 650;
+}
+
+.contact-form__field--wide {
+  grid-column: 1 / -1;
+}
+
+.contact-form__field small {
+  color: var(--color-muted);
+  font-weight: 400;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  border: 1px solid #9bacc0;
+  border-radius: 0.5rem;
+  color: var(--color-ink);
+  background: #ffffff;
+  font: inherit;
+}
+
+.contact-form input {
+  min-height: 3rem;
+  padding: 0.65rem 0.75rem;
+}
+
+.contact-form textarea {
+  min-height: 8rem;
+  padding: 0.75rem;
+  resize: vertical;
+}
+
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible {
+  border-color: var(--color-blue);
+  outline: 3px solid rgb(18 101 214 / 24%);
+  outline-offset: 2px;
+}
+
+.contact-form__submit {
+  margin-top: 1.25rem;
+}
+
+.contact-form__privacy {
+  max-width: 70rem;
+  margin: 1rem 0 0;
+  color: var(--color-muted);
+  font-size: 0.9rem;
+}
+
+.contact-form__privacy a {
+  color: var(--color-blue);
+  font-weight: 650;
+}
+
+.form-honeypot {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
 .site-footer {
   display: flex;
   width: min(100% - var(--measure-2-rem), var(--content-width));
@@ -176,6 +288,18 @@
 @media (max-width: 36rem) {
   .contact__channels {
     grid-template-columns: 1fr;
+  }
+
+  .contact-form__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form__field--wide {
+    grid-column: auto;
+  }
+
+  .contact-form__submit {
+    width: 100%;
   }
 }
 

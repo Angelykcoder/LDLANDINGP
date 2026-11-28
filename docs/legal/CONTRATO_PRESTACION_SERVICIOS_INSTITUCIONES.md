@@ -1,62 +1,138 @@
 # Contrato de prestación de servicios para instituciones educativas
 
-> **BORRADOR PENDIENTE DE DATOS DEL PROPIETARIO Y REVISIÓN JURÍDICA.** Este texto no debe firmarse ni presentarse como contrato definitivo sin completar los campos pendientes y obtener revisión profesional aplicable en Guatemala.
+> **DOCUMENTO PRIVADO DE REFERENCIA.** Versión 0.3. Fecha de entrada en vigencia prevista: 1 de enero de 2027. Requiere revisión jurídica y contable antes de su firma. No debe publicarse ni completarse con datos personales dentro del repositorio.
 
 ## Partes
 
-- **Prestador:** `[PENDIENTE: nombre legal e identificación de la persona individual que utiliza la marca Waled Innovations]`.
-- **NIT/datos registrales:** `[PENDIENTE]`.
-- **Dirección proporcionada:** 9a calle 3-40, zona 11, Colonia El Progreso, Guatemala.
-- **Institución contratante:** `[PENDIENTE: razón social, representante, identificación, NIT y dirección]`.
+- **Prestador:** WALED INNOVATION S.A.
+- **Institución contratante:** `[COMPLETAR EN EL EJEMPLAR PRIVADO]`.
+- **Representación y datos registrales:** `[VERIFICAR FUERA DEL REPOSITORIO]`.
 
-Waled Innovations es una marca comercial. La sociedad anónima se encuentra en proceso de constitución; mientras no esté formalizada, la persona individual identificada en el contrato será la prestadora contractual.
+Los nombres, identificaciones, domicilios, firmas, teléfonos, correos, NIT y datos bancarios deben incorporarse únicamente en el ejemplar privado destinado a firma, usando un medio de almacenamiento y transferencia autorizado.
 
-## Objeto y modalidad
+## 1. Declaraciones
 
-Prestación de capacitación virtual y asincrónica para docentes mediante Moodle, según el plan y cursos indicados en la orden o anexo comercial. El acceso dura 30 días desde la activación de cada cuenta.
+WALED INNOVATION S.A. declara que prestará el servicio descrito en este contrato y que la información registral y las facultades de representación deberán verificarse antes de la firma. La institución declara que existe legalmente, que quien firma posee facultades suficientes y que cuenta con autorización para proporcionar los datos necesarios de sus docentes.
 
-## Plan contratado
+## 2. Objeto
 
-- Plan: `[Esencial / Institucional / Integral]`.
-- Precio: `[PENDIENTE DE SELECCIÓN SEGÚN LA OFERTA VIGENTE]`.
-- Docentes incluidos y adicionales: `[PENDIENTE]`.
-- Cursos elegidos: `[PENDIENTE]`.
-- Fecha prevista de activación: `[PENDIENTE]`.
+WALED INNOVATION S.A. prestará capacitación virtual mediante Moodle según el paquete contratado. El servicio incluye evaluación de tareas y proyectos, soporte técnico y académico y emisión de certificados privados a quienes cumplan los requisitos.
 
-El plan Integral incluye una conferencia grupal mensual por institución mediante Google Meet. Los docentes adicionales cuestan Q150 por persona y se permiten hasta cinco adicionales, sujeto a confirmación en el anexo comercial.
+## 3. Paquete contratado
 
-## Pagos y comprobantes
+| Paquete | Precio | Docentes | Cursos | Adicional |
+|---|---:|---:|---:|---|
+| Esencial | Q1,500 | 10 | 1 | Soporte técnico y académico |
+| Institucional | Q2,600 | 20 | 2 | Soporte técnico y académico |
+| Integral | Q3,900 | 35 | 3 | Soporte y una conferencia virtual semanal |
 
-La institución paga 50% para comenzar y 50% antes de finalizar el curso mediante transferencia o depósito bancario. Los datos bancarios se entregarán de forma privada. Se prevé entregar recibo y contrato; la situación ante SAT, el IVA y la factura legalmente exigible están pendientes de revisión contable y tributaria. Un recibo no se presenta como sustituto de una factura cuando esta sea exigible.
+Cursos previstos: Office, Google Workspace, contenido y multimedia e IA aplicada. Los nombres definitivos, temarios, horas, cursos elegidos y alcance de elección por docente se detallarán en un anexo privado.
 
-## Cancelación y reembolso
+Cada docente adicional cuesta Q150 por curso, hasta cinco docentes adicionales por paquete. La fecha de inicio y forma de pago de estos cargos continúan pendientes de definición.
 
-El borrador comercial contempla devolución del 75% en los supuestos acordados cuando la cancelación se solicita con al menos una semana de anticipación o cuando el cliente todavía no ha ingresado a Moodle. No corresponde reembolso si la institución ya comenzó el curso, sin limitar derechos irrenunciables. El procesamiento estimado es de 5 a 10 días; falta definir si se trata de días hábiles o calendario.
+## 4. Precio
 
-## Evaluación y certificado
+El precio se consignará en la ficha privada de contratación. La versión 0.3 indica que los precios incluyen IVA, afirmación pendiente de validación contable y tributaria. Toda promoción deberá indicar vigencia y condiciones por escrito.
 
-La evaluación se realiza mediante proyectos. La nota mínima es 61/100. Existe una oportunidad adicional de recuperación; después de los 30 días requiere autorización. Quien cumpla los requisitos recibe un certificado digital PDF privado de capacitación, con firmas del CEO y del director y código QR o identificador único. No se afirma reconocimiento oficial.
+## 5. Pago
 
-## Soporte
+Se contempla un primer pago del 50% antes de habilitar el servicio y un segundo pago del 50% a más tardar el día 15 contado desde el lunes de inicio. La fecha del segundo pago continúa provisional. Los pagos se efectuarán por transferencia o depósito a datos bancarios entregados privadamente.
 
-Se reciben consultas por WhatsApp o llamada las 24 horas, con respuesta estimada de 1 a 8 horas. El soporte incluye aspectos técnicos y académicos.
+La suspensión de acceso y la retención de certificados mientras exista saldo pendiente requieren validación jurídica antes de aplicarse.
 
-## Datos personales
+## 6. Duración
 
-Podrán tratarse datos institucionales, cantidad de profesores, tecnologías utilizadas, teléfono de contacto y, en Moodle, nombres, correos, contraseñas protegidas, calificaciones y avances. El acceso se limita al equipo autorizado. La retención prevista es de tres meses después de finalizar el curso, sujeta a verificar respaldos, registros y obligaciones de conservación. Se adjuntará la política de privacidad revisada.
+El curso comienza el primer lunes siguiente a la firma del contrato. El acceso dura treinta días calendario desde ese lunes, aunque las cuentas se habiliten antes. Las fechas exactas se consignarán en la ficha privada.
 
-## Aceptación y evidencia
+## 7. Usuarios
 
-La versión definitiva deberá registrar la versión de los términos aceptados, identidad y facultades de los firmantes, fecha y hora, plan, precio, anexos y evidencia de aceptación. La visita al sitio web no constituye aceptación.
+La institución entregará la lista de participantes por un medio autorizado. Las cuentas son personales e intransferibles y se habilitarán después de confirmar la lista y el primer pago.
 
-## Campos pendientes antes de uso
+## 8. Obligaciones de WALED INNOVATION S.A.
 
-- Identidad legal y número de identificación del prestador.
-- NIT y datos registrales, cuando correspondan.
-- Correo, teléfono y WhatsApp oficiales.
-- Datos completos de la institución y representante.
-- Datos bancarios privados.
-- Tratamiento tributario, IVA, facturación y tipo de comprobante.
-- Vigencia de precios, reprogramaciones, fuerza mayor y solución de controversias.
-- Firmantes autorizados y firma aplicable.
-- Revisión jurídica integral.
+- Habilitar y mantener el acceso durante el período contratado.
+- Impartir y evaluar los cursos contratados.
+- Brindar soporte técnico y académico.
+- Realizar las conferencias incluidas en el paquete Integral.
+- Emitir certificados a quienes cumplan los requisitos.
+- Proteger los datos mediante medidas razonables y acceso limitado.
+- Entregar el comprobante tributario o contractual que corresponda.
+
+## 9. Obligaciones de la institución
+
+- Pagar en las fechas acordadas.
+- Entregar datos correctos y contar con autorización para compartirlos.
+- Informar a sus docentes las reglas aplicables.
+- Procurar dispositivos y conexión a internet.
+- Evitar que se compartan cuentas o contenidos.
+- Presentar por escrito cancelaciones, cambios o reclamos.
+
+## 10. Responsabilidades de los docentes
+
+Cada docente debe proteger su cuenta, realizar personalmente sus actividades, entregar una tarea semanal y un proyecto integrador y respetar los términos de la plataforma. El avance a ritmo propio no amplía el acceso.
+
+## 11. Certificación
+
+La aprobación requiere las tareas, el proyecto integrador y una calificación mínima de 61/100. No hay examen. El certificado es privado, digital y no constituye título académico, certificación oficial ni reconocimiento del MINEDUC.
+
+## 12. Segunda oportunidad
+
+Quien no alcance la nota mínima podrá solicitar autorización para una segunda oportunidad sin costo, de aproximadamente dos semanas. El plazo exacto y los criterios de reapertura están pendientes. Si no aprueba después de ella, pierde el derecho al certificado.
+
+## 13. Conferencias
+
+Solo el paquete Integral incluye una conferencia virtual semanal por institución mediante Google Meet, programada según las necesidades de la institución y principalmente los viernes. El horario, anticipación del enlace y reposiciones se definirán por escrito.
+
+## 14. Acompañamiento
+
+El soporte se presta de lunes a domingo por los canales oficiales, con respuesta estimada de una a ocho horas sujeta a disponibilidad. No es atención humana inmediata ni garantizada las veinticuatro horas. El teléfono oficial continúa pendiente.
+
+## 15. Protección de datos
+
+Los datos se usarán para contratar, prestar, evaluar y certificar. Solo el equipo autorizado podrá consultarlos y no se venderán. Los datos de aprendizaje se conservarán tres meses después del curso; los plazos de contratos, pagos, certificados y copias de seguridad requieren validación.
+
+El servidor de Moodle se indica como alojado en Guatemala y con copias de seguridad semanales. El proveedor y el ciclo de eliminación de respaldos están pendientes.
+
+## 16. Propiedad intelectual
+
+Los materiales se conceden para uso personal y no transferible durante el acceso. No podrán copiarse, distribuirse, venderse ni publicarse sin autorización. Los proyectos continúan siendo de autoría del docente y solo se usarán para evaluar y certificar, salvo autorización diferente.
+
+## 17. Cancelación
+
+La institución podrá cancelar por escrito conforme a la política de cancelaciones. Si algún docente ya ingresó a Moodle, la versión 0.3 propone que no corresponda reembolso y que el saldo continúe pendiente; esta condición requiere validación jurídica.
+
+## 18. Reembolsos
+
+Se contempla devolver el 75% de lo efectivamente pagado cuando la institución cancele con al menos una semana de anticipación al lunes de inicio o cuando ningún docente haya ingresado a Moodle. Las condiciones son alternativas. El plazo propuesto es de cinco a diez días después de confirmar la procedencia; falta definir si son hábiles o calendario.
+
+## 19. Incumplimientos y circunstancias extraordinarias
+
+El contrato definitivo deberá establecer un plazo para corregir incumplimientos esenciales de WALED INNOVATION S.A. y los efectos económicos cuando no puedan corregirse. En caso fortuito o fuerza mayor se propone acordar por escrito una extensión del acceso. Estas disposiciones requieren aprobación y revisión jurídica.
+
+## 20. Terminación
+
+El contrato terminará al vencer el acceso y cumplirse las obligaciones, por cancelación válida, acuerdo escrito o incumplimiento grave no corregido. Subsistirán las obligaciones de pago, confidencialidad, propiedad intelectual y protección de datos que correspondan.
+
+## 21. Controversias
+
+Se contempla una negociación directa durante quince días y, si no hay acuerdo, acudir a los tribunales competentes de Guatemala. Esta cláusula es provisional y no limita mecanismos irrenunciables disponibles ante la DIACO u otra autoridad.
+
+## 22. Documentos integrantes
+
+Formarán parte del contrato la ficha, las condiciones generales, las políticas de cancelación y pagos, el reglamento, los términos y la política de privacidad vigentes al contratar. En caso de contradicción prevalecerá el contrato firmado.
+
+## 23. Firmas y ficha privada
+
+Las firmas y todos los datos identificativos se incorporarán únicamente en un ejemplar privado fuera del repositorio. La ficha deberá registrar paquete, cursos, docentes, promoción, pagos, fecha de contratación, lunes de inicio y fin de los treinta días.
+
+## Pendientes antes de uso
+
+- Verificación registral y de representación de WALED INNOVATION S.A.
+- Teléfono, WhatsApp y correo oficiales.
+- Fecha definitiva del segundo pago.
+- Datos bancarios, únicamente en el ejemplar privado.
+- Tratamiento de docentes adicionales.
+- Temarios, horas, evaluación e informe de resultados.
+- Reposición de conferencias y plazo de segunda oportunidad.
+- Procedimiento de suspensión, cobro y emisión de certificados.
+- Revisión jurídica, contable y tributaria integral.

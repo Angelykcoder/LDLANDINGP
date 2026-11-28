@@ -26,6 +26,7 @@ const assert = (condition, message) => {
 try {
   runBuild({ ...process.env, SITE_URL: testUrl });
   const html = readFileSync(join(root, "dist", "index.html"), "utf8");
+  const articlesHtml = readFileSync(join(root, "dist", "articulos", "index.html"), "utf8");
   const robots = readFileSync(join(root, "dist", "robots.txt"), "utf8");
   const sitemap = readFileSync(join(root, "dist", "sitemap.xml"), "utf8");
 
@@ -35,6 +36,9 @@ try {
   assert(html.includes('name="twitter:image" content="https://example.com/img/'), "El build configura imagen de Twitter.");
   assert(html.includes('type="application/ld+json"') && html.includes('"@type":"Service"'), "El build inserta Schema.org JSON-LD.");
   assert(sitemap.includes("<loc>https://example.com/</loc>"), "El sitemap contiene la URL canónica.");
+  assert(articlesHtml.includes('<link rel="canonical" href="https://example.com/articulos/">'), "La página de artículos genera canonical absoluto.");
+  assert(articlesHtml.includes('property="og:url" content="https://example.com/articulos/"'), "La página de artículos genera og:url absoluto.");
+  assert(sitemap.includes("<loc>https://example.com/articulos/</loc>"), "El sitemap contiene la página de artículos.");
   assert(robots.includes("Sitemap: https://example.com/sitemap.xml"), "robots.txt anuncia el sitemap.");
   assert(existsSync(join(root, "dist", "img", "ia-aplicada.jpg")), "La imagen social existe en producción.");
 } finally {

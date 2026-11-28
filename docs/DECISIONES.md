@@ -80,9 +80,9 @@
 
 ## Decisiones comerciales para coherencia legal
 
-- El paquete Integral institucional incluye una conferencia grupal mensual por institución mediante Google Meet, no semanal.
+- El expediente v0.3 sustituye la decisión anterior: el paquete Integral institucional incluye una conferencia grupal semanal por institución mediante Google Meet.
 - El documento de finalización se denomina «certificado privado de capacitación» y se entrega cuando se cumplen los requisitos de aprobación. No se presenta como certificación oficial ni con reconocimiento público.
-- La duración del acceso es de 30 días desde la activación de la cuenta, tanto para planes institucionales como individuales.
+- En planes institucionales, el acceso dura 30 días desde el primer lunes siguiente a la contratación. En planes individuales se conserva provisionalmente el acceso de 30 días desde la activación, pendiente de condiciones propias.
 - Los planes individuales se mantienen. Sus condiciones legales deberán adaptarse expresamente al comprador individual antes de publicarse, sin asumir que el contrato institucional aplica sin cambios.
 - Los planes individuales se pagan completos antes de habilitar Moodle, mediante transferencia o depósito bancario.
 - Para planes individuales se reembolsa el 75% de lo pagado si la persona todavía no ha ingresado a Moodle; después del primer ingreso no procede reembolso bajo la política comercial, sin limitar derechos irrenunciables.
@@ -97,7 +97,8 @@
 ## Implementación de auditoría integral — 27 de noviembre de 2026
 
 - Se incorpora un menú móvil nativo y accesible, con `aria-expanded`, asociación mediante `aria-controls`, cierre con Escape, cierre al elegir una opción y devolución del foco al control.
-- El footer incluye una sección visible «Información legal» con enlaces a seis documentos públicos. Todos muestran de forma prominente que son borradores pendientes de revisión jurídica.
+- El footer incluye una sección visible «Información legal» con enlaces a seis documentos públicos de referencia, con vigencia indicada desde el 1 de enero de 2027 y revisión jurídica y contable pendiente.
+- Los documentos públicos usan únicamente `WALED INNOVATION S.A.` y no publican nombres, dirección, identificaciones, firmas, datos bancarios ni contactos personales.
 - El contrato institucional se conserva como borrador privado en `docs/legal/` y el build verifica que no llegue a `dist/`.
 - Los datos empresariales confirmados y pendientes se centralizan en `content/business/datos-empresariales.json`; los valores no confirmados permanecen en `null`.
 - La landing no añade un banner de cookies porque no se detectaron cookies, analítica, píxeles ni almacenamiento local. YouTube continúa bloqueado hasta la acción del visitante.

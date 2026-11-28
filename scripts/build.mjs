@@ -33,7 +33,7 @@ const copy = (source, destination = source) => {
   cpSync(join(root, source), target, { recursive: true });
 };
 
-["404.html", "css", "js", "assets", "legal"].forEach((entry) => copy(entry));
+["404.html", "css", "js", "assets", "legal", "articulos", "gracias"].forEach((entry) => copy(entry));
 
 [
   "img/waled-logo-horizontal.svg",
@@ -68,10 +68,14 @@ const renderPlanMarkup = (category) => category.plans.map((plan) => {
 }).join("");
 
 const sourceHtml = readFileSync(join(root, "index.html"), "utf8");
+const articlesSourceHtml = readFileSync(join(root, "articulos", "index.html"), "utf8");
 const seoMarker = "<!-- SEO_ABSOLUTE_URLS: el build de Netlify inserta canonical, Open Graph, sitemap y JSON-LD con la URL real. -->";
+const articlesSeoMarker = "<!-- ARTICLES_SEO_ABSOLUTE_URLS -->";
 if (!sourceHtml.includes(seoMarker)) throw new Error("No se encontró el marcador SEO.");
+if (!articlesSourceHtml.includes(articlesSeoMarker)) throw new Error("No se encontró el marcador SEO de artículos.");
 
 let productionHtml = sourceHtml;
+let articlesProductionHtml = articlesSourceHtml;
 Object.entries(categories).forEach(([key, category]) => {
   const marker = `<div class="plans__grid" data-render-plans="${key}"></div>`;
   if (!productionHtml.includes(marker)) throw new Error(`No se encontró el contenedor de planes ${key}.`);
@@ -143,10 +147,19 @@ if (siteUrl) {
     `<script type="application/ld+json">${JSON.stringify(schema).replaceAll("<", "\\u003c")}</script>`
   ].join("\n    ");
   productionHtml = productionHtml.replace(seoMarker, seoMarkup);
+  const articlesUrl = `${siteUrl}/articulos/`;
+  articlesProductionHtml = articlesProductionHtml.replace(articlesSeoMarker, [
+    `<link rel="canonical" href="${escapeText(articlesUrl)}">`,
+    `<meta property="og:url" content="${escapeText(articlesUrl)}">`,
+    `<meta property="og:image" content="${escapeText(socialImageUrl)}">`,
+    '<meta property="og:image:alt" content="Computadora portátil mostrando un asistente de inteligencia artificial">',
+    `<meta name="twitter:image" content="${escapeText(socialImageUrl)}">`,
+    '<meta name="twitter:image:alt" content="Computadora portátil mostrando un asistente de inteligencia artificial">'
+  ].join("\n    "));
   robots += `Sitemap: ${siteUrl}/sitemap.xml\n`;
   writeFileSync(
     join(output, "sitemap.xml"),
-    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>${escapeText(pageUrl)}</loc></url>\n</urlset>\n`,
+    `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n  <url><loc>${escapeText(pageUrl)}</loc></url>\n  <url><loc>${escapeText(articlesUrl)}</loc></url>\n</urlset>\n`,
     "utf8"
   );
 } else {
@@ -158,6 +171,7 @@ writeFileSync(
   productionHtml,
   "utf8"
 );
+writeFileSync(join(output, "articulos", "index.html"), articlesProductionHtml, "utf8");
 writeFileSync(join(output, "robots.txt"), robots, "utf8");
 
 console.log(`Build completado: ${output}`);

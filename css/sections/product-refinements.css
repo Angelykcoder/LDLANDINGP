@@ -110,6 +110,19 @@ body {
   height: 2px;
   border-radius: 1rem;
   background: currentColor;
+  transition: opacity 160ms ease-out, transform 160ms ease-out;
+}
+
+.nav-toggle.is-open .nav-toggle__icon span:first-child {
+  transform: translateY(0.44rem) rotate(45deg);
+}
+
+.nav-toggle.is-open .nav-toggle__icon span:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-toggle.is-open .nav-toggle__icon span:last-child {
+  transform: translateY(-0.44rem) rotate(-45deg);
 }
 
 .site-header__actions {
@@ -581,7 +594,9 @@ body {
 }
 
 .contact__inner,
-.contact__channels {
+.contact__channels,
+.contact-form,
+.contact__privacy {
   position: relative;
   z-index: 1;
 }
@@ -724,9 +739,9 @@ body {
   }
 
   .site-nav {
-    display: none;
+    display: flex;
     position: absolute;
-    top: calc(100% + 0.5rem);
+    top: calc(100% + 0.35rem);
     right: 1rem;
     left: 1rem;
     z-index: 10;
@@ -739,10 +754,18 @@ body {
     border-radius: 0.75rem;
     background: #ffffff;
     box-shadow: 0 1rem 2.5rem rgb(15 35 60 / 18%);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.5rem);
+    transition: opacity 160ms ease-out, transform 160ms ease-out;
+    visibility: hidden;
   }
 
   .site-nav.is-open {
-    display: flex;
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+    visibility: visible;
   }
 
   .site-nav a {
@@ -903,7 +926,7 @@ body {
     padding-inline: 0.55rem;
   }
 
-  .nav-toggle > span:last-child {
+  .nav-toggle__label {
     position: absolute;
     width: 1px;
     height: 1px;

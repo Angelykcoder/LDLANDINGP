@@ -11,9 +11,10 @@
 
 ## Bloqueos de publicación identificados en la auditoría final
 
-- Proporcionar razón social/nombre legal, NIT si corresponde, domicilio o dirección comercial, correo y canal de contacto verificables.
-- Encargar revisión jurídica aplicable en Guatemala y aprobar los seis borradores públicos y el contrato institucional privado antes de presentarlos como definitivos.
-- Definir condiciones comerciales todavía pendientes: validación contable del tratamiento del IVA y la facturación institucional aplicable también a los planes individuales, vigencia de precios, si el plazo de reembolso de 5 a 10 días se cuenta en días hábiles o calendario y reglas de reprogramación. La segunda oportunidad individual será gratuita y añadirá un mes de acceso; el acceso ordinario dura 30 días desde la activación.
+- Verificar la situación registral y las facultades de representación de `WALED INNOVATION S.A.` sin publicar identificaciones personales.
+- Encargar revisión jurídica aplicable en Guatemala y aprobar los seis documentos públicos de referencia y el contrato institucional privado antes de presentarlos como definitivos.
+- Definir condiciones comerciales todavía pendientes: validación contable del IVA y FEL, fecha definitiva del segundo pago institucional, forma de cobro de docentes adicionales, si el plazo de reembolso de 5 a 10 días se cuenta en días hábiles o calendario y reglas de reprogramación.
+- Redactar condiciones específicas para los planes individuales; el expediente v0.3 regula principalmente la contratación institucional y no sustituye ese documento pendiente.
 - Confirmar correo, teléfono y número de WhatsApp institucionales. Los planes individuales usarán esos mismos canales y no requieren datos de contacto distintos.
 - Proporcionar el dominio definitivo para Search Console y validar canonical, sitemap, imagen social y Schema.org ya generados por el build.
 - Revisar la política HSTS efectiva de Netlify: aunque `netlify.toml` no la declara, el sitio publicado responde con `max-age=31536000; includeSubDomains; preload`. Confirmar dominio y estrategia de subdominios antes de conservar o modificar esa política.

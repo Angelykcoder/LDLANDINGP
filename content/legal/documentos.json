@@ -1,56 +1,72 @@
 {
   "schemaVersion": 1,
   "lastReviewed": "2026-11-27",
-  "globalStatus": "DRAFT_PENDING_LEGAL_REVIEW",
+  "effectiveFrom": "2027-01-01",
+  "publicEntityName": "WALED INNOVATION S.A.",
+  "globalStatus": "REFERENCE_PENDING_LEGAL_AND_ACCOUNTING_REVIEW",
   "documents": [
     {
       "id": "privacidad",
       "title": "Política de privacidad",
       "publicLocation": "legal/#privacidad",
-      "publication": "public_draft",
-      "status": "DRAFT_PENDING_LEGAL_REVIEW"
+      "publication": "public_reference",
+      "sourceVersion": "0.3",
+      "effectiveFrom": "2027-01-01",
+      "status": "REFERENCE_PENDING_LEGAL_REVIEW"
     },
     {
       "id": "terminos",
       "title": "Términos y condiciones",
       "publicLocation": "legal/#terminos",
-      "publication": "public_draft",
-      "status": "DRAFT_PENDING_LEGAL_REVIEW"
+      "publication": "public_reference",
+      "sourceVersion": "0.3",
+      "effectiveFrom": "2027-01-01",
+      "status": "REFERENCE_PENDING_LEGAL_REVIEW"
     },
     {
       "id": "contratacion",
       "title": "Condiciones de contratación",
       "publicLocation": "legal/#contratacion",
-      "publication": "public_draft",
-      "status": "DRAFT_PENDING_LEGAL_REVIEW"
+      "publication": "public_reference",
+      "sourceVersion": "0.3",
+      "effectiveFrom": "2027-01-01",
+      "status": "REFERENCE_PENDING_LEGAL_REVIEW"
     },
     {
       "id": "cancelaciones",
       "title": "Política de cancelaciones y reembolsos",
       "publicLocation": "legal/#cancelaciones",
-      "publication": "public_draft",
-      "status": "DRAFT_PENDING_LEGAL_REVIEW"
+      "publication": "public_reference",
+      "sourceVersion": "0.3",
+      "effectiveFrom": "2027-01-01",
+      "status": "REFERENCE_PENDING_LEGAL_REVIEW"
     },
     {
       "id": "pagos",
       "title": "Política de pagos y facturación",
       "publicLocation": "legal/#pagos",
-      "publication": "public_draft",
-      "status": "DRAFT_PENDING_LEGAL_AND_ACCOUNTING_REVIEW"
+      "publication": "public_reference",
+      "sourceVersion": "0.3",
+      "effectiveFrom": "2027-01-01",
+      "status": "REFERENCE_PENDING_LEGAL_AND_ACCOUNTING_REVIEW"
     },
     {
       "id": "certificacion",
       "title": "Reglamento de capacitación y certificación",
       "publicLocation": "legal/#certificacion",
-      "publication": "public_draft",
-      "status": "DRAFT_PENDING_LEGAL_REVIEW"
+      "publication": "public_reference",
+      "sourceVersion": "0.3",
+      "effectiveFrom": "2027-01-01",
+      "status": "REFERENCE_PENDING_LEGAL_REVIEW"
     },
     {
       "id": "contrato-institucional",
       "title": "Contrato de prestación de servicios para instituciones educativas",
       "source": "docs/legal/CONTRATO_PRESTACION_SERVICIOS_INSTITUCIONES.md",
       "publication": "private_not_in_build",
-      "status": "DRAFT_PENDING_OWNER_DATA_AND_LEGAL_REVIEW"
+      "sourceVersion": "0.3",
+      "effectiveFrom": "2027-01-01",
+      "status": "PRIVATE_REFERENCE_PENDING_LEGAL_REVIEW"
     }
   ]
 }

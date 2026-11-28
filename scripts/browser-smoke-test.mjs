@@ -125,14 +125,30 @@ async function inspectViewport(client, width, height) {
 
   let menu = null;
   if (width <= 672) {
-    menu = await evaluate(client, `(() => {
+    menu = await evaluate(client, `(async () => {
       const toggle = document.querySelector(".nav-toggle");
       const nav = document.querySelector("#site-nav");
       toggle.click();
-      const opened = toggle.getAttribute("aria-expanded") === "true" && nav.classList.contains("is-open");
+      await new Promise((resolve) => setTimeout(resolve, 220));
+      const openStyle = getComputedStyle(nav);
+      const openRect = nav.getBoundingClientRect();
+      const opened = toggle.getAttribute("aria-expanded") === "true"
+        && nav.classList.contains("is-open")
+        && openStyle.visibility === "visible"
+        && openStyle.opacity === "1"
+        && openStyle.pointerEvents !== "none"
+        && openRect.height > 0;
+      const firstLinkFocused = document.activeElement === nav.querySelector("a");
+      const articlesLinkPresent = Boolean(nav.querySelector('a[href="articulos/"]'));
+      const openLabel = toggle.querySelector("[data-menu-label]")?.textContent.trim();
       document.dispatchEvent(new KeyboardEvent("keydown", { key: "Escape", bubbles: true }));
-      const closed = toggle.getAttribute("aria-expanded") === "false" && !nav.classList.contains("is-open");
-      return { opened, closed };
+      await new Promise((resolve) => setTimeout(resolve, 220));
+      const closedStyle = getComputedStyle(nav);
+      const closed = toggle.getAttribute("aria-expanded") === "false"
+        && !nav.classList.contains("is-open")
+        && closedStyle.visibility === "hidden"
+        && document.activeElement === toggle;
+      return { opened, closed, firstLinkFocused, articlesLinkPresent, openLabel };
     })()`);
   }
 
@@ -159,7 +175,7 @@ try {
   const legal = await evaluate(client, `({
     title: document.title,
     documentCount: document.querySelectorAll(".legal-document").length,
-    statusVisible: document.body.innerText.includes("BORRADORES PENDIENTES DE REVISIÓN JURÍDICA"),
+    statusVisible: document.body.innerText.includes("DOCUMENTOS DE REFERENCIA PENDIENTES DE REVISIÓN JURÍDICA Y CONTABLE") && document.body.innerText.includes("1 de enero de 2027"),
     scrollWidth: document.documentElement.scrollWidth,
     viewport: document.documentElement.clientWidth
   })`);
@@ -201,13 +217,44 @@ try {
     return {
       faviconResponses,
       planSwitcher,
-      faqCorrected: document.body.textContent.includes("Un certificado privado de capacitación emitido por Waled Innovations al cumplir los requisitos de aprobación."),
+      faqCorrected: document.body.textContent.includes("Un certificado privado de capacitación emitido por WALED INNOVATION S.A. al cumplir los requisitos de aprobación."),
       whatsappLinksValid: [...document.querySelectorAll("[data-whatsapp]")].every((link) => link.href.startsWith("https://web.whatsapp.com/") && link.target === "_blank"),
       socialLinks: [...document.querySelectorAll(".contact__channels a")].slice(1).map((link) => link.href),
       fragmentsValid: localFragmentLinks.every((link) => document.getElementById(link.getAttribute("href").slice(1))),
-      descriptionMentionsGuatemala: document.querySelector('meta[name="description"]')?.content.includes("Guatemala") || false
+      descriptionMentionsGuatemala: document.querySelector('meta[name="description"]')?.content.includes("Guatemala") || false,
+      netlifyForm: (() => {
+        const form = document.querySelector('form[name="consulta-contacto"]');
+        return {
+          present: Boolean(form),
+          method: form?.method,
+          action: form?.getAttribute("action"),
+          netlify: form?.getAttribute("data-netlify"),
+          honeypot: form?.getAttribute("netlify-honeypot"),
+          namedFields: form ? [...form.elements].map((field) => field.name).filter(Boolean) : [],
+          invalidWhenEmpty: form ? !form.checkValidity() : false
+        };
+      })()
     };
   })()`);
+
+  await client.send("Page.navigate", { url: `${baseUrl}/articulos/` });
+  await delay(250);
+  const articles = await evaluate(client, `({
+    title: document.title,
+    heading: document.querySelector("h1")?.textContent.trim(),
+    status: document.querySelector(".content-page__status")?.textContent.trim(),
+    homeLink: document.querySelector('.content-page__back')?.getAttribute("href"),
+    scrollWidth: document.documentElement.scrollWidth,
+    viewport: document.documentElement.clientWidth
+  })`);
+
+  await client.send("Page.navigate", { url: `${baseUrl}/gracias/` });
+  await delay(250);
+  const thanks = await evaluate(client, `({
+    heading: document.querySelector("h1")?.textContent.trim(),
+    robots: document.querySelector('meta[name="robots"]')?.content,
+    homeLink: document.querySelector('.content-page__back')?.getAttribute("href")
+  })`);
 
   await client.send("Page.navigate", { url: `${baseUrl}/404.html` });
   await delay(250);
@@ -218,7 +265,7 @@ try {
     faviconCount: document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]').length
   })`);
 
-  const failures = results.filter((result) => result.scrollWidth > result.viewport || result.offenders.length || (result.menu && (!result.menu.opened || !result.menu.closed)));
+  const failures = results.filter((result) => result.scrollWidth > result.viewport || result.offenders.length || (result.menu && (!result.menu.opened || !result.menu.closed || !result.menu.firstLinkFocused || !result.menu.articlesLinkPresent || result.menu.openLabel !== "Cerrar")));
   if (
     legal.documentCount !== 6
     || !legal.statusVisible
@@ -242,13 +289,27 @@ try {
     || siteChecks.socialLinks.length !== 3
     || !siteChecks.fragmentsValid
     || !siteChecks.descriptionMentionsGuatemala
+    || !siteChecks.netlifyForm.present
+    || siteChecks.netlifyForm.method !== "post"
+    || siteChecks.netlifyForm.action !== "/gracias/"
+    || siteChecks.netlifyForm.netlify !== "true"
+    || siteChecks.netlifyForm.honeypot !== "bot-field"
+    || !["form-name", "bot-field", "nombre", "correo", "institucion", "mensaje"].every((name) => siteChecks.netlifyForm.namedFields.includes(name))
+    || !siteChecks.netlifyForm.invalidWhenEmpty
+    || articles.heading !== "Artículos y recursos"
+    || articles.status !== "Próximamente"
+    || articles.homeLink !== "../"
+    || articles.scrollWidth > articles.viewport
+    || thanks.heading !== "Recibimos tu consulta"
+    || thanks.robots !== "noindex, follow"
+    || thanks.homeLink !== "../"
     || notFound.heading !== "Página no encontrada"
     || notFound.homeLink !== "/"
     || notFound.faviconCount !== 6
     || client.errors.length
   ) exitCode = 1;
   if (failures.length) exitCode = 1;
-  console.log(JSON.stringify({ results, legal, privacyBeforeConsent, videoConsent, siteChecks, notFound, consoleErrors: client.errors }, null, 2));
+  console.log(JSON.stringify({ results, legal, privacyBeforeConsent, videoConsent, siteChecks, articles, thanks, notFound, consoleErrors: client.errors }, null, 2));
   client.socket.close();
 } finally {
   chrome.kill();

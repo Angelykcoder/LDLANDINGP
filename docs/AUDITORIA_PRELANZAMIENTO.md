@@ -38,8 +38,8 @@ No se detectaron conflictos. El commit y el push fueron autorizados posteriormen
 
 ### Condiciones comerciales
 
-- Acceso actualizado a **30 días desde la activación de la cuenta** en todos los planes y FAQ.
-- Plan Integral actualizado a **una conferencia grupal mensual por institución mediante Google Meet**.
+- Estado superado por el expediente v0.3: los planes institucionales usan **30 días desde el primer lunes siguiente a la contratación**; los individuales conservan provisionalmente 30 días desde la activación.
+- Estado superado por el expediente v0.3: el Plan Integral institucional incluye **una conferencia grupal semanal por Google Meet**.
 - Precios existentes preservados.
 - Respuesta del certificado ampliada: nota mínima 61/100, proyectos, certificado digital privado, identificación de verificación y ausencia de reconocimiento oficial.
 
@@ -96,7 +96,7 @@ El inventario se mantiene en `content/legal/documentos.json`. El futuro mecanism
 
 `content/business/datos-empresariales.json` contiene los datos confirmados y mantiene `null` para:
 
-- Nombre legal del prestador.
+- Verificación registral y de representación de `WALED INNOVATION S.A.`.
 - NIT y datos registrales.
 - Correo empresarial.
 - Teléfono y WhatsApp.
@@ -104,7 +104,7 @@ El inventario se mantiene en `content/legal/documentos.json`. El futuro mecanism
 - Dominio definitivo.
 - Datos bancarios privados.
 
-El tratamiento tributario, IVA y facturación figura como pendiente de revisión contable. La dirección proporcionada y la situación de sociedad anónima en proceso de constitución están identificadas sin presentar a la sociedad como constituida.
+El tratamiento tributario, IVA y facturación figura como pendiente de revisión contable. La versión pública no conserva direcciones ni datos personales y usa únicamente `WALED INNOVATION S.A.`, pendiente de verificación registral.
 
 ## 6. Pruebas ejecutadas
 

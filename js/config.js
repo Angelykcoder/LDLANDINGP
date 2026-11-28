@@ -25,7 +25,7 @@
             price: "Q1,500",
             contactLabel: "Plan Esencial Institucional de Q1,500",
             features: [
-              "Acceso durante 30 días desde la activación de la cuenta.",
+              "Acceso durante 30 días desde el primer lunes siguiente a la contratación.",
               "Capacidad para 10 profesores.",
               "Certificado privado de capacitación.",
               "Elección de 1 curso para todos los profesores."
@@ -38,7 +38,7 @@
             featured: true,
             badge: "Más popular",
             features: [
-              "Acceso durante 30 días desde la activación de la cuenta.",
+              "Acceso durante 30 días desde el primer lunes siguiente a la contratación.",
               "Capacidad para 20 profesores.",
               "Certificado privado de capacitación.",
               "Elección de 2 cursos.",
@@ -50,13 +50,13 @@
             price: "Q3,900",
             contactLabel: "Plan Integral Institucional de Q3,900",
             features: [
-              "Acceso durante 30 días desde la activación de la cuenta.",
+              "Acceso durante 30 días desde el primer lunes siguiente a la contratación.",
               "Capacidad para 35 profesores.",
               "Certificado privado de capacitación.",
               "Elección de 3 cursos.",
               "Cada profesor puede escoger los cursos que desea realizar.",
               "Conferencia en vivo para resolver dudas.",
-              "Una conferencia grupal mensual por Google Meet.",
+              "Una conferencia grupal semanal por Google Meet.",
               "Explicación y acompañamiento de los temas."
             ]
           }

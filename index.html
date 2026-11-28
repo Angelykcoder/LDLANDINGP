@@ -38,6 +38,7 @@
     <link rel="stylesheet" href="css/components/whatsapp-fab.css">
     <link rel="stylesheet" href="css/components/contact-dock.css">
     <link rel="stylesheet" href="css/sections/product-refinements.css">
+    <link rel="stylesheet" href="css/sections/content-pages.css">
     <script defer src="js/config.js"></script>
     <script defer src="js/plans.js"></script>
     <script defer src="js/main.js"></script>
@@ -64,14 +65,15 @@
       <a class="site-brand" href="#inicio" aria-label="Waled Innovations, ir al inicio">
         <img class="site-brand__logo" src="img/waled-logo-horizontal.svg" alt="" width="463" height="140">
       </a>
-      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav" aria-label="Abrir menú de navegación">
         <span class="nav-toggle__icon" aria-hidden="true"><span></span><span></span><span></span></span>
-        <span>Menú</span>
+        <span class="nav-toggle__label" data-menu-label>Menú</span>
       </button>
       <nav class="site-nav" id="site-nav" aria-label="Navegación principal">
         <a href="#soluciones">Soluciones</a>
         <a href="#planes">Planes</a>
         <a href="#preguntas">Preguntas</a>
+        <a href="articulos/">Artículos</a>
         <a href="#contacto">Contacto</a>
       </nav>
       <div class="site-header__actions">
@@ -211,7 +213,7 @@
         <div class="faq__list">
           <details class="faq-item">
             <summary>¿Cuánto dura la capacitación?</summary>
-            <p>El acceso a los cursos dura 30 días desde la activación de la cuenta en la plataforma.</p>
+            <p>En los planes institucionales, el acceso dura 30 días desde el primer lunes siguiente a la contratación. En los planes individuales, dura 30 días desde la activación de la cuenta.</p>
           </details>
           <details class="faq-item">
             <summary>¿Qué temas pueden aprender los docentes?</summary>
@@ -219,7 +221,7 @@
           </details>
           <details class="faq-item">
             <summary>¿Quién emite el certificado y qué acredita?</summary>
-            <p>Un certificado privado de capacitación emitido por Waled Innovations al cumplir los requisitos de aprobación. Se entrega en formato PDF a quienes completen los proyectos y alcancen una nota mínima de 61/100; incluye firmas e identificador de verificación y no se presenta como título ni reconocimiento oficial.</p>
+            <p>Un certificado privado de capacitación emitido por WALED INNOVATION S.A. al cumplir los requisitos de aprobación. Se entrega en formato PDF a quienes completen las tareas y el proyecto integrador y alcancen una nota mínima de 61/100; incluye un identificador de verificación y no se presenta como título ni reconocimiento oficial.</p>
           </details>
         </div>
       </section>
@@ -231,7 +233,7 @@
             <h2 id="contact-title">Conversemos sobre las necesidades de tu equipo docente</h2>
             <p class="contact__intro">En 20 minutos podemos conocer tu contexto y orientarte sobre el siguiente paso.</p>
           </div>
-          <a class="button contact__button" href="#canales-contacto">Elegir canal de contacto</a>
+          <a class="button contact__button" href="#formulario-contacto">Enviar una consulta</a>
         </div>
         <nav class="contact__channels" id="canales-contacto" aria-label="Canales para contactar a Waled Innovations">
           <a class="contact-channel contact-channel--whatsapp" href="https://web.whatsapp.com/" target="_blank" rel="noopener noreferrer" data-whatsapp data-whatsapp-channel>
@@ -259,7 +261,38 @@
             <span class="sr-only">Abre en una pestaña nueva.</span>
           </a>
         </nav>
-        <p class="contact__privacy">Esta página no contiene un formulario ni almacena tus datos de contacto. Al elegir una red social o WhatsApp, continuarás en una plataforma externa sujeta a sus propias políticas. Consulta nuestro <a href="legal/#privacidad">borrador de política de privacidad</a>.</p>
+        <form class="contact-form" id="formulario-contacto" name="consulta-contacto" method="POST" action="/gracias/" data-netlify="true" netlify-honeypot="bot-field" aria-labelledby="contact-form-title">
+          <input type="hidden" name="form-name" value="consulta-contacto">
+          <p class="form-honeypot" aria-hidden="true">
+            <label>No completes este campo: <input name="bot-field" tabindex="-1" autocomplete="off"></label>
+          </p>
+          <div class="contact-form__heading">
+            <p class="contact-form__eyebrow">Formulario de contacto</p>
+            <h3 id="contact-form-title">Cuéntanos qué necesita tu equipo</h3>
+            <p>Los campos marcados con <span aria-hidden="true">*</span><span class="sr-only">asterisco</span> son obligatorios.</p>
+          </div>
+          <div class="contact-form__grid">
+            <label class="contact-form__field">
+              <span>Nombre <span aria-hidden="true">*</span></span>
+              <input type="text" name="nombre" autocomplete="name" required>
+            </label>
+            <label class="contact-form__field">
+              <span>Correo electrónico <span aria-hidden="true">*</span></span>
+              <input type="email" name="correo" autocomplete="email" inputmode="email" required>
+            </label>
+            <label class="contact-form__field contact-form__field--wide">
+              <span>Institución <small>(opcional)</small></span>
+              <input type="text" name="institucion" autocomplete="organization">
+            </label>
+            <label class="contact-form__field contact-form__field--wide">
+              <span>¿En qué podemos ayudarte? <span aria-hidden="true">*</span></span>
+              <textarea name="mensaje" rows="5" minlength="10" required></textarea>
+            </label>
+          </div>
+          <button class="button contact-form__submit" type="submit">Enviar consulta</button>
+          <p class="contact-form__privacy">Al enviar este formulario, los datos indicados se procesarán mediante Netlify Forms para gestionar tu consulta. Consulta nuestra <a href="legal/#privacidad">política de privacidad de referencia</a>, con vigencia desde el 1 de enero de 2027 y pendiente de validación jurídica.</p>
+        </form>
+        <p class="contact__privacy">WhatsApp y las redes sociales son plataformas externas sujetas a sus propias políticas. El número oficial de WhatsApp y el canal empresarial de privacidad continúan pendientes de confirmación.</p>
       </section>
 
       <a class="whatsapp-fab" data-whatsapp data-whatsapp-fab href="https://web.whatsapp.com/" target="_blank" rel="noopener noreferrer" aria-label="Abrir WhatsApp Web en una pestaña nueva">
@@ -292,12 +325,12 @@
               <li><a href="legal/#terminos">Términos y condiciones</a></li>
               <li><a href="legal/#contratacion">Condiciones de contratación</a></li>
               <li><a href="legal/#cancelaciones">Cancelaciones y reembolsos</a></li>
-              <li><a href="legal/#pagos">Pagos y facturación</a></li>
+              <li><a href="legal/#pagos">Pagos y comprobantes</a></li>
               <li><a href="legal/#certificacion">Reglamento de capacitación y certificación</a></li>
             </ul>
           </nav>
           <div class="site-footer__meta">
-            <p>Documentos en borrador, pendientes de revisión jurídica. El contrato institucional se entrega de forma privada.</p>
+            <p>Documentos de referencia con vigencia desde el 1 de enero de 2027, pendientes de revisión jurídica y contable. El contrato institucional permanece privado.</p>
             <a href="#inicio">Volver al inicio</a>
           </div>
         </div>

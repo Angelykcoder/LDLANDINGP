@@ -15,6 +15,8 @@ const configCode = readFileSync(join(root, "js/config.js"), "utf8");
 const baseCss = readFileSync(join(root, "css/base.css"), "utf8");
 const legalHtml = readFileSync(join(root, "legal/index.html"), "utf8");
 const notFoundHtml = readFileSync(join(root, "404.html"), "utf8");
+const articlesHtml = readFileSync(join(root, "articulos/index.html"), "utf8");
+const thanksHtml = readFileSync(join(root, "gracias/index.html"), "utf8");
 const legalManifest = JSON.parse(readFileSync(join(root, "content/legal/documentos.json"), "utf8"));
 const businessData = JSON.parse(readFileSync(join(root, "content/business/datos-empresariales.json"), "utf8"));
 const sandbox = { window: {} };
@@ -24,26 +26,26 @@ const config = sandbox.window.LD.config;
 const expectedCategories = {
   institutional: [
     ["Plan Esencial", "Q1,500", [
-      "Acceso durante 30 días desde la activación de la cuenta.",
+      "Acceso durante 30 días desde el primer lunes siguiente a la contratación.",
       "Capacidad para 10 profesores.",
       "Certificado privado de capacitación.",
       "Elección de 1 curso para todos los profesores."
     ]],
     ["Plan Institucional", "Q2,600", [
-      "Acceso durante 30 días desde la activación de la cuenta.",
+      "Acceso durante 30 días desde el primer lunes siguiente a la contratación.",
       "Capacidad para 20 profesores.",
       "Certificado privado de capacitación.",
       "Elección de 2 cursos.",
       "Cada profesor puede escoger los cursos que desea realizar."
     ]],
     ["Plan Integral", "Q3,900", [
-      "Acceso durante 30 días desde la activación de la cuenta.",
+      "Acceso durante 30 días desde el primer lunes siguiente a la contratación.",
       "Capacidad para 35 profesores.",
       "Certificado privado de capacitación.",
       "Elección de 3 cursos.",
       "Cada profesor puede escoger los cursos que desea realizar.",
       "Conferencia en vivo para resolver dudas.",
-      "Una conferencia grupal mensual por Google Meet.",
+      "Una conferencia grupal semanal por Google Meet.",
       "Explicación y acompañamiento de los temas."
     ]]
   ],
@@ -86,6 +88,22 @@ assert(sourceHtml.includes("data-video-embed") && !sourceHtml.includes('<iframe 
 assert(sourceHtml.includes('data-moodle role="link" aria-disabled="true"') && sourceHtml.includes('tabindex="-1"'), "Moodle sin URL queda fuera del orden de tabulación.");
 assert(sourceHtml.includes('aria-live="polite"') && sourceHtml.includes("data-plan-status"), "Los cambios de categoría tienen anuncio accesible.");
 assert(sourceHtml.includes('class="nav-toggle"') && sourceHtml.includes('aria-controls="site-nav"'), "El menú móvil tiene un control accesible asociado.");
+assert(sourceHtml.includes('href="articulos/"') && articlesHtml.includes("Artículos y recursos"), "El menú enlaza la página independiente de artículos.");
+assert(
+  sourceHtml.includes('name="consulta-contacto"')
+    && sourceHtml.includes('method="POST"')
+    && sourceHtml.includes('action="/gracias/"')
+    && sourceHtml.includes('data-netlify="true"')
+    && sourceHtml.includes('netlify-honeypot="bot-field"')
+    && sourceHtml.includes('name="form-name" value="consulta-contacto"'),
+  "El formulario estático contiene la configuración requerida por Netlify Forms."
+);
+assert(
+  ["nombre", "correo", "institucion", "mensaje"].every((name) => sourceHtml.includes(`name="${name}"`))
+    && sourceHtml.includes('type="email" name="correo"')
+    && sourceHtml.includes('textarea name="mensaje"'),
+  "Todos los campos de contacto tienen nombre y semántica adecuada."
+);
 assert(sourceHtml.includes('aria-labelledby="footer-legal-title"') && sourceHtml.includes('legal/#privacidad'), "El footer expone la sección de información legal.");
 assert(!/html\s*\{[^}]*min-width/s.test(baseCss), "El documento no impone un ancho mínimo que bloquee el reflow.");
 assert(sourceHtml.includes("SEO_ABSOLUTE_URLS") && sourceHtml.includes('twitter:card" content="summary_large_image"'), "El origen contiene el punto de inyección SEO y Twitter Card grande.");
@@ -131,27 +149,37 @@ assert(blankLinks.every((link) => /rel="[^"]*noopener[^"]*"/.test(link)), "Todo 
   assert(!existsSync(join(dist, entry)), `${entry} no se publica.`);
 });
 
-["404.html", "robots.txt", "assets/icons/favicon.svg", "assets/icons/favicon.ico", "assets/icons/favicon-16x16.png", "assets/icons/favicon-32x32.png", "assets/icons/favicon-48x48.png", "assets/icons/apple-touch-icon.png"].forEach((entry) => {
+["404.html", "robots.txt", "articulos/index.html", "gracias/index.html", "assets/icons/favicon.svg", "assets/icons/favicon.ico", "assets/icons/favicon-16x16.png", "assets/icons/favicon-32x32.png", "assets/icons/favicon-48x48.png", "assets/icons/apple-touch-icon.png"].forEach((entry) => {
   assert(existsSync(join(dist, entry)) && statSync(join(dist, entry)).size > 0, `${entry} está incluido en producción.`);
 });
 
 assert(existsSync(join(dist, "legal", "index.html")), "La página accesible de información legal está incluida en producción.");
 assert(legalManifest.documents.length === 7, "El inventario contiene los siete documentos legales solicitados.");
 assert(
-  legalManifest.documents.filter((document) => document.publication === "public_draft").length === 6
+  legalManifest.documents.filter((document) => document.publication === "public_reference").length === 6
     && legalManifest.documents.some((document) => document.id === "contrato-institucional" && document.publication === "private_not_in_build"),
-  "Seis borradores son consultables y el contrato institucional permanece privado."
+  "Seis documentos de referencia son consultables y el contrato institucional permanece privado."
 );
 assert(
   ["privacidad", "terminos", "contratacion", "cancelaciones", "pagos", "certificacion"].every((id) => legalHtml.includes(`id="${id}"`))
-    && legalHtml.includes("BORRADORES PENDIENTES DE REVISIÓN JURÍDICA"),
-  "La información legal pública contiene los seis documentos y declara su estado de borrador."
+    && legalHtml.includes("DOCUMENTOS DE REFERENCIA PENDIENTES DE REVISIÓN JURÍDICA Y CONTABLE")
+    && legalHtml.includes("1 de enero de 2027"),
+  "La información legal pública contiene los seis documentos, declara su estado de referencia y la vigencia indicada."
 );
 assert(
-  businessData.contractualProvider.legalName.value === null
+  businessData.contractualProvider.legalName.value === "WALED INNOVATION S.A."
     && businessData.contact.businessEmail.value === null
+    && businessData.contact.telephone.value === null
     && businessData.technology.moodleUrl.value === null,
-  "Los datos empresariales pendientes permanecen centralizados sin valores inventados."
+  "La denominación pública está registrada y los contactos pendientes permanecen sin valores inventados."
+);
+assert(
+  !legalHtml.includes("9a calle")
+    && !legalHtml.includes("Fundador")
+    && !legalHtml.includes("CEO")
+    && !legalHtml.includes("Director")
+    && !legalHtml.includes("@"),
+  "La página legal no expone dirección, nombres, cargos personales ni correos."
 );
 assert(!existsSync(join(dist, "docs", "legal", "CONTRATO_PRESTACION_SERVICIOS_INSTITUCIONES.md")), "El contrato institucional privado no se publica.");
 
@@ -172,7 +200,7 @@ faviconFiles.forEach(([filename, expectedSize]) => {
 });
 const ico = readFileSync(join(dist, "assets", "icons", "favicon.ico"));
 assert(ico.readUInt16LE(0) === 0 && ico.readUInt16LE(2) === 1 && ico.readUInt16LE(4) === 3, "favicon.ico contiene los tamaños 16, 32 y 48 px.");
-const faviconReferences = [sourceHtml, notFoundHtml, legalHtml].join("\n");
+const faviconReferences = [sourceHtml, notFoundHtml, legalHtml, articlesHtml, thanksHtml].join("\n");
 assert(
   faviconReferences.includes("assets/icons/favicon.ico")
     && faviconReferences.includes("assets/icons/favicon.svg")

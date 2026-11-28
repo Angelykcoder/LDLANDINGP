@@ -8,7 +8,7 @@ Sitio web institucional estático para presentar los programas de capacitación 
 
 **Sitio público:** [https://waledinnovations.netlify.app/](https://waledinnovations.netlify.app/)
 
-**Decisión de lanzamiento oficial:** **NO APROBADO PARA PUBLICACIÓN OFICIAL** hasta completar los datos empresariales, la revisión jurídica y contable, y las validaciones sobre el dominio real.
+**Decisión de lanzamiento oficial:** **NO APROBADO PARA PUBLICACIÓN OFICIAL** hasta completar los contactos empresariales, la revisión jurídica y contable, y las validaciones sobre el dominio real.
 
 El despliegue público actual contiene la identidad WI, la corrección del FAQ, las mejoras SEO y el prerender de ambas categorías de planes. Debe considerarse una versión técnica de revisión, no una aprobación jurídica, contable ni comercial definitiva.
 
@@ -16,13 +16,18 @@ La implementación actual incluye:
 
 - Build de producción y verificaciones automatizadas.
 - Navegación accesible por teclado, foco visible y menú móvil con Escape.
+- Menú móvil con estado visual abierto/cerrado y acceso a la página independiente de artículos.
+- Página `/articulos/` preparada para publicaciones futuras, sin presentar contenido inexistente como publicado.
+- Formulario de contacto HTML preparado para Netlify Forms, con validación nativa, honeypot y página de confirmación `/gracias/`.
 - Diseño responsive validado entre 375 px y 1920 px.
 - SEO técnico, metadatos sociales, canonical, sitemap, robots y JSON-LD generados durante el build.
 - Favicon tipográfico WI independiente del logo institucional, disponible en SVG, ICO, PNG y formato Apple Touch.
 - Carga de YouTube únicamente después de la decisión expresa del visitante y mediante `youtube-nocookie.com`.
 - Cabeceras de seguridad para Netlify. El repositorio no configura HSTS, pero la respuesta pública actual incluye `includeSubDomains` y `preload`; esta política externa debe revisarse antes del lanzamiento oficial.
-- Footer con seis enlaces legales y siete documentos legales estructurados como borradores.
-- Condiciones comerciales corregidas: acceso durante 30 días desde la activación y conferencia grupal mensual en el Plan Integral.
+- Footer con seis documentos públicos de referencia y un contrato institucional privado, basados en el expediente v0.3.
+- Documentación pública anonimizada: utiliza únicamente `WALED INNOVATION S.A.` y omite nombres, dirección, identificaciones, firmas, datos bancarios y contactos personales.
+- Fecha de entrada en vigencia indicada para los documentos de referencia: **1 de enero de 2027**.
+- Condiciones institucionales actualizadas: acceso durante 30 días desde el primer lunes siguiente a la contratación y conferencia grupal semanal en el Plan Integral.
 - Datos empresariales pendientes centralizados, sin valores ficticios.
 
 El detalle de esta intervención, los pendientes y las limitaciones están en [docs/AUDITORIA_IDENTIDAD_PRODUCCION.md](docs/AUDITORIA_IDENTIDAD_PRODUCCION.md) y [docs/AUDITORIA_PRELANZAMIENTO.md](docs/AUDITORIA_PRELANZAMIENTO.md).
@@ -91,6 +96,8 @@ Estas son mediciones locales de laboratorio, no datos reales de usuarios. La URL
 
 ```text
 index.html                         Página principal
+articulos/                         Página pública para futuros artículos y recursos
+gracias/                           Confirmación no indexable del formulario
 404.html                           Página de error
 css/                               Estilos fuente
 js/                                Configuración e interacciones
@@ -108,23 +115,23 @@ dist/                              Build generado; no se versiona
 
 ## Documentos legales
 
-Están preparados como **BORRADORES PENDIENTES DE REVISIÓN JURÍDICA**:
+Están preparados como **DOCUMENTOS DE REFERENCIA PENDIENTES DE REVISIÓN JURÍDICA Y CONTABLE**, con entrada en vigencia indicada para el 1 de enero de 2027:
 
 1. Política de privacidad.
 2. Términos y condiciones.
 3. Condiciones de contratación.
 4. Política de cancelaciones y reembolsos.
-5. Política de pagos y facturación.
+5. Política de pagos y comprobantes.
 6. Reglamento de capacitación y certificación.
 7. Contrato de prestación de servicios para instituciones educativas.
 
-Los seis documentos informativos aparecen en `legal/` con `noindex`. El contrato institucional permanece en `docs/legal/` y no se copia al sitio público.
+Los seis documentos informativos aparecen en `legal/` con `noindex`. El informe interno de auditoría y el contrato institucional permanecen excluidos del sitio público. El contrato del repositorio está anonimizado y no contiene datos de firmantes.
 
 ## Información pendiente
 
-Los valores pendientes se administran en `content/business/datos-empresariales.json` y actualmente permanecen en `null`:
+La denominación pública indicada es `WALED INNOVATION S.A.`. Los demás valores pendientes se administran en `content/business/datos-empresariales.json` y permanecen en `null` cuando no han sido confirmados:
 
-- Nombre legal del prestador contractual.
+- Verificación registral y de representación de `WALED INNOVATION S.A.`.
 - NIT y datos registrales.
 - Correo empresarial.
 - Teléfono y WhatsApp oficiales.
@@ -136,7 +143,7 @@ Los valores pendientes se administran en `content/business/datos-empresariales.j
 ## Qué falta para el lanzamiento oficial
 
 1. Completar la identidad legal y los canales oficiales de contacto.
-2. Obtener revisión jurídica de los siete borradores.
+2. Obtener revisión jurídica de los seis documentos públicos de referencia y del contrato institucional privado.
 3. Obtener revisión contable y tributaria sobre SAT, IVA, facturas y comprobantes.
 4. Confirmar el dominio personalizado, la estrategia de subdominios y la URL de Moodle; revisar también el tratamiento real de datos en Moodle.
 5. Validar licencias de imágenes y logos de terceros.
@@ -144,6 +151,8 @@ Los valores pendientes se administran en `content/business/datos-empresariales.j
 7. Probar con NVDA, VoiceOver y TalkBack en dispositivos reales.
 8. Revisar la política HSTS efectiva de Netlify y volver a comprobar HTTPS, cabeceras, enlaces, favicon y consola después de cada despliegue.
 9. Cuando exista contratación o registro web, implementar aceptaciones demostrables; no se simula actualmente una compra ni una casilla sin proceso contractual.
+10. En Netlify, confirmar que **Forms > Form detection** esté habilitado, volver a desplegar y comprobar que `consulta-contacto` aparezca como formulario activo antes de aceptar consultas reales.
+11. Definir quién revisará los envíos del formulario, configurar notificaciones, limitar accesos y establecer un calendario de exportación y eliminación de datos personales.
 
 ## Publicación
 
